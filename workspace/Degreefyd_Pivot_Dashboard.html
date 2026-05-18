@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Degreefyd Pivot Dashboard</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { background: #f8fafc; color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.5; padding: 10px; }
+.wrap { max-width: 1400px; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; }
+
+.hdr { background: #1e293b; padding: 16px 20px; text-align: left; }
+.hdr h1 { font-size: 20px; font-weight: 700; color: #f8fafc; margin-bottom: 4px; }
+.hdr p { font-size: 12px; color: #94a3b8; }
+
+/* TABS */
+input[type="radio"], input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+.tabs { display: flex; flex-wrap: wrap; background: #f1f5f9; border-bottom: 1px solid #cbd5e1; }
+.tabs label { flex: 1 1 30%; text-align: center; padding: 14px; font-size: 13px; font-weight: 700; color: #475569; border-bottom: 3px solid transparent; cursor: pointer; transition: 0.2s; }
+#t1:checked ~ .wrap .lbl-t1, #t2:checked ~ .wrap .lbl-t2, #t3:checked ~ .wrap .lbl-t3 { color: #2563eb; border-bottom-color: #2563eb; background: #ffffff; }
+
+.panel { display: none; padding: 0; }
+#t1:checked ~ .wrap #p1, #t2:checked ~ .wrap #p2, #t3:checked ~ .wrap #p3 { display: block; }
+
+/* PIVOT TABLE STYLING */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 1200px; border-bottom: 1px solid #cbd5e1; }
+th { background: #f1f5f9; color: #334155; font-size: 11px; text-transform: uppercase; font-weight: 800; padding: 10px 12px; border-bottom: 2px solid #cbd5e1; white-space: nowrap; position: sticky; top: 0; z-index: 10; border-right: 1px solid #e2e8f0; }
+td { padding: 10px 12px; border-bottom: 1px solid #e2e8f0; font-size: 12.5px; color: #0f172a; white-space: nowrap; border-right: 1px solid #e2e8f0; }
+
+/* ROW HIERARCHY */
+.plat-row td { background: #f8fafc; border-top: 2px solid #cbd5e1; }
+.acct-row td { background: #ffffff; }
+.camp-row td { background: #ffffff; color: #475569; }
+.grand-total td { background: #e2e8f0; font-weight: 800; border-top: 2px solid #94a3b8; font-size: 14px; }
+
+.num { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; text-align: right; }
+th.num { text-align: right; }
+.text-left { text-align: left; }
+.warn { color: #dc2626 !important; font-weight: bold; background: #fef2f2 !important; }
+
+/* EXPAND/COLLAPSE UI */
+.exp-lbl { cursor: pointer; display: flex; align-items: center; user-select: none; touch-action: manipulation; }
+.box { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border: 1px solid #94a3b8; background: #fff; margin-right: 8px; font-weight: bold; font-family: monospace; font-size: 10px; color: #0f172a; border-radius: 2px; }
+.box::before { content: "+"; }
+
+/* HIDE CHILDREN BY DEFAULT */
+.child-of-p-ytd-1, .child-of-p-ytd-2, .child-of-p-ytd-3, .child-of-p-ytd-4, .child-of-p-ytd-5,
+.child-of-a-ytd-1, .child-of-a-ytd-2, .child-of-a-ytd-3, .child-of-a-ytd-4, .child-of-a-ytd-5, .child-of-a-ytd-6, .child-of-a-ytd-7, .child-of-a-ytd-8, .child-of-a-ytd-9, .child-of-a-ytd-10, .child-of-a-ytd-11, .child-of-a-ytd-12, .child-of-a-ytd-13, .child-of-a-ytd-14, .child-of-a-ytd-15,
+.child-of-p-mtd-1, .child-of-p-mtd-2, .child-of-p-mtd-3, .child-of-p-mtd-4, .child-of-p-mtd-5,
+.child-of-a-mtd-1, .child-of-a-mtd-2, .child-of-a-mtd-3, .child-of-a-mtd-4, .child-of-a-mtd-5, .child-of-a-mtd-6, .child-of-a-mtd-7, .child-of-a-mtd-8, .child-of-a-mtd-9, .child-of-a-mtd-10, .child-of-a-mtd-11, .child-of-a-mtd-12, .child-of-a-mtd-13, .child-of-a-mtd-14, .child-of-a-mtd-15,
+.child-of-p-ftd-1, .child-of-p-ftd-2, .child-of-p-ftd-3, .child-of-p-ftd-4, .child-of-p-ftd-5,
+.child-of-a-ftd-1, .child-of-a-ftd-2, .child-of-a-ftd-3, .child-of-a-ftd-4, .child-of-a-ftd-5, .child-of-a-ftd-6, .child-of-a-ftd-7, .child-of-a-ftd-8, .child-of-a-ftd-9, .child-of-a-ftd-10, .child-of-a-ftd-11, .child-of-a-ftd-12, .child-of-a-ftd-13, .child-of-a-ftd-14, .child-of-a-ftd-15 {
+    display: none;
+}
+
+#p-ytd-1:checked ~ .wrap .child-of-p-ytd-1 { display: table-row; }
+#p-ytd-1:checked ~ .wrap label[for='p-ytd-1'] .box::before { content: '-'; }
+#a-ytd-1:checked ~ .wrap .child-of-a-ytd-1 { display: table-row; }
+#a-ytd-1:checked ~ .wrap label[for='a-ytd-1'] .box::before { content: '-'; }
+#a-ytd-2:checked ~ .wrap .child-of-a-ytd-2 { display: table-row; }
+#a-ytd-2:checked ~ .wrap label[for='a-ytd-2'] .box::before { content: '-'; }
+#a-ytd-3:checked ~ .wrap .child-of-a-ytd-3 { display: table-row; }
+#a-ytd-3:checked ~ .wrap label[for='a-ytd-3'] .box::before { content: '-'; }
+#a-ytd-4:checked ~ .wrap .child-of-a-ytd-4 { display: table-row; }
+#a-ytd-4:checked ~ .wrap label[for='a-ytd-4'] .box::before { content: '-'; }
+#a-ytd-5:checked ~ .wrap .child-of-a-ytd-5 { display: table-row; }
+#a-ytd-5:checked ~ .wrap label[for='a-ytd-5'] .box::before { content: '-'; }
+#a-ytd-6:checked ~ .wrap .child-of-a-ytd-6 { display: table-row; }
+#a-ytd-6:checked ~ .wrap label[for='a-ytd-6'] .box::before { content: '-'; }
+#a-ytd-7:checked ~ .wrap .child-of-a-ytd-7 { display: table-row; }
+#a-ytd-7:checked ~ .wrap label[for='a-ytd-7'] .box::before { content: '-'; }
+#a-ytd-8:checked ~ .wrap .child-of-a-ytd-8 { display: table-row; }
+#a-ytd-8:checked ~ .wrap label[for='a-ytd-8'] .box::before { content: '-'; }
+#a-ytd-9:checked ~ .wrap .child-of-a-ytd-9 { display: table-row; }
+#a-ytd-9:checked ~ .wrap label[for='a-ytd-9'] .box::before { content: '-'; }
+#a-ytd-10:checked ~ .wrap .child-of-a-ytd-10 { display: table-row; }
+#a-ytd-10:checked ~ .wrap label[for='a-ytd-10'] .box::before { content: '-'; }
+#a-ytd-11:checked ~ .wrap .child-of-a-ytd-11 { display: table-row; }
+#a-ytd-11:checked ~ .wrap label[for='a-ytd-11'] .box::before { content: '-'; }
+#a-ytd-12:checked ~ .wrap .child-of-a-ytd-12 { display: table-row; }
+#a-ytd-12:checked ~ .wrap label[for='a-ytd-12'] .box::before { content: '-'; }
+#a-ytd-13:checked ~ .wrap .child-of-a-ytd-13 { display: table-row; }
+#a-ytd-13:checked ~ .wrap label[for='a-ytd-13'] .box::before { content: '-'; }
+#p-ytd-2:checked ~ .wrap .child-of-p-ytd-2 { display: table-row; }
+#p-ytd-2:checked ~ .wrap label[for='p-ytd-2'] .box::before { content: '-'; }
+#a-ytd-14:checked ~ .wrap .child-of-a-ytd-14 { display: table-row; }
+#a-ytd-14:checked ~ .wrap label[for='a-ytd-14'] .box::before { content: '-'; }
+#a-ytd-15:checked ~ .wrap .child-of-a-ytd-15 { display: table-row; }
+#a-ytd-15:checked ~ .wrap label[for='a-ytd-15'] .box::before { content: '-'; }
+#a-ytd-16:checked ~ .wrap .child-of-a-ytd-16 { display: table-row; }
+#a-ytd-16:checked ~ .wrap label[for='a-ytd-16'] .box::before { content: '-'; }
+
+#p-mtd-1:checked ~ .wrap .child-of-p-mtd-1 { display: table-row; }
+#p-mtd-1:checked ~ .wrap label[for='p-mtd-1'] .box::before { content: '-'; }
+#a-mtd-1:checked ~ .wrap .child-of-a-mtd-1 { display: table-row; }
+#a-mtd-1:checked ~ .wrap label[for='a-mtd-1'] .box::before { content: '-'; }
+#a-mtd-2:checked ~ .wrap .child-of-a-mtd-2 { display: table-row; }
+#a-mtd-2:checked ~ .wrap label[for='a-mtd-2'] .box::before { content: '-'; }
+#a-mtd-3:checked ~ .wrap .child-of-a-mtd-3 { display: table-row; }
+#a-mtd-3:checked ~ .wrap label[for='a-mtd-3'] .box::before { content: '-'; }
+#a-mtd-4:checked ~ .wrap .child-of-a-mtd-4 { display: table-row; }
+#a-mtd-4:checked ~ .wrap label[for='a-mtd-4'] .box::before { content: '-'; }
+#p-mtd-2:checked ~ .wrap .child-of-p-mtd-2 { display: table-row; }
+#p-mtd-2:checked ~ .wrap label[for='p-mtd-2'] .box::before { content: '-'; }
+#a-mtd-5:checked ~ .wrap .child-of-a-mtd-5 { display: table-row; }
+#a-mtd-5:checked ~ .wrap label[for='a-mtd-5'] .box::before { content: '-'; }
+#a-mtd-6:checked ~ .wrap .child-of-a-mtd-6 { display: table-row; }
+#a-mtd-6:checked ~ .wrap label[for='a-mtd-6'] .box::before { content: '-'; }
+
+#p-ftd-1:checked ~ .wrap .child-of-p-ftd-1 { display: table-row; }
+#p-ftd-1:checked ~ .wrap label[for='p-ftd-1'] .box::before { content: '-'; }
+#a-ftd-1:checked ~ .wrap .child-of-a-ftd-1 { display: table-row; }
+#a-ftd-1:checked ~ .wrap label[for='a-ftd-1'] .box::before { content: '-'; }
+#a-ftd-2:checked ~ .wrap .child-of-a-ftd-2 { display: table-row; }
+#a-ftd-2:checked ~ .wrap label[for='a-ftd-2'] .box::before { content: '-'; }
+#a-ftd-3:checked ~ .wrap .child-of-a-ftd-3 { display: table-row; }
+#a-ftd-3:checked ~ .wrap label[for='a-ftd-3'] .box::before { content: '-'; }
+#a-ftd-4:checked ~ .wrap .child-of-a-ftd-4 { display: table-row; }
+#a-ftd-4:checked ~ .wrap label[for='a-ftd-4'] .box::before { content: '-'; }
+#p-ftd-2:checked ~ .wrap .child-of-p-ftd-2 { display: table-row; }
+#p-ftd-2:checked ~ .wrap label[for='p-ftd-2'] .box::before { content: '-'; }
+#a-ftd-5:checked ~ .wrap .child-of-a-ftd-5 { display: table-row; }
+#a-ftd-5:checked ~ .wrap label[for='a-ftd-5'] .box::before { content: '-'; }
+#a-ftd-6:checked ~ .wrap .child-of-a-ftd-6 { display: table-row; }
+#a-ftd-6:checked ~ .wrap label[for='a-ftd-6'] .box::before { content: '-'; }
+
+
+</style>
+</head>
+<body>
+
+<input type="radio" name="tabs" id="t1" checked>
+<input type="radio" name="tabs" id="t2">
+<input type="radio" name="tabs" id="t3">
+
+<input type="checkbox" id="p-ytd-1" checked>
+<input type="checkbox" id="a-ytd-1">
+<input type="checkbox" id="a-ytd-2">
+<input type="checkbox" id="a-ytd-3">
+<input type="checkbox" id="a-ytd-4">
+<input type="checkbox" id="a-ytd-5">
+<input type="checkbox" id="a-ytd-6">
+<input type="checkbox" id="a-ytd-7">
+<input type="checkbox" id="a-ytd-8">
+<input type="checkbox" id="a-ytd-9">
+<input type="checkbox" id="a-ytd-10">
+<input type="checkbox" id="a-ytd-11">
+<input type="checkbox" id="a-ytd-12">
+<input type="checkbox" id="a-ytd-13">
+<input type="checkbox" id="p-ytd-2" checked>
+<input type="checkbox" id="a-ytd-14">
+<input type="checkbox" id="a-ytd-15">
+<input type="checkbox" id="a-ytd-16">
+
+<input type="checkbox" id="p-mtd-1" checked>
+<input type="checkbox" id="a-mtd-1">
+<input type="checkbox" id="a-mtd-2">
+<input type="checkbox" id="a-mtd-3">
+<input type="checkbox" id="a-mtd-4">
+<input type="checkbox" id="p-mtd-2" checked>
+<input type="checkbox" id="a-mtd-5">
+<input type="checkbox" id="a-mtd-6">
+
+<input type="checkbox" id="p-ftd-1" checked>
+<input type="checkbox" id="a-ftd-1">
+<input type="checkbox" id="a-ftd-2">
+<input type="checkbox" id="a-ftd-3">
+<input type="checkbox" id="a-ftd-4">
+<input type="checkbox" id="p-ftd-2" checked>
+<input type="checkbox" id="a-ftd-5">
+<input type="checkbox" id="a-ftd-6">
+
+
+<div class="wrap">
+  <div class="hdr">
+    <h1>Degreefyd Pivot Dashboard</h1>
+    <p>Excel-Style Nested Hierarchy • Tap [+] to Expand</p>
+  </div>
+  
+  <div class="tabs">
+    <label for="t1" class="lbl-t1">📊 YTD Drilldown</label>
+    <label for="t2" class="lbl-t2">📊 MTD Drilldown</label>
+    <label for="t3" class="lbl-t3">📊 FTD Drilldown</label>
+  </div>
+  
+  <div id="p1" class="panel"><div class="table-wrap"><table><thead><tr><th class="text-left">Platform / Account / Campaign</th><th class="num">Spends</th><th class="num">Panel Leads</th><th class="num">LMS Leads</th><th class="num">Dup %</th><th class="num">FFH</th><th class="num">ADM</th><th class="num">Inv_Var</th><th class="num">CPL Panel</th><th class="num">CPL LMS</th><th class="num">CAC FFH</th><th class="num">CAC ADM</th><th class="num">ARPU</th><th class="num">CAC/ARPU</th><th class="num">L2F</th><th class="num">L2A</th><th class="num">F2A</th></tr></thead><tbody>
+        <tr class="plat-row">
+            <td class="text-left">
+                <label for="p-ytd-1" class="exp-lbl">
+                    <span class="box"></span> 🔵 <strong>Google Ads Total</strong>
+                </label>
+            </td>
+            <td class="num"><strong>₹1,324,914</strong></td>
+            <td class="num"><strong>10,144</strong></td>
+            <td class="num"><strong>8,965</strong></td>
+            <td class="num"><strong>-</strong></td>
+            <td class="num"><strong>254</strong></td>
+            <td class="num"><strong>145</strong></td>
+            <td class="num"><strong>₹3,447,582</strong></td>
+            <td class="num"><strong>₹131</strong></td>
+            <td class="num"><strong>₹148</strong></td>
+            <td class="num"><strong>₹5,216</strong></td>
+            <td class="num"><strong>₹9,137</strong></td>
+            <td class="num"><strong>₹23,776</strong></td>
+            <td class="num"><strong>38.4%</strong></td>
+            <td class="num"><strong>2.8%</strong></td>
+            <td class="num"><strong>1.6%</strong></td>
+            <td class="num"><strong>57.1%</strong></td>
+        </tr>
+        
+            <tr class="acct-row child-of-p-ytd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-1" class="exp-lbl">
+                        <span class="box"></span> <strong>All_Universities_Tawab Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹52,450</strong></td>
+                <td class="num"><strong>82</strong></td>
+                <td class="num"><strong>49</strong></td>
+                <td class="num warn"><strong>40.2%</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹640</strong></td>
+                <td class="num"><strong>₹1,070</strong></td>
+                <td class="num"><strong>₹52,450</strong></td>
+                <td class="num"><strong>₹52,450</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-2" class="exp-lbl">
+                        <span class="box"></span> <strong>Amity_Partner_001 Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹654,912</strong></td>
+                <td class="num"><strong>2,371</strong></td>
+                <td class="num"><strong>2,020</strong></td>
+                <td class="num "><strong>14.8%</strong></td>
+                <td class="num"><strong>134</strong></td>
+                <td class="num"><strong>79</strong></td>
+                <td class="num"><strong>₹2,066,915</strong></td>
+                <td class="num"><strong>₹276</strong></td>
+                <td class="num"><strong>₹324</strong></td>
+                <td class="num"><strong>₹4,887</strong></td>
+                <td class="num"><strong>₹8,290</strong></td>
+                <td class="num"><strong>₹26,163</strong></td>
+                <td class="num"><strong>31.7%</strong></td>
+                <td class="num"><strong>6.6%</strong></td>
+                <td class="num"><strong>3.9%</strong></td>
+                <td class="num"><strong>59.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-3" class="exp-lbl">
+                        <span class="box"></span> <strong>Core_Online_DSA Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹6,021</strong></td>
+                <td class="num"><strong>108</strong></td>
+                <td class="num"><strong>75</strong></td>
+                <td class="num warn"><strong>30.6%</strong></td>
+                <td class="num"><strong>1</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹56</strong></td>
+                <td class="num"><strong>₹80</strong></td>
+                <td class="num"><strong>₹6,021</strong></td>
+                <td class="num"><strong>₹6,021</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>1.3%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-4" class="exp-lbl">
+                        <span class="box"></span> <strong>Degreefyd_Generic_Online_IU Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹46,980</strong></td>
+                <td class="num"><strong>27</strong></td>
+                <td class="num"><strong>29</strong></td>
+                <td class="num "><strong>-7.4%</strong></td>
+                <td class="num"><strong>8</strong></td>
+                <td class="num"><strong>5</strong></td>
+                <td class="num"><strong>₹90,885</strong></td>
+                <td class="num"><strong>₹1,741</strong></td>
+                <td class="num"><strong>₹1,620</strong></td>
+                <td class="num"><strong>₹5,872</strong></td>
+                <td class="num"><strong>₹9,396</strong></td>
+                <td class="num"><strong>₹18,177</strong></td>
+                <td class="num"><strong>51.7%</strong></td>
+                <td class="num"><strong>27.6%</strong></td>
+                <td class="num"><strong>17.2%</strong></td>
+                <td class="num"><strong>62.5%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-5" class="exp-lbl">
+                        <span class="box"></span> <strong>Degreefyd_Generic_Regular Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹217,463</strong></td>
+                <td class="num"><strong>6,953</strong></td>
+                <td class="num"><strong>6,202</strong></td>
+                <td class="num "><strong>10.8%</strong></td>
+                <td class="num"><strong>61</strong></td>
+                <td class="num"><strong>36</strong></td>
+                <td class="num"><strong>₹725,496</strong></td>
+                <td class="num"><strong>₹31</strong></td>
+                <td class="num"><strong>₹35</strong></td>
+                <td class="num"><strong>₹3,565</strong></td>
+                <td class="num"><strong>₹6,041</strong></td>
+                <td class="num"><strong>₹20,153</strong></td>
+                <td class="num"><strong>30.0%</strong></td>
+                <td class="num"><strong>1.0%</strong></td>
+                <td class="num"><strong>0.6%</strong></td>
+                <td class="num"><strong>59.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-6" class="exp-lbl">
+                        <span class="box"></span> <strong>Degreefyd_Online_Generic Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹3,827</strong></td>
+                <td class="num"><strong>14</strong></td>
+                <td class="num"><strong>42</strong></td>
+                <td class="num "><strong>-200.0%</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹273</strong></td>
+                <td class="num"><strong>₹91</strong></td>
+                <td class="num"><strong>₹3,827</strong></td>
+                <td class="num"><strong>₹3,827</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-7" class="exp-lbl">
+                        <span class="box"></span> <strong>Degreefyd_Patner_L_Shoolini Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹700</strong></td>
+                <td class="num"><strong>1</strong></td>
+                <td class="num"><strong>1</strong></td>
+                <td class="num "><strong>0.0%</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹700</strong></td>
+                <td class="num"><strong>₹700</strong></td>
+                <td class="num"><strong>₹700</strong></td>
+                <td class="num"><strong>₹700</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-8" class="exp-lbl">
+                        <span class="box"></span> <strong>EP_Amity_Online_DFYD Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹1,605</strong></td>
+                <td class="num"><strong>2</strong></td>
+                <td class="num"><strong>2</strong></td>
+                <td class="num "><strong>0.0%</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹803</strong></td>
+                <td class="num"><strong>₹803</strong></td>
+                <td class="num"><strong>₹1,605</strong></td>
+                <td class="num"><strong>₹1,605</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-9" class="exp-lbl">
+                        <span class="box"></span> <strong>EP_CU_Online_DFYD Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹100,734</strong></td>
+                <td class="num"><strong>225</strong></td>
+                <td class="num"><strong>201</strong></td>
+                <td class="num "><strong>10.7%</strong></td>
+                <td class="num"><strong>24</strong></td>
+                <td class="num"><strong>11</strong></td>
+                <td class="num"><strong>₹238,088</strong></td>
+                <td class="num"><strong>₹449</strong></td>
+                <td class="num"><strong>₹501</strong></td>
+                <td class="num"><strong>₹4,197</strong></td>
+                <td class="num"><strong>₹9,158</strong></td>
+                <td class="num"><strong>₹21,644</strong></td>
+                <td class="num"><strong>42.3%</strong></td>
+                <td class="num"><strong>11.9%</strong></td>
+                <td class="num"><strong>5.5%</strong></td>
+                <td class="num"><strong>45.8%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-10" class="exp-lbl">
+                        <span class="box"></span> <strong>EP_GLA_Online_DFYD Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹14,072</strong></td>
+                <td class="num"><strong>8</strong></td>
+                <td class="num"><strong>9</strong></td>
+                <td class="num "><strong>-12.5%</strong></td>
+                <td class="num"><strong>2</strong></td>
+                <td class="num"><strong>1</strong></td>
+                <td class="num"><strong>₹13,875</strong></td>
+                <td class="num"><strong>₹1,759</strong></td>
+                <td class="num"><strong>₹1,564</strong></td>
+                <td class="num"><strong>₹7,036</strong></td>
+                <td class="num"><strong>₹14,072</strong></td>
+                <td class="num"><strong>₹13,875</strong></td>
+                <td class="num"><strong>101.4%</strong></td>
+                <td class="num"><strong>22.2%</strong></td>
+                <td class="num"><strong>11.1%</strong></td>
+                <td class="num"><strong>50.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-11" class="exp-lbl">
+                        <span class="box"></span> <strong>EP_Partner_Amity_Online_DFYD Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹128,578</strong></td>
+                <td class="num"><strong>206</strong></td>
+                <td class="num"><strong>195</strong></td>
+                <td class="num "><strong>5.3%</strong></td>
+                <td class="num"><strong>18</strong></td>
+                <td class="num"><strong>10</strong></td>
+                <td class="num"><strong>₹243,828</strong></td>
+                <td class="num"><strong>₹623</strong></td>
+                <td class="num"><strong>₹659</strong></td>
+                <td class="num"><strong>₹7,143</strong></td>
+                <td class="num"><strong>₹12,858</strong></td>
+                <td class="num"><strong>₹24,383</strong></td>
+                <td class="num"><strong>52.7%</strong></td>
+                <td class="num"><strong>9.2%</strong></td>
+                <td class="num"><strong>5.1%</strong></td>
+                <td class="num"><strong>55.6%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-12" class="exp-lbl">
+                        <span class="box"></span> <strong>EP_Partner_LPU_Online_DFYD Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹74,394</strong></td>
+                <td class="num"><strong>127</strong></td>
+                <td class="num"><strong>120</strong></td>
+                <td class="num "><strong>5.5%</strong></td>
+                <td class="num"><strong>4</strong></td>
+                <td class="num"><strong>2</strong></td>
+                <td class="num"><strong>₹48,494</strong></td>
+                <td class="num"><strong>₹586</strong></td>
+                <td class="num"><strong>₹620</strong></td>
+                <td class="num"><strong>₹18,598</strong></td>
+                <td class="num"><strong>₹37,197</strong></td>
+                <td class="num"><strong>₹24,247</strong></td>
+                <td class="num"><strong>153.4%</strong></td>
+                <td class="num"><strong>3.3%</strong></td>
+                <td class="num"><strong>1.7%</strong></td>
+                <td class="num"><strong>50.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-13" class="exp-lbl">
+                        <span class="box"></span> <strong>EP_Partnere_Shoolini_DFYD Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹23,178</strong></td>
+                <td class="num"><strong>19</strong></td>
+                <td class="num"><strong>20</strong></td>
+                <td class="num "><strong>-5.3%</strong></td>
+                <td class="num"><strong>2</strong></td>
+                <td class="num"><strong>1</strong></td>
+                <td class="num"><strong>₹20,000</strong></td>
+                <td class="num"><strong>₹1,220</strong></td>
+                <td class="num"><strong>₹1,159</strong></td>
+                <td class="num"><strong>₹11,589</strong></td>
+                <td class="num"><strong>₹23,178</strong></td>
+                <td class="num"><strong>₹20,000</strong></td>
+                <td class="num"><strong>115.9%</strong></td>
+                <td class="num"><strong>10.0%</strong></td>
+                <td class="num"><strong>5.0%</strong></td>
+                <td class="num"><strong>50.0%</strong></td>
+            </tr>
+            
+        <tr class="plat-row">
+            <td class="text-left">
+                <label for="p-ytd-2" class="exp-lbl">
+                    <span class="box"></span> 🟣 <strong>Meta Ads Total</strong>
+                </label>
+            </td>
+            <td class="num"><strong>₹1,296,216</strong></td>
+            <td class="num"><strong>19,407</strong></td>
+            <td class="num"><strong>16,982</strong></td>
+            <td class="num"><strong>-</strong></td>
+            <td class="num"><strong>351</strong></td>
+            <td class="num"><strong>213</strong></td>
+            <td class="num"><strong>₹5,154,518</strong></td>
+            <td class="num"><strong>₹67</strong></td>
+            <td class="num"><strong>₹76</strong></td>
+            <td class="num"><strong>₹3,693</strong></td>
+            <td class="num"><strong>₹6,086</strong></td>
+            <td class="num"><strong>₹24,200</strong></td>
+            <td class="num"><strong>25.1%</strong></td>
+            <td class="num"><strong>2.1%</strong></td>
+            <td class="num"><strong>1.3%</strong></td>
+            <td class="num"><strong>60.7%</strong></td>
+        </tr>
+        
+            <tr class="acct-row child-of-p-ytd-2">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-14" class="exp-lbl">
+                        <span class="box"></span> <strong>FaceBook_Degreefyd Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹4,031</strong></td>
+                <td class="num"><strong>30</strong></td>
+                <td class="num"><strong>15</strong></td>
+                <td class="num warn"><strong>50.0%</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹134</strong></td>
+                <td class="num"><strong>₹269</strong></td>
+                <td class="num"><strong>₹4,031</strong></td>
+                <td class="num"><strong>₹4,031</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-2">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-15" class="exp-lbl">
+                        <span class="box"></span> <strong>FaceBook_Degreefyd_B Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹631,516</strong></td>
+                <td class="num"><strong>11,997</strong></td>
+                <td class="num"><strong>10,515</strong></td>
+                <td class="num "><strong>12.4%</strong></td>
+                <td class="num"><strong>223</strong></td>
+                <td class="num"><strong>136</strong></td>
+                <td class="num"><strong>₹2,905,167</strong></td>
+                <td class="num"><strong>₹53</strong></td>
+                <td class="num"><strong>₹60</strong></td>
+                <td class="num"><strong>₹2,832</strong></td>
+                <td class="num"><strong>₹4,643</strong></td>
+                <td class="num"><strong>₹21,362</strong></td>
+                <td class="num"><strong>21.7%</strong></td>
+                <td class="num"><strong>2.1%</strong></td>
+                <td class="num"><strong>1.3%</strong></td>
+                <td class="num"><strong>61.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ytd-2">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ytd-16" class="exp-lbl">
+                        <span class="box"></span> <strong>FaceBook_University_Admit Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹660,669</strong></td>
+                <td class="num"><strong>7,380</strong></td>
+                <td class="num"><strong>6,452</strong></td>
+                <td class="num "><strong>12.6%</strong></td>
+                <td class="num"><strong>128</strong></td>
+                <td class="num"><strong>77</strong></td>
+                <td class="num"><strong>₹2,249,351</strong></td>
+                <td class="num"><strong>₹90</strong></td>
+                <td class="num"><strong>₹102</strong></td>
+                <td class="num"><strong>₹5,161</strong></td>
+                <td class="num"><strong>₹8,580</strong></td>
+                <td class="num"><strong>₹29,212</strong></td>
+                <td class="num"><strong>29.4%</strong></td>
+                <td class="num"><strong>2.0%</strong></td>
+                <td class="num"><strong>1.2%</strong></td>
+                <td class="num"><strong>60.2%</strong></td>
+            </tr>
+            
+        <tr class="grand-total">
+            <td class="text-left"><strong>Grand Total</strong></td>
+            <td class="num"><strong>₹2,621,130</strong></td>
+            <td class="num"><strong>29,551</strong></td>
+            <td class="num"><strong>25,947</strong></td>
+            <td class="num"><strong>-</strong></td>
+            <td class="num"><strong>605</strong></td>
+            <td class="num"><strong>358</strong></td>
+            <td class="num"><strong>₹8,602,100</strong></td>
+            <td class="num"><strong>₹89</strong></td>
+            <td class="num"><strong>₹101</strong></td>
+            <td class="num"><strong>₹4,332</strong></td>
+            <td class="num"><strong>₹7,322</strong></td>
+            <td class="num"><strong>₹24,028</strong></td>
+            <td class="num"><strong>30.5%</strong></td>
+            <td class="num"><strong>2.3%</strong></td>
+            <td class="num"><strong>1.4%</strong></td>
+            <td class="num"><strong>59.2%</strong></td>
+        </tr>
+        </tbody></table></div></div>
+  <div id="p2" class="panel"><div class="table-wrap"><table><thead><tr><th class="text-left">Platform / Account / Campaign</th><th class="num">Spends</th><th class="num">Panel Leads</th><th class="num">LMS Leads</th><th class="num">Dup %</th><th class="num">FFH</th><th class="num">ADM</th><th class="num">Inv_Var</th><th class="num">CPL Panel</th><th class="num">CPL LMS</th><th class="num">CAC FFH</th><th class="num">CAC ADM</th><th class="num">ARPU</th><th class="num">CAC/ARPU</th><th class="num">L2F</th><th class="num">L2A</th><th class="num">F2A</th></tr></thead><tbody>
+        <tr class="plat-row">
+            <td class="text-left">
+                <label for="p-mtd-1" class="exp-lbl">
+                    <span class="box"></span> 🔵 <strong>Google Ads Total</strong>
+                </label>
+            </td>
+            <td class="num"><strong>₹12,833</strong></td>
+            <td class="num"><strong>72</strong></td>
+            <td class="num"><strong>71</strong></td>
+            <td class="num"><strong>-</strong></td>
+            <td class="num"><strong>2</strong></td>
+            <td class="num"><strong>1</strong></td>
+            <td class="num"><strong>₹11,424</strong></td>
+            <td class="num"><strong>₹178</strong></td>
+            <td class="num"><strong>₹181</strong></td>
+            <td class="num"><strong>₹6,416</strong></td>
+            <td class="num"><strong>₹12,833</strong></td>
+            <td class="num"><strong>₹11,424</strong></td>
+            <td class="num"><strong>112.3%</strong></td>
+            <td class="num"><strong>2.8%</strong></td>
+            <td class="num"><strong>1.4%</strong></td>
+            <td class="num"><strong>50.0%</strong></td>
+        </tr>
+        
+            <tr class="acct-row child-of-p-mtd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-mtd-1" class="exp-lbl">
+                        <span class="box"></span> <strong>Amity_Partner_001 Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹5,252</strong></td>
+                <td class="num"><strong>20</strong></td>
+                <td class="num"><strong>22</strong></td>
+                <td class="num "><strong>-10.0%</strong></td>
+                <td class="num"><strong>1</strong></td>
+                <td class="num"><strong>1</strong></td>
+                <td class="num"><strong>₹11,424</strong></td>
+                <td class="num"><strong>₹263</strong></td>
+                <td class="num"><strong>₹239</strong></td>
+                <td class="num"><strong>₹5,252</strong></td>
+                <td class="num"><strong>₹5,252</strong></td>
+                <td class="num"><strong>₹11,424</strong></td>
+                <td class="num"><strong>46.0%</strong></td>
+                <td class="num"><strong>4.5%</strong></td>
+                <td class="num"><strong>4.5%</strong></td>
+                <td class="num"><strong>100.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-mtd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-mtd-2" class="exp-lbl">
+                        <span class="box"></span> <strong>Degreefyd_Generic_Online_IU Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹5,753</strong></td>
+                <td class="num"><strong>1</strong></td>
+                <td class="num"><strong>3</strong></td>
+                <td class="num "><strong>-200.0%</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹5,753</strong></td>
+                <td class="num"><strong>₹1,918</strong></td>
+                <td class="num"><strong>₹5,753</strong></td>
+                <td class="num"><strong>₹5,753</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-mtd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-mtd-3" class="exp-lbl">
+                        <span class="box"></span> <strong>Degreefyd_Generic_Regular Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹1,031</strong></td>
+                <td class="num"><strong>51</strong></td>
+                <td class="num"><strong>46</strong></td>
+                <td class="num "><strong>9.8%</strong></td>
+                <td class="num"><strong>1</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹20</strong></td>
+                <td class="num"><strong>₹22</strong></td>
+                <td class="num"><strong>₹1,031</strong></td>
+                <td class="num"><strong>₹1,031</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>2.2%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-mtd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-mtd-4" class="exp-lbl">
+                        <span class="box"></span> <strong>EP_Partner_Amity_Online_DFYD Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹797</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num "><strong>0.0%</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹797</strong></td>
+                <td class="num"><strong>₹797</strong></td>
+                <td class="num"><strong>₹797</strong></td>
+                <td class="num"><strong>₹797</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+        <tr class="plat-row">
+            <td class="text-left">
+                <label for="p-mtd-2" class="exp-lbl">
+                    <span class="box"></span> 🟣 <strong>Meta Ads Total</strong>
+                </label>
+            </td>
+            <td class="num"><strong>₹10,230</strong></td>
+            <td class="num"><strong>188</strong></td>
+            <td class="num"><strong>160</strong></td>
+            <td class="num"><strong>-</strong></td>
+            <td class="num"><strong>0</strong></td>
+            <td class="num"><strong>0</strong></td>
+            <td class="num"><strong>₹0</strong></td>
+            <td class="num"><strong>₹54</strong></td>
+            <td class="num"><strong>₹64</strong></td>
+            <td class="num"><strong>₹10,230</strong></td>
+            <td class="num"><strong>₹10,230</strong></td>
+            <td class="num"><strong>₹0</strong></td>
+            <td class="num"><strong>-</strong></td>
+            <td class="num"><strong>0.0%</strong></td>
+            <td class="num"><strong>0.0%</strong></td>
+            <td class="num"><strong>0.0%</strong></td>
+        </tr>
+        
+            <tr class="acct-row child-of-p-mtd-2">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-mtd-5" class="exp-lbl">
+                        <span class="box"></span> <strong>FaceBook_Degreefyd_B Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹5,044</strong></td>
+                <td class="num"><strong>118</strong></td>
+                <td class="num"><strong>111</strong></td>
+                <td class="num "><strong>5.9%</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹43</strong></td>
+                <td class="num"><strong>₹45</strong></td>
+                <td class="num"><strong>₹5,044</strong></td>
+                <td class="num"><strong>₹5,044</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-mtd-2">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-mtd-6" class="exp-lbl">
+                        <span class="box"></span> <strong>FaceBook_University_Admit Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹5,185</strong></td>
+                <td class="num"><strong>70</strong></td>
+                <td class="num"><strong>49</strong></td>
+                <td class="num warn"><strong>30.0%</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹74</strong></td>
+                <td class="num"><strong>₹106</strong></td>
+                <td class="num"><strong>₹5,185</strong></td>
+                <td class="num"><strong>₹5,185</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+        <tr class="grand-total">
+            <td class="text-left"><strong>Grand Total</strong></td>
+            <td class="num"><strong>₹23,063</strong></td>
+            <td class="num"><strong>260</strong></td>
+            <td class="num"><strong>231</strong></td>
+            <td class="num"><strong>-</strong></td>
+            <td class="num"><strong>2</strong></td>
+            <td class="num"><strong>1</strong></td>
+            <td class="num"><strong>₹11,424</strong></td>
+            <td class="num"><strong>₹89</strong></td>
+            <td class="num"><strong>₹100</strong></td>
+            <td class="num"><strong>₹11,531</strong></td>
+            <td class="num"><strong>₹23,063</strong></td>
+            <td class="num"><strong>₹11,424</strong></td>
+            <td class="num"><strong>201.9%</strong></td>
+            <td class="num"><strong>0.9%</strong></td>
+            <td class="num"><strong>0.4%</strong></td>
+            <td class="num"><strong>50.0%</strong></td>
+        </tr>
+        </tbody></table></div></div>
+  <div id="p3" class="panel"><div class="table-wrap"><table><thead><tr><th class="text-left">Platform / Account / Campaign</th><th class="num">Spends</th><th class="num">Panel Leads</th><th class="num">LMS Leads</th><th class="num">Dup %</th><th class="num">FFH</th><th class="num">ADM</th><th class="num">Inv_Var</th><th class="num">CPL Panel</th><th class="num">CPL LMS</th><th class="num">CAC FFH</th><th class="num">CAC ADM</th><th class="num">ARPU</th><th class="num">CAC/ARPU</th><th class="num">L2F</th><th class="num">L2A</th><th class="num">F2A</th></tr></thead><tbody>
+        <tr class="plat-row">
+            <td class="text-left">
+                <label for="p-ftd-1" class="exp-lbl">
+                    <span class="box"></span> 🔵 <strong>Google Ads Total</strong>
+                </label>
+            </td>
+            <td class="num"><strong>₹12,833</strong></td>
+            <td class="num"><strong>72</strong></td>
+            <td class="num"><strong>71</strong></td>
+            <td class="num"><strong>-</strong></td>
+            <td class="num"><strong>2</strong></td>
+            <td class="num"><strong>1</strong></td>
+            <td class="num"><strong>₹11,424</strong></td>
+            <td class="num"><strong>₹178</strong></td>
+            <td class="num"><strong>₹181</strong></td>
+            <td class="num"><strong>₹6,416</strong></td>
+            <td class="num"><strong>₹12,833</strong></td>
+            <td class="num"><strong>₹11,424</strong></td>
+            <td class="num"><strong>112.3%</strong></td>
+            <td class="num"><strong>2.8%</strong></td>
+            <td class="num"><strong>1.4%</strong></td>
+            <td class="num"><strong>50.0%</strong></td>
+        </tr>
+        
+            <tr class="acct-row child-of-p-ftd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ftd-1" class="exp-lbl">
+                        <span class="box"></span> <strong>Amity_Partner_001 Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹5,252</strong></td>
+                <td class="num"><strong>20</strong></td>
+                <td class="num"><strong>22</strong></td>
+                <td class="num "><strong>-10.0%</strong></td>
+                <td class="num"><strong>1</strong></td>
+                <td class="num"><strong>1</strong></td>
+                <td class="num"><strong>₹11,424</strong></td>
+                <td class="num"><strong>₹263</strong></td>
+                <td class="num"><strong>₹239</strong></td>
+                <td class="num"><strong>₹5,252</strong></td>
+                <td class="num"><strong>₹5,252</strong></td>
+                <td class="num"><strong>₹11,424</strong></td>
+                <td class="num"><strong>46.0%</strong></td>
+                <td class="num"><strong>4.5%</strong></td>
+                <td class="num"><strong>4.5%</strong></td>
+                <td class="num"><strong>100.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ftd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ftd-2" class="exp-lbl">
+                        <span class="box"></span> <strong>Degreefyd_Generic_Online_IU Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹5,753</strong></td>
+                <td class="num"><strong>1</strong></td>
+                <td class="num"><strong>3</strong></td>
+                <td class="num "><strong>-200.0%</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹5,753</strong></td>
+                <td class="num"><strong>₹1,918</strong></td>
+                <td class="num"><strong>₹5,753</strong></td>
+                <td class="num"><strong>₹5,753</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ftd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ftd-3" class="exp-lbl">
+                        <span class="box"></span> <strong>Degreefyd_Generic_Regular Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹1,031</strong></td>
+                <td class="num"><strong>51</strong></td>
+                <td class="num"><strong>46</strong></td>
+                <td class="num "><strong>9.8%</strong></td>
+                <td class="num"><strong>1</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹20</strong></td>
+                <td class="num"><strong>₹22</strong></td>
+                <td class="num"><strong>₹1,031</strong></td>
+                <td class="num"><strong>₹1,031</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>2.2%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ftd-1">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ftd-4" class="exp-lbl">
+                        <span class="box"></span> <strong>EP_Partner_Amity_Online_DFYD Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹797</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num "><strong>0.0%</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹797</strong></td>
+                <td class="num"><strong>₹797</strong></td>
+                <td class="num"><strong>₹797</strong></td>
+                <td class="num"><strong>₹797</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+        <tr class="plat-row">
+            <td class="text-left">
+                <label for="p-ftd-2" class="exp-lbl">
+                    <span class="box"></span> 🟣 <strong>Meta Ads Total</strong>
+                </label>
+            </td>
+            <td class="num"><strong>₹10,230</strong></td>
+            <td class="num"><strong>188</strong></td>
+            <td class="num"><strong>160</strong></td>
+            <td class="num"><strong>-</strong></td>
+            <td class="num"><strong>0</strong></td>
+            <td class="num"><strong>0</strong></td>
+            <td class="num"><strong>₹0</strong></td>
+            <td class="num"><strong>₹54</strong></td>
+            <td class="num"><strong>₹64</strong></td>
+            <td class="num"><strong>₹10,230</strong></td>
+            <td class="num"><strong>₹10,230</strong></td>
+            <td class="num"><strong>₹0</strong></td>
+            <td class="num"><strong>-</strong></td>
+            <td class="num"><strong>0.0%</strong></td>
+            <td class="num"><strong>0.0%</strong></td>
+            <td class="num"><strong>0.0%</strong></td>
+        </tr>
+        
+            <tr class="acct-row child-of-p-ftd-2">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ftd-5" class="exp-lbl">
+                        <span class="box"></span> <strong>FaceBook_Degreefyd_B Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹5,044</strong></td>
+                <td class="num"><strong>118</strong></td>
+                <td class="num"><strong>111</strong></td>
+                <td class="num "><strong>5.9%</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹43</strong></td>
+                <td class="num"><strong>₹45</strong></td>
+                <td class="num"><strong>₹5,044</strong></td>
+                <td class="num"><strong>₹5,044</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+            <tr class="acct-row child-of-p-ftd-2">
+                <td class="text-left" style="padding-left: 30px;">
+                    <label for="a-ftd-6" class="exp-lbl">
+                        <span class="box"></span> <strong>FaceBook_University_Admit Total</strong>
+                    </label>
+                </td>
+                <td class="num"><strong>₹5,185</strong></td>
+                <td class="num"><strong>70</strong></td>
+                <td class="num"><strong>49</strong></td>
+                <td class="num warn"><strong>30.0%</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>₹74</strong></td>
+                <td class="num"><strong>₹106</strong></td>
+                <td class="num"><strong>₹5,185</strong></td>
+                <td class="num"><strong>₹5,185</strong></td>
+                <td class="num"><strong>₹0</strong></td>
+                <td class="num"><strong>-</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+                <td class="num"><strong>0.0%</strong></td>
+            </tr>
+            
+        <tr class="grand-total">
+            <td class="text-left"><strong>Grand Total</strong></td>
+            <td class="num"><strong>₹23,063</strong></td>
+            <td class="num"><strong>260</strong></td>
+            <td class="num"><strong>231</strong></td>
+            <td class="num"><strong>-</strong></td>
+            <td class="num"><strong>2</strong></td>
+            <td class="num"><strong>1</strong></td>
+            <td class="num"><strong>₹11,424</strong></td>
+            <td class="num"><strong>₹89</strong></td>
+            <td class="num"><strong>₹100</strong></td>
+            <td class="num"><strong>₹11,531</strong></td>
+            <td class="num"><strong>₹23,063</strong></td>
+            <td class="num"><strong>₹11,424</strong></td>
+            <td class="num"><strong>201.9%</strong></td>
+            <td class="num"><strong>0.9%</strong></td>
+            <td class="num"><strong>0.4%</strong></td>
+            <td class="num"><strong>50.0%</strong></td>
+        </tr>
+        </tbody></table></div></div>
+</div>
+
+</body>
+</html>

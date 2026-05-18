@@ -1,0 +1,103 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 15px; }
+        .dashboard { max-width: 600px; margin: auto; }
+        .header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        .kpi-container { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+        .kpi-box { flex: 1; min-width: 140px; background: #1e1e1e; border: 1px solid #333; border-radius: 12px; padding: 15px; text-align: center; }
+        .kpi-label { font-size: 0.8rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; }
+        .kpi-value { font-size: 1.8rem; font-weight: bold; margin: 5px 0; color: #4caf50; }
+        .kpi-sub { font-size: 0.9rem; color: #888; }
+        
+        details { background: #1e1e1e; border-radius: 8px; margin-bottom: 8px; border: 1px solid #333; overflow: hidden; }
+        summary { padding: 12px; cursor: pointer; font-weight: 600; outline: none; list-style: none; display: flex; justify-content: space-between; }
+        summary::-webkit-details-marker { display: none; }
+        details[open] summary { border-bottom: 1px solid #333; background: #252525; }
+        
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th { background: #252525; color: #aaa; text-align: left; padding: 8px; font-weight: 600; }
+        td { border-bottom: 1px solid #333; padding: 8px; }
+        tr:last-child td { border-bottom: none; }
+        .text-right { text-align: right; }
+        .pct { color: #4caf50; font-weight: bold; }
+    </style>
+    </head>
+    <body>
+    <div class="dashboard">
+        <div class="header">
+            <h2 style="margin:0; color:#fff;">Online LMS Daily Report</h2>
+            <p style="margin:5px 0; color:#888;">Dated: 10 May 2026</p>
+        </div>
+
+        <div class="kpi-container">
+            <div class="kpi-box">
+                <div class="kpi-label">FTD Admissions</div>
+                <div class="kpi-value">1</div>
+            </div>
+            <div class="kpi-box">
+                <div class="kpi-label">FTD Fee Collected</div>
+                <div class="kpi-value">76,500</div>
+            </div>
+        </div>
+
+        <div class="kpi-container">
+            <div class="kpi-box">
+                <div class="kpi-label">Adm Achievement</div>
+                <div class="kpi-value">17.1%</div>
+                <div class="kpi-sub">48/280</div>
+            </div>
+            <div class="kpi-box">
+                <div class="kpi-label">Fee Achievement</div>
+                <div class="kpi-value">27.5%</div>
+                <div class="kpi-sub">41.86L/1.52Cr</div>
+            </div>
+        </div>
+
+        <details open>
+            <summary><span>👤 Supervisor Admission</span></summary>
+            <table>
+                <thead>
+                    <tr><th>Name</th><th class='text-right'>FTD</th><th class='text-right'>Ach</th><th class='text-right'>Tgt</th></tr>
+                </thead>
+                <tbody>
+    
+                    <tr><td>Varun</td><td class='text-right'>0</td><td class='text-right'>17</td><td class='text-right'>80</td></tr>
+        
+                    <tr><td>Sunil</td><td class='text-right'>0</td><td class='text-right'>16</td><td class='text-right'>80</td></tr>
+        
+                    <tr><td>Vishal</td><td class='text-right'>0</td><td class='text-right'>1</td><td class='text-right'>0</td></tr>
+        
+                    <tr><td>Siddhartha</td><td class='text-right'>1</td><td class='text-right'>14</td><td class='text-right'>0</td></tr>
+        
+                </tbody>
+            </table>
+        </details>
+
+        <details>
+            <summary><span>💰 Supervisor Fee Collected</span></summary>
+            <table>
+                <thead>
+                    <tr><th>Name</th><th class='text-right'>FTD</th><th class='text-right'>Ach</th><th class='text-right'>Ach%</th></tr>
+                </thead>
+                <tbody>
+    
+                    <tr><td>Varun</td><td class='text-right'>0</td><td class='text-right'>12.96L</td><td class='text-right pct'>25.9%</td></tr>
+        
+                    <tr><td>Sunil</td><td class='text-right'>0</td><td class='text-right'>15.34L</td><td class='text-right pct'>30.7%</td></tr>
+        
+                    <tr><td>Vishal</td><td class='text-right'>0</td><td class='text-right'>39,000</td><td class='text-right pct'>19.5%</td></tr>
+        
+                    <tr><td>Siddhartha</td><td class='text-right'>76,500</td><td class='text-right'>13.18L</td><td class='text-right pct'>26.4%</td></tr>
+        
+                </tbody>
+            </table>
+        </details>
+        
+        <p style="font-size: 0.7rem; color: #555; text-align: center; margin-top: 20px;">Generated by Hermes Agent</p>
+    </div>
+    </body>
+    </html>
+    

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Daily Dashboard</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f172a;color:#e2e8f0;padding:14px}
+h1{text-align:center;font-size:17px;font-weight:700;color:#f8fafc;margin-bottom:2px;padding-top:6px}
+.subtitle{text-align:center;font-size:11px;color:#475569;margin-bottom:16px}
+
+input[type=radio]{position:absolute;opacity:0;width:0;height:0}
+
+.tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:16px;justify-content:center}
+.tab-label{padding:7px 13px;font-size:12px;font-weight:500;border-radius:20px;border:1.5px solid #334155;cursor:pointer;color:#94a3b8;background:#1e293b;white-space:nowrap}
+
+#t1:checked ~ .container .tabs label[for=t1]{background:#3b82f6;border-color:#3b82f6;color:#fff}
+#t2:checked ~ .container .tabs label[for=t2]{background:#8b5cf6;border-color:#8b5cf6;color:#fff}
+#t3:checked ~ .container .tabs label[for=t3]{background:#06b6d4;border-color:#06b6d4;color:#fff}
+#t4:checked ~ .container .tabs label[for=t4]{background:#f59e0b;border-color:#f59e0b;color:#fff}
+#t5:checked ~ .container .tabs label[for=t5]{background:#10b981;border-color:#10b981;color:#fff}
+
+.panel{display:none}
+#t1:checked ~ .container #p1{display:block}
+#t2:checked ~ .container #p2{display:block}
+#t3:checked ~ .container #p3{display:block}
+#t4:checked ~ .container #p4{display:block}
+#t5:checked ~ .container #p5{display:block}
+
+.stats{display:flex;gap:8px;margin-bottom:14px}
+.stat{flex:1;background:#1e293b;border-radius:10px;padding:11px 8px;text-align:center;border:1px solid #1e3a5f}
+.stat-label{font-size:10px;color:#64748b;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px}
+.stat-val{font-size:22px;font-weight:700}
+.col-f{color:#60a5fa}.col-a{color:#34d399}.col-c{color:#fbbf24}
+
+.card{background:#1e293b;border-radius:12px;padding:14px 12px;margin-bottom:14px;border:1px solid #1e3a5f}
+.card-title{font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.chart-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.chart-inner{min-width:480px;height:160px;position:relative}
+</style>
+</head>
+<body>
+
+<h1>📊 Daily Admissions Tracker</h1>
+<p class="subtitle">Apr 24 – May 8, 2026</p>
+
+<input type="radio" name="tab" id="t1" checked>
+<input type="radio" name="tab" id="t2">
+<input type="radio" name="tab" id="t3">
+<input type="radio" name="tab" id="t4">
+<input type="radio" name="tab" id="t5">
+
+<div class="container">
+  <div class="tabs">
+    <label class="tab-label" for="t1">Amity</label>
+    <label class="tab-label" for="t2">LPU</label>
+    <label class="tab-label" for="t3">CU Mohali</label>
+    <label class="tab-label" for="t4">CGC Landran</label>
+    <label class="tab-label" for="t5">CU Lucknow</label>
+  </div>
+  
+  <div id="p1" class="panel">
+    <div class="stats">
+      <div class="stat"><div class="stat-label">Forms</div><div class="stat-val col-f">1,491</div></div>
+      <div class="stat"><div class="stat-label">Admissions</div><div class="stat-val col-a">15</div></div>
+      <div class="stat"><div class="stat-label">Conv</div><div class="stat-val col-c">1.0%</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Forms — Daily</div>
+      <div class="chart-wrap"><div class="chart-inner">
+        
+    <svg viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <line x1="32" y1="8" x2="32" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="118" x2="476" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="8" x2="476" y2="8" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      <line x1="32" y1="63" x2="476" y2="63" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      
+      <text x="28" y="12" text-anchor="end" font-size="9" fill="#475569">160</text>
+      <text x="28" y="67" text-anchor="end" font-size="9" fill="#475569">80</text>
+      <text x="28" y="122" text-anchor="end" font-size="9" fill="#475569">0</text>
+      
+      <polygon points="32,118 32.0,38.9 63.7,42.4 95.4,103.6 127.1,11.4 158.9,26.6 190.6,22.4 222.3,17.6 254.0,44.4 285.7,23.8 317.4,108.4 349.1,17.6 380.9,57.5 412.6,66.4 444.3,80.2 476.0,83.6 476,118 32,118" fill="#3b82f6" fill-opacity=".12"/>
+      <polyline points="32.0,38.9 63.7,42.4 95.4,103.6 127.1,11.4 158.9,26.6 190.6,22.4 222.3,17.6 254.0,44.4 285.7,23.8 317.4,108.4 349.1,17.6 380.9,57.5 412.6,66.4 444.3,80.2 476.0,83.6" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      
+      <circle cx="32.0" cy="38.9" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="63.7" cy="42.4" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="95.4" cy="103.6" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="127.1" cy="11.4" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="158.9" cy="26.6" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="190.6" cy="22.4" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="222.3" cy="17.6" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="254.0" cy="44.4" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="285.7" cy="23.8" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="317.4" cy="108.4" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="349.1" cy="17.6" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="380.9" cy="57.5" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="412.6" cy="66.4" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="444.3" cy="80.2" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/><circle cx="476.0" cy="83.6" r="3.5" fill="#60a5fa" stroke="#0f172a" stroke-width="1.5"/>
+    <text x="32.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">24A</text>
+<text x="63.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">25A</text>
+<text x="95.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">26A</text>
+<text x="127.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">27A</text>
+<text x="158.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">28A</text>
+<text x="190.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">29A</text>
+<text x="222.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">30A</text>
+<text x="254.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">1M</text>
+<text x="285.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">2M</text>
+<text x="317.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">3M</text>
+<text x="349.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">4M</text>
+<text x="380.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">5M</text>
+<text x="412.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">6M</text>
+<text x="444.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">7M</text>
+<text x="476.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">8M</text>
+
+      <text x="32.0" y="30.9" text-anchor="middle" font-size="8" fill="#93c5fd">115</text><text x="63.7" y="34.4" text-anchor="middle" font-size="8" fill="#93c5fd">110</text><text x="95.4" y="95.6" text-anchor="middle" font-size="8" fill="#93c5fd">21</text><text x="127.1" y="23.4" text-anchor="middle" font-size="8" fill="#93c5fd">155</text><text x="158.9" y="18.6" text-anchor="middle" font-size="8" fill="#93c5fd">133</text><text x="190.6" y="14.399999999999999" text-anchor="middle" font-size="8" fill="#93c5fd">139</text><text x="222.3" y="29.6" text-anchor="middle" font-size="8" fill="#93c5fd">146</text><text x="254.0" y="36.4" text-anchor="middle" font-size="8" fill="#93c5fd">107</text><text x="285.7" y="15.8" text-anchor="middle" font-size="8" fill="#93c5fd">137</text><text x="317.4" y="100.4" text-anchor="middle" font-size="8" fill="#93c5fd">14</text><text x="349.1" y="29.6" text-anchor="middle" font-size="8" fill="#93c5fd">146</text><text x="380.9" y="49.5" text-anchor="middle" font-size="8" fill="#93c5fd">88</text><text x="412.6" y="58.400000000000006" text-anchor="middle" font-size="8" fill="#93c5fd">75</text><text x="444.3" y="72.2" text-anchor="middle" font-size="8" fill="#93c5fd">55</text><text x="476.0" y="75.6" text-anchor="middle" font-size="8" fill="#93c5fd">50</text>
+      <line x1="237" y1="8" x2="237" y2="118" stroke="#334155" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="130" y="148" text-anchor="middle" font-size="9" fill="#334155">← April →</text>
+      <text x="365" y="148" text-anchor="middle" font-size="9" fill="#334155">← May →</text>
+    </svg>
+    
+      </div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Admissions — Daily</div>
+      <div class="chart-wrap"><div class="chart-inner">
+        
+    <svg viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <line x1="32" y1="8" x2="32" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="118" x2="476" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="8" x2="476" y2="8" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      <line x1="32" y1="63" x2="476" y2="63" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      
+      <text x="28" y="12" text-anchor="end" font-size="9" fill="#475569">5</text>
+      <text x="28" y="67" text-anchor="end" font-size="9" fill="#475569">2</text>
+      <text x="28" y="122" text-anchor="end" font-size="9" fill="#475569">0</text>
+      
+      <polygon points="32,118 32.0,118.0 63.7,74.0 95.4,118.0 127.1,96.0 158.9,118.0 190.6,96.0 222.3,74.0 254.0,96.0 285.7,52.0 317.4,118.0 349.1,96.0 380.9,74.0 412.6,96.0 444.3,96.0 476.0,118.0 476,118 32,118" fill="#10b981" fill-opacity=".12"/>
+      <polyline points="32.0,118.0 63.7,74.0 95.4,118.0 127.1,96.0 158.9,118.0 190.6,96.0 222.3,74.0 254.0,96.0 285.7,52.0 317.4,118.0 349.1,96.0 380.9,74.0 412.6,96.0 444.3,96.0 476.0,118.0" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      
+      <circle cx="32.0" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="63.7" cy="74.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="95.4" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="127.1" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="158.9" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="190.6" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="222.3" cy="74.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="254.0" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="285.7" cy="52.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="317.4" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="349.1" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="380.9" cy="74.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="412.6" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="444.3" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="476.0" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/>
+    <text x="32.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">24A</text>
+<text x="63.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">25A</text>
+<text x="95.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">26A</text>
+<text x="127.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">27A</text>
+<text x="158.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">28A</text>
+<text x="190.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">29A</text>
+<text x="222.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">30A</text>
+<text x="254.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">1M</text>
+<text x="285.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">2M</text>
+<text x="317.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">3M</text>
+<text x="349.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">4M</text>
+<text x="380.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">5M</text>
+<text x="412.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">6M</text>
+<text x="444.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">7M</text>
+<text x="476.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">8M</text>
+
+      <text x="32.0" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="63.7" y="66.0" text-anchor="middle" font-size="8" fill="#93c5fd">2</text><text x="95.4" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="127.1" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="158.9" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="190.6" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="222.3" y="66.0" text-anchor="middle" font-size="8" fill="#93c5fd">2</text><text x="254.0" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="285.7" y="44.0" text-anchor="middle" font-size="8" fill="#93c5fd">3</text><text x="317.4" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="349.1" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="380.9" y="66.0" text-anchor="middle" font-size="8" fill="#93c5fd">2</text><text x="412.6" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="444.3" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="476.0" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text>
+      <line x1="237" y1="8" x2="237" y2="118" stroke="#334155" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="130" y="148" text-anchor="middle" font-size="9" fill="#334155">← April →</text>
+      <text x="365" y="148" text-anchor="middle" font-size="9" fill="#334155">← May →</text>
+    </svg>
+    
+      </div></div>
+    </div>
+  </div>
+
+  <div id="p2" class="panel">
+    <div class="stats">
+      <div class="stat"><div class="stat-label">Forms</div><div class="stat-val col-f">665</div></div>
+      <div class="stat"><div class="stat-label">Admissions</div><div class="stat-val col-a">22</div></div>
+      <div class="stat"><div class="stat-label">Conv</div><div class="stat-val col-c">3.3%</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Forms — Daily</div>
+      <div class="chart-wrap"><div class="chart-inner">
+        
+    <svg viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <line x1="32" y1="8" x2="32" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="118" x2="476" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="8" x2="476" y2="8" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      <line x1="32" y1="63" x2="476" y2="63" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      
+      <text x="28" y="12" text-anchor="end" font-size="9" fill="#475569">100</text>
+      <text x="28" y="67" text-anchor="end" font-size="9" fill="#475569">50</text>
+      <text x="28" y="122" text-anchor="end" font-size="9" fill="#475569">0</text>
+      
+      <polygon points="32,118 32.0,90.5 63.7,83.9 95.4,91.6 127.1,81.7 158.9,81.7 190.6,61.9 222.3,58.6 254.0,58.6 285.7,49.8 317.4,64.1 349.1,41.0 380.9,17.9 412.6,69.6 444.3,91.6 476.0,96.0 476,118 32,118" fill="#8b5cf6" fill-opacity=".12"/>
+      <polyline points="32.0,90.5 63.7,83.9 95.4,91.6 127.1,81.7 158.9,81.7 190.6,61.9 222.3,58.6 254.0,58.6 285.7,49.8 317.4,64.1 349.1,41.0 380.9,17.9 412.6,69.6 444.3,91.6 476.0,96.0" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      
+      <circle cx="32.0" cy="90.5" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="63.7" cy="83.9" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="95.4" cy="91.6" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="127.1" cy="81.7" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="158.9" cy="81.7" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="190.6" cy="61.9" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="222.3" cy="58.6" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="254.0" cy="58.6" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="285.7" cy="49.8" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="317.4" cy="64.1" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="349.1" cy="41.0" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="380.9" cy="17.9" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="412.6" cy="69.6" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="444.3" cy="91.6" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/><circle cx="476.0" cy="96.0" r="3.5" fill="#a78bfa" stroke="#0f172a" stroke-width="1.5"/>
+    <text x="32.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">24A</text>
+<text x="63.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">25A</text>
+<text x="95.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">26A</text>
+<text x="127.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">27A</text>
+<text x="158.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">28A</text>
+<text x="190.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">29A</text>
+<text x="222.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">30A</text>
+<text x="254.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">1M</text>
+<text x="285.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">2M</text>
+<text x="317.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">3M</text>
+<text x="349.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">4M</text>
+<text x="380.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">5M</text>
+<text x="412.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">6M</text>
+<text x="444.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">7M</text>
+<text x="476.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">8M</text>
+
+      <text x="32.0" y="82.5" text-anchor="middle" font-size="8" fill="#93c5fd">25</text><text x="63.7" y="75.9" text-anchor="middle" font-size="8" fill="#93c5fd">31</text><text x="95.4" y="83.6" text-anchor="middle" font-size="8" fill="#93c5fd">24</text><text x="127.1" y="73.7" text-anchor="middle" font-size="8" fill="#93c5fd">33</text><text x="158.9" y="73.7" text-anchor="middle" font-size="8" fill="#93c5fd">33</text><text x="190.6" y="53.9" text-anchor="middle" font-size="8" fill="#93c5fd">51</text><text x="222.3" y="50.6" text-anchor="middle" font-size="8" fill="#93c5fd">54</text><text x="254.0" y="50.6" text-anchor="middle" font-size="8" fill="#93c5fd">54</text><text x="285.7" y="41.8" text-anchor="middle" font-size="8" fill="#93c5fd">62</text><text x="317.4" y="56.099999999999994" text-anchor="middle" font-size="8" fill="#93c5fd">49</text><text x="349.1" y="33.0" text-anchor="middle" font-size="8" fill="#93c5fd">70</text><text x="380.9" y="29.9" text-anchor="middle" font-size="8" fill="#93c5fd">91</text><text x="412.6" y="61.599999999999994" text-anchor="middle" font-size="8" fill="#93c5fd">44</text><text x="444.3" y="83.6" text-anchor="middle" font-size="8" fill="#93c5fd">24</text><text x="476.0" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">20</text>
+      <line x1="237" y1="8" x2="237" y2="118" stroke="#334155" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="130" y="148" text-anchor="middle" font-size="9" fill="#334155">← April →</text>
+      <text x="365" y="148" text-anchor="middle" font-size="9" fill="#334155">← May →</text>
+    </svg>
+    
+      </div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Admissions — Daily</div>
+      <div class="chart-wrap"><div class="chart-inner">
+        
+    <svg viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <line x1="32" y1="8" x2="32" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="118" x2="476" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="8" x2="476" y2="8" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      <line x1="32" y1="63" x2="476" y2="63" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      
+      <text x="28" y="12" text-anchor="end" font-size="9" fill="#475569">10</text>
+      <text x="28" y="67" text-anchor="end" font-size="9" fill="#475569">5</text>
+      <text x="28" y="122" text-anchor="end" font-size="9" fill="#475569">0</text>
+      
+      <polygon points="32,118 32.0,96.0 63.7,107.0 95.4,118.0 127.1,85.0 158.9,118.0 190.6,118.0 222.3,107.0 254.0,107.0 285.7,107.0 317.4,118.0 349.1,85.0 380.9,52.0 412.6,85.0 444.3,107.0 476.0,118.0 476,118 32,118" fill="#10b981" fill-opacity=".12"/>
+      <polyline points="32.0,96.0 63.7,107.0 95.4,118.0 127.1,85.0 158.9,118.0 190.6,118.0 222.3,107.0 254.0,107.0 285.7,107.0 317.4,118.0 349.1,85.0 380.9,52.0 412.6,85.0 444.3,107.0 476.0,118.0" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      
+      <circle cx="32.0" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="63.7" cy="107.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="95.4" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="127.1" cy="85.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="158.9" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="190.6" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="222.3" cy="107.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="254.0" cy="107.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="285.7" cy="107.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="317.4" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="349.1" cy="85.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="380.9" cy="52.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="412.6" cy="85.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="444.3" cy="107.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="476.0" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/>
+    <text x="32.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">24A</text>
+<text x="63.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">25A</text>
+<text x="95.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">26A</text>
+<text x="127.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">27A</text>
+<text x="158.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">28A</text>
+<text x="190.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">29A</text>
+<text x="222.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">30A</text>
+<text x="254.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">1M</text>
+<text x="285.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">2M</text>
+<text x="317.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">3M</text>
+<text x="349.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">4M</text>
+<text x="380.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">5M</text>
+<text x="412.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">6M</text>
+<text x="444.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">7M</text>
+<text x="476.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">8M</text>
+
+      <text x="32.0" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">2</text><text x="63.7" y="99.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="95.4" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="127.1" y="77.0" text-anchor="middle" font-size="8" fill="#93c5fd">3</text><text x="158.9" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="190.6" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="222.3" y="99.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="254.0" y="99.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="285.7" y="99.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="317.4" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="349.1" y="77.0" text-anchor="middle" font-size="8" fill="#93c5fd">3</text><text x="380.9" y="44.0" text-anchor="middle" font-size="8" fill="#93c5fd">6</text><text x="412.6" y="77.0" text-anchor="middle" font-size="8" fill="#93c5fd">3</text><text x="444.3" y="99.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="476.0" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text>
+      <line x1="237" y1="8" x2="237" y2="118" stroke="#334155" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="130" y="148" text-anchor="middle" font-size="9" fill="#334155">← April →</text>
+      <text x="365" y="148" text-anchor="middle" font-size="9" fill="#334155">← May →</text>
+    </svg>
+    
+      </div></div>
+    </div>
+  </div>
+
+  <div id="p3" class="panel">
+    <div class="stats">
+      <div class="stat"><div class="stat-label">Forms</div><div class="stat-val col-f">1,068</div></div>
+      <div class="stat"><div class="stat-label">Admissions</div><div class="stat-val col-a">49</div></div>
+      <div class="stat"><div class="stat-label">Conv</div><div class="stat-val col-c">4.6%</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Forms — Daily</div>
+      <div class="chart-wrap"><div class="chart-inner">
+        
+    <svg viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <line x1="32" y1="8" x2="32" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="118" x2="476" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="8" x2="476" y2="8" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      <line x1="32" y1="63" x2="476" y2="63" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      
+      <text x="28" y="12" text-anchor="end" font-size="9" fill="#475569">100</text>
+      <text x="28" y="67" text-anchor="end" font-size="9" fill="#475569">50</text>
+      <text x="28" y="122" text-anchor="end" font-size="9" fill="#475569">0</text>
+      
+      <polygon points="32,118 32.0,48.7 63.7,57.5 95.4,55.3 127.1,49.8 158.9,56.4 190.6,52.0 222.3,42.1 254.0,33.3 285.7,27.8 317.4,26.7 349.1,32.2 380.9,37.7 412.6,25.6 444.3,23.4 476.0,26.7 476,118 32,118" fill="#06b6d4" fill-opacity=".12"/>
+      <polyline points="32.0,48.7 63.7,57.5 95.4,55.3 127.1,49.8 158.9,56.4 190.6,52.0 222.3,42.1 254.0,33.3 285.7,27.8 317.4,26.7 349.1,32.2 380.9,37.7 412.6,25.6 444.3,23.4 476.0,26.7" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      
+      <circle cx="32.0" cy="48.7" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="63.7" cy="57.5" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="95.4" cy="55.3" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="127.1" cy="49.8" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="158.9" cy="56.4" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="190.6" cy="52.0" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="222.3" cy="42.1" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="254.0" cy="33.3" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="285.7" cy="27.8" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="317.4" cy="26.7" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="349.1" cy="32.2" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="380.9" cy="37.7" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="412.6" cy="25.6" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="444.3" cy="23.4" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/><circle cx="476.0" cy="26.7" r="3.5" fill="#22d3ee" stroke="#0f172a" stroke-width="1.5"/>
+    <text x="32.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">24A</text>
+<text x="63.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">25A</text>
+<text x="95.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">26A</text>
+<text x="127.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">27A</text>
+<text x="158.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">28A</text>
+<text x="190.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">29A</text>
+<text x="222.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">30A</text>
+<text x="254.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">1M</text>
+<text x="285.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">2M</text>
+<text x="317.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">3M</text>
+<text x="349.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">4M</text>
+<text x="380.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">5M</text>
+<text x="412.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">6M</text>
+<text x="444.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">7M</text>
+<text x="476.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">8M</text>
+
+      <text x="32.0" y="40.7" text-anchor="middle" font-size="8" fill="#93c5fd">63</text><text x="63.7" y="49.5" text-anchor="middle" font-size="8" fill="#93c5fd">55</text><text x="95.4" y="47.3" text-anchor="middle" font-size="8" fill="#93c5fd">57</text><text x="127.1" y="41.8" text-anchor="middle" font-size="8" fill="#93c5fd">62</text><text x="158.9" y="48.4" text-anchor="middle" font-size="8" fill="#93c5fd">56</text><text x="190.6" y="44.0" text-anchor="middle" font-size="8" fill="#93c5fd">60</text><text x="222.3" y="34.1" text-anchor="middle" font-size="8" fill="#93c5fd">69</text><text x="254.0" y="25.299999999999997" text-anchor="middle" font-size="8" fill="#93c5fd">77</text><text x="285.7" y="19.8" text-anchor="middle" font-size="8" fill="#93c5fd">82</text><text x="317.4" y="18.7" text-anchor="middle" font-size="8" fill="#93c5fd">83</text><text x="349.1" y="24.200000000000003" text-anchor="middle" font-size="8" fill="#93c5fd">78</text><text x="380.9" y="29.700000000000003" text-anchor="middle" font-size="8" fill="#93c5fd">73</text><text x="412.6" y="17.6" text-anchor="middle" font-size="8" fill="#93c5fd">84</text><text x="444.3" y="15.399999999999999" text-anchor="middle" font-size="8" fill="#93c5fd">86</text><text x="476.0" y="18.7" text-anchor="middle" font-size="8" fill="#93c5fd">83</text>
+      <line x1="237" y1="8" x2="237" y2="118" stroke="#334155" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="130" y="148" text-anchor="middle" font-size="9" fill="#334155">← April →</text>
+      <text x="365" y="148" text-anchor="middle" font-size="9" fill="#334155">← May →</text>
+    </svg>
+    
+      </div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Admissions — Daily</div>
+      <div class="chart-wrap"><div class="chart-inner">
+        
+    <svg viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <line x1="32" y1="8" x2="32" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="118" x2="476" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="8" x2="476" y2="8" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      <line x1="32" y1="63" x2="476" y2="63" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      
+      <text x="28" y="12" text-anchor="end" font-size="9" fill="#475569">10</text>
+      <text x="28" y="67" text-anchor="end" font-size="9" fill="#475569">5</text>
+      <text x="28" y="122" text-anchor="end" font-size="9" fill="#475569">0</text>
+      
+      <polygon points="32,118 32.0,118.0 63.7,85.0 95.4,118.0 127.1,52.0 158.9,96.0 190.6,52.0 222.3,30.0 254.0,96.0 285.7,52.0 317.4,107.0 349.1,85.0 380.9,85.0 412.6,107.0 444.3,63.0 476.0,85.0 476,118 32,118" fill="#10b981" fill-opacity=".12"/>
+      <polyline points="32.0,118.0 63.7,85.0 95.4,118.0 127.1,52.0 158.9,96.0 190.6,52.0 222.3,30.0 254.0,96.0 285.7,52.0 317.4,107.0 349.1,85.0 380.9,85.0 412.6,107.0 444.3,63.0 476.0,85.0" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      
+      <circle cx="32.0" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="63.7" cy="85.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="95.4" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="127.1" cy="52.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="158.9" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="190.6" cy="52.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="222.3" cy="30.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="254.0" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="285.7" cy="52.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="317.4" cy="107.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="349.1" cy="85.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="380.9" cy="85.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="412.6" cy="107.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="444.3" cy="63.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="476.0" cy="85.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/>
+    <text x="32.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">24A</text>
+<text x="63.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">25A</text>
+<text x="95.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">26A</text>
+<text x="127.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">27A</text>
+<text x="158.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">28A</text>
+<text x="190.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">29A</text>
+<text x="222.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">30A</text>
+<text x="254.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">1M</text>
+<text x="285.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">2M</text>
+<text x="317.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">3M</text>
+<text x="349.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">4M</text>
+<text x="380.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">5M</text>
+<text x="412.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">6M</text>
+<text x="444.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">7M</text>
+<text x="476.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">8M</text>
+
+      <text x="32.0" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="63.7" y="77.0" text-anchor="middle" font-size="8" fill="#93c5fd">3</text><text x="95.4" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="127.1" y="44.0" text-anchor="middle" font-size="8" fill="#93c5fd">6</text><text x="158.9" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">2</text><text x="190.6" y="44.0" text-anchor="middle" font-size="8" fill="#93c5fd">6</text><text x="222.3" y="22.0" text-anchor="middle" font-size="8" fill="#93c5fd">8</text><text x="254.0" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">2</text><text x="285.7" y="44.0" text-anchor="middle" font-size="8" fill="#93c5fd">6</text><text x="317.4" y="99.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="349.1" y="77.0" text-anchor="middle" font-size="8" fill="#93c5fd">3</text><text x="380.9" y="77.0" text-anchor="middle" font-size="8" fill="#93c5fd">3</text><text x="412.6" y="99.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="444.3" y="55.0" text-anchor="middle" font-size="8" fill="#93c5fd">5</text><text x="476.0" y="77.0" text-anchor="middle" font-size="8" fill="#93c5fd">3</text>
+      <line x1="237" y1="8" x2="237" y2="118" stroke="#334155" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="130" y="148" text-anchor="middle" font-size="9" fill="#334155">← April →</text>
+      <text x="365" y="148" text-anchor="middle" font-size="9" fill="#334155">← May →</text>
+    </svg>
+    
+      </div></div>
+    </div>
+  </div>
+
+  <div id="p4" class="panel">
+    <div class="stats">
+      <div class="stat"><div class="stat-label">Forms</div><div class="stat-val col-f">1,617</div></div>
+      <div class="stat"><div class="stat-label">Admissions</div><div class="stat-val col-a">16</div></div>
+      <div class="stat"><div class="stat-label">Conv</div><div class="stat-val col-c">1.0%</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Forms — Daily</div>
+      <div class="chart-wrap"><div class="chart-inner">
+        
+    <svg viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <line x1="32" y1="8" x2="32" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="118" x2="476" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="8" x2="476" y2="8" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      <line x1="32" y1="63" x2="476" y2="63" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      
+      <text x="28" y="12" text-anchor="end" font-size="9" fill="#475569">180</text>
+      <text x="28" y="67" text-anchor="end" font-size="9" fill="#475569">90</text>
+      <text x="28" y="122" text-anchor="end" font-size="9" fill="#475569">0</text>
+      
+      <polygon points="32,118 32.0,78.9 63.7,72.2 95.4,86.8 127.1,63.0 158.9,61.8 190.6,48.3 222.3,44.7 254.0,41.6 285.7,34.9 317.4,45.3 349.1,30.0 380.9,15.3 412.6,44.7 444.3,45.3 476.0,69.1 476,118 32,118" fill="#f59e0b" fill-opacity=".12"/>
+      <polyline points="32.0,78.9 63.7,72.2 95.4,86.8 127.1,63.0 158.9,61.8 190.6,48.3 222.3,44.7 254.0,41.6 285.7,34.9 317.4,45.3 349.1,30.0 380.9,15.3 412.6,44.7 444.3,45.3 476.0,69.1" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      
+      <circle cx="32.0" cy="78.9" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="63.7" cy="72.2" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="95.4" cy="86.8" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="127.1" cy="63.0" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="158.9" cy="61.8" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="190.6" cy="48.3" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="222.3" cy="44.7" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="254.0" cy="41.6" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="285.7" cy="34.9" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="317.4" cy="45.3" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="349.1" cy="30.0" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="380.9" cy="15.3" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="412.6" cy="44.7" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="444.3" cy="45.3" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/><circle cx="476.0" cy="69.1" r="3.5" fill="#fbbf24" stroke="#0f172a" stroke-width="1.5"/>
+    <text x="32.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">24A</text>
+<text x="63.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">25A</text>
+<text x="95.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">26A</text>
+<text x="127.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">27A</text>
+<text x="158.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">28A</text>
+<text x="190.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">29A</text>
+<text x="222.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">30A</text>
+<text x="254.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">1M</text>
+<text x="285.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">2M</text>
+<text x="317.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">3M</text>
+<text x="349.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">4M</text>
+<text x="380.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">5M</text>
+<text x="412.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">6M</text>
+<text x="444.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">7M</text>
+<text x="476.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">8M</text>
+
+      <text x="32.0" y="70.9" text-anchor="middle" font-size="8" fill="#93c5fd">64</text><text x="63.7" y="64.2" text-anchor="middle" font-size="8" fill="#93c5fd">75</text><text x="95.4" y="78.8" text-anchor="middle" font-size="8" fill="#93c5fd">51</text><text x="127.1" y="55.0" text-anchor="middle" font-size="8" fill="#93c5fd">90</text><text x="158.9" y="53.8" text-anchor="middle" font-size="8" fill="#93c5fd">92</text><text x="190.6" y="40.3" text-anchor="middle" font-size="8" fill="#93c5fd">114</text><text x="222.3" y="36.7" text-anchor="middle" font-size="8" fill="#93c5fd">120</text><text x="254.0" y="33.6" text-anchor="middle" font-size="8" fill="#93c5fd">125</text><text x="285.7" y="26.9" text-anchor="middle" font-size="8" fill="#93c5fd">136</text><text x="317.4" y="37.3" text-anchor="middle" font-size="8" fill="#93c5fd">119</text><text x="349.1" y="22.0" text-anchor="middle" font-size="8" fill="#93c5fd">144</text><text x="380.9" y="27.3" text-anchor="middle" font-size="8" fill="#93c5fd">168</text><text x="412.6" y="36.7" text-anchor="middle" font-size="8" fill="#93c5fd">120</text><text x="444.3" y="37.3" text-anchor="middle" font-size="8" fill="#93c5fd">119</text><text x="476.0" y="61.099999999999994" text-anchor="middle" font-size="8" fill="#93c5fd">80</text>
+      <line x1="237" y1="8" x2="237" y2="118" stroke="#334155" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="130" y="148" text-anchor="middle" font-size="9" fill="#334155">← April →</text>
+      <text x="365" y="148" text-anchor="middle" font-size="9" fill="#334155">← May →</text>
+    </svg>
+    
+      </div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Admissions — Daily</div>
+      <div class="chart-wrap"><div class="chart-inner">
+        
+    <svg viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <line x1="32" y1="8" x2="32" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="118" x2="476" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="8" x2="476" y2="8" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      <line x1="32" y1="63" x2="476" y2="63" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      
+      <text x="28" y="12" text-anchor="end" font-size="9" fill="#475569">5</text>
+      <text x="28" y="67" text-anchor="end" font-size="9" fill="#475569">2</text>
+      <text x="28" y="122" text-anchor="end" font-size="9" fill="#475569">0</text>
+      
+      <polygon points="32,118 32.0,96.0 63.7,96.0 95.4,118.0 127.1,74.0 158.9,74.0 190.6,74.0 222.3,96.0 254.0,96.0 285.7,96.0 317.4,118.0 349.1,96.0 380.9,74.0 412.6,118.0 444.3,118.0 476.0,74.0 476,118 32,118" fill="#10b981" fill-opacity=".12"/>
+      <polyline points="32.0,96.0 63.7,96.0 95.4,118.0 127.1,74.0 158.9,74.0 190.6,74.0 222.3,96.0 254.0,96.0 285.7,96.0 317.4,118.0 349.1,96.0 380.9,74.0 412.6,118.0 444.3,118.0 476.0,74.0" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      
+      <circle cx="32.0" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="63.7" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="95.4" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="127.1" cy="74.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="158.9" cy="74.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="190.6" cy="74.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="222.3" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="254.0" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="285.7" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="317.4" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="349.1" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="380.9" cy="74.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="412.6" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="444.3" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="476.0" cy="74.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/>
+    <text x="32.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">24A</text>
+<text x="63.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">25A</text>
+<text x="95.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">26A</text>
+<text x="127.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">27A</text>
+<text x="158.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">28A</text>
+<text x="190.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">29A</text>
+<text x="222.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">30A</text>
+<text x="254.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">1M</text>
+<text x="285.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">2M</text>
+<text x="317.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">3M</text>
+<text x="349.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">4M</text>
+<text x="380.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">5M</text>
+<text x="412.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">6M</text>
+<text x="444.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">7M</text>
+<text x="476.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">8M</text>
+
+      <text x="32.0" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="63.7" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="95.4" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="127.1" y="66.0" text-anchor="middle" font-size="8" fill="#93c5fd">2</text><text x="158.9" y="66.0" text-anchor="middle" font-size="8" fill="#93c5fd">2</text><text x="190.6" y="66.0" text-anchor="middle" font-size="8" fill="#93c5fd">2</text><text x="222.3" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="254.0" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="285.7" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="317.4" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="349.1" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="380.9" y="66.0" text-anchor="middle" font-size="8" fill="#93c5fd">2</text><text x="412.6" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="444.3" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="476.0" y="66.0" text-anchor="middle" font-size="8" fill="#93c5fd">2</text>
+      <line x1="237" y1="8" x2="237" y2="118" stroke="#334155" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="130" y="148" text-anchor="middle" font-size="9" fill="#334155">← April →</text>
+      <text x="365" y="148" text-anchor="middle" font-size="9" fill="#334155">← May →</text>
+    </svg>
+    
+      </div></div>
+    </div>
+  </div>
+
+  <div id="p5" class="panel">
+    <div class="stats">
+      <div class="stat"><div class="stat-label">Forms</div><div class="stat-val col-f">10</div></div>
+      <div class="stat"><div class="stat-label">Admissions</div><div class="stat-val col-a">10</div></div>
+      <div class="stat"><div class="stat-label">Conv</div><div class="stat-val col-c">100.0%</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Forms — Daily</div>
+      <div class="chart-wrap"><div class="chart-inner">
+        
+    <svg viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <line x1="32" y1="8" x2="32" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="118" x2="476" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="8" x2="476" y2="8" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      <line x1="32" y1="63" x2="476" y2="63" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      
+      <text x="28" y="12" text-anchor="end" font-size="9" fill="#475569">5</text>
+      <text x="28" y="67" text-anchor="end" font-size="9" fill="#475569">2</text>
+      <text x="28" y="122" text-anchor="end" font-size="9" fill="#475569">0</text>
+      
+      <polygon points="32,118 32.0,96.0 63.7,96.0 95.4,118.0 127.1,118.0 158.9,118.0 190.6,52.0 222.3,96.0 254.0,118.0 285.7,118.0 317.4,96.0 349.1,118.0 380.9,118.0 412.6,118.0 444.3,74.0 476.0,96.0 476,118 32,118" fill="#10b981" fill-opacity=".12"/>
+      <polyline points="32.0,96.0 63.7,96.0 95.4,118.0 127.1,118.0 158.9,118.0 190.6,52.0 222.3,96.0 254.0,118.0 285.7,118.0 317.4,96.0 349.1,118.0 380.9,118.0 412.6,118.0 444.3,74.0 476.0,96.0" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      
+      <circle cx="32.0" cy="96.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="63.7" cy="96.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="95.4" cy="118.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="127.1" cy="118.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="158.9" cy="118.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="190.6" cy="52.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="222.3" cy="96.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="254.0" cy="118.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="285.7" cy="118.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="317.4" cy="96.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="349.1" cy="118.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="380.9" cy="118.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="412.6" cy="118.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="444.3" cy="74.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/><circle cx="476.0" cy="96.0" r="3.5" fill="#4ade80" stroke="#0f172a" stroke-width="1.5"/>
+    <text x="32.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">24A</text>
+<text x="63.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">25A</text>
+<text x="95.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">26A</text>
+<text x="127.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">27A</text>
+<text x="158.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">28A</text>
+<text x="190.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">29A</text>
+<text x="222.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">30A</text>
+<text x="254.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">1M</text>
+<text x="285.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">2M</text>
+<text x="317.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">3M</text>
+<text x="349.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">4M</text>
+<text x="380.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">5M</text>
+<text x="412.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">6M</text>
+<text x="444.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">7M</text>
+<text x="476.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">8M</text>
+
+      <text x="32.0" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="63.7" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="95.4" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="127.1" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="158.9" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="190.6" y="44.0" text-anchor="middle" font-size="8" fill="#93c5fd">3</text><text x="222.3" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="254.0" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="285.7" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="317.4" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="349.1" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="380.9" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="412.6" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="444.3" y="66.0" text-anchor="middle" font-size="8" fill="#93c5fd">2</text><text x="476.0" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text>
+      <line x1="237" y1="8" x2="237" y2="118" stroke="#334155" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="130" y="148" text-anchor="middle" font-size="9" fill="#334155">← April →</text>
+      <text x="365" y="148" text-anchor="middle" font-size="9" fill="#334155">← May →</text>
+    </svg>
+    
+      </div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Admissions — Daily</div>
+      <div class="chart-wrap"><div class="chart-inner">
+        
+    <svg viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <line x1="32" y1="8" x2="32" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="118" x2="476" y2="118" stroke="#334155" stroke-width="1"/>
+      <line x1="32" y1="8" x2="476" y2="8" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      <line x1="32" y1="63" x2="476" y2="63" stroke="#334155" stroke-width=".4" stroke-dasharray="3,3"/>
+      
+      <text x="28" y="12" text-anchor="end" font-size="9" fill="#475569">5</text>
+      <text x="28" y="67" text-anchor="end" font-size="9" fill="#475569">2</text>
+      <text x="28" y="122" text-anchor="end" font-size="9" fill="#475569">0</text>
+      
+      <polygon points="32,118 32.0,118.0 63.7,52.0 95.4,118.0 127.1,96.0 158.9,96.0 190.6,118.0 222.3,118.0 254.0,96.0 285.7,52.0 317.4,118.0 349.1,96.0 380.9,118.0 412.6,118.0 444.3,118.0 476.0,118.0 476,118 32,118" fill="#10b981" fill-opacity=".12"/>
+      <polyline points="32.0,118.0 63.7,52.0 95.4,118.0 127.1,96.0 158.9,96.0 190.6,118.0 222.3,118.0 254.0,96.0 285.7,52.0 317.4,118.0 349.1,96.0 380.9,118.0 412.6,118.0 444.3,118.0 476.0,118.0" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      
+      <circle cx="32.0" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="63.7" cy="52.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="95.4" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="127.1" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="158.9" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="190.6" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="222.3" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="254.0" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="285.7" cy="52.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="317.4" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="349.1" cy="96.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="380.9" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="412.6" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="444.3" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/><circle cx="476.0" cy="118.0" r="3.5" fill="#34d399" stroke="#0f172a" stroke-width="1.5"/>
+    <text x="32.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">24A</text>
+<text x="63.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">25A</text>
+<text x="95.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">26A</text>
+<text x="127.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">27A</text>
+<text x="158.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">28A</text>
+<text x="190.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">29A</text>
+<text x="222.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">30A</text>
+<text x="254.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">1M</text>
+<text x="285.7" y="135" text-anchor="middle" font-size="8.5" fill="#475569">2M</text>
+<text x="317.4" y="135" text-anchor="middle" font-size="8.5" fill="#475569">3M</text>
+<text x="349.1" y="135" text-anchor="middle" font-size="8.5" fill="#475569">4M</text>
+<text x="380.9" y="135" text-anchor="middle" font-size="8.5" fill="#475569">5M</text>
+<text x="412.6" y="135" text-anchor="middle" font-size="8.5" fill="#475569">6M</text>
+<text x="444.3" y="135" text-anchor="middle" font-size="8.5" fill="#475569">7M</text>
+<text x="476.0" y="135" text-anchor="middle" font-size="8.5" fill="#475569">8M</text>
+
+      <text x="32.0" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="63.7" y="44.0" text-anchor="middle" font-size="8" fill="#93c5fd">3</text><text x="95.4" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="127.1" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="158.9" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="190.6" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="222.3" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="254.0" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="285.7" y="44.0" text-anchor="middle" font-size="8" fill="#93c5fd">3</text><text x="317.4" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="349.1" y="88.0" text-anchor="middle" font-size="8" fill="#93c5fd">1</text><text x="380.9" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="412.6" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="444.3" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text><text x="476.0" y="110.0" text-anchor="middle" font-size="8" fill="#93c5fd">0</text>
+      <line x1="237" y1="8" x2="237" y2="118" stroke="#334155" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="130" y="148" text-anchor="middle" font-size="9" fill="#334155">← April →</text>
+      <text x="365" y="148" text-anchor="middle" font-size="9" fill="#334155">← May →</text>
+    </svg>
+    
+      </div></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html><html><head><style>
+th { position: sticky; top: 0; z-index: 10; background: #f8fafc; }
+th.sticky-col { position: sticky; left: 0; top: 0; z-index: 15; background: #f8fafc !important; }
+td.sticky-col { position: sticky; left: 0; z-index: 5; background: #fff; }
+</style></head><body>
+<div style="width: 200px; height: 100px; overflow: auto;">
+  <table style="width: 400px;">
+    <tr><th class="sticky-col">A</th><th>B</th><th>C</th></tr>
+    <tr><td class="sticky-col">1</td><td>2</td><td>3</td></tr>
+    <tr><td class="sticky-col">4</td><td>5</td><td>6</td></tr>
+  </table>
+</div>
+</body></html>

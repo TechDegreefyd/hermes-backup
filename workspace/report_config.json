@@ -1,0 +1,61 @@
+{
+  "target_period": {
+    "start_date": "2026-05-01",
+    "end_date": "2026-05-31"
+  },
+  "supervisor_targets": {
+    "Sunil": 5000000,
+    "Varun": 5000000,
+    "Siddarth Kumar": 5000000,
+    "Vishal Gaur": 2000000
+  },
+  "supervisor_admission_targets": {
+    "Sunil": 80,
+    "Varun": 80,
+    "Siddarth Kumar": 80,
+    "Vishal Gaur": 40
+  },
+  "counsellor_targets": {
+    "Varun": {
+      "Om  Sharma": 0,
+      "Sumit Yadav": 0,
+      "Tanisha Kulshrestha": 0,
+      "Mousumi Khatun": 0,
+      "Mayank Jain": 0,
+      "Divya Goyal": 0,
+      "Himanshi Baliyan": 0,
+      "Vijay Kumar": 0,
+      "Prashant": 0
+    },
+    "Sunil": {
+      "Preeti Lohiya": 0,
+      "Vishwajeet": 0,
+      "Tanya Sharma": 0,
+      "Abhishek Swami": 0,
+      "Vikas": 0,
+      "Amit Kumar": 0,
+      "Talveen": 0,
+      "Avneet": 0,
+      "Himanshi": 0
+    },
+    "Siddarth Kumar": {
+      "Tanya Singh": 0,
+      "Laxminaryan": 0,
+      "Suhani Raj Gupta": 0,
+      "Shubham Kumar Gupta": 0,
+      "Arnav Upadhyay": 0,
+      "Virat Kumar Singh": 0,
+      "Virat kumar singh": 0,
+      "Siddharth Kumar": 0
+    },
+    "Vishal Gaur": {
+      "Shivangi Bhurji": 0,
+      "Riya Siddiqui": 0,
+      "Ankita Singh Chauhan": 0,
+      "Prerna Jain": 0
+    }
+  },
+  "admission_targets": {
+    "default": 0
+  }
+}

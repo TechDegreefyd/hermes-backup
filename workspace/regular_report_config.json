@@ -1,0 +1,38 @@
+{
+  "target_period": {
+    "start_date": "2026-05-01",
+    "end_date": "2026-05-31"
+  },
+  "college_targets": {
+    "Amity University (All Campuses)": {
+      "admission_apr": 120,
+      "admission_week": 27,
+      "forms_apr": 1200,
+      "forms_week": 271
+    },
+    "Lovely Professional University": {
+      "admission_apr": 94,
+      "admission_week": 21,
+      "forms_apr": 409,
+      "forms_week": 92
+    },
+    "Chandigarh University, Mohali": {
+      "admission_apr": 127,
+      "admission_week": 29,
+      "forms_apr": 423,
+      "forms_week": 96
+    },
+    "Chandigarh Group of Colleges, Landran (CGC)": {
+      "admission_apr": 68,
+      "admission_week": 15,
+      "forms_apr": 272,
+      "forms_week": 61
+    },
+    "Chandigarh University, Lucknow": {
+      "admission_apr": 75,
+      "admission_week": 17,
+      "forms_apr": 250,
+      "forms_week": 56
+    }
+  }
+}

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>DegreeFYD · Operations Report</title>
+<style>
+/* ── STRICT WHATSAPP RULES APPLIED: NO EXTERNAL FONTS, NO EXTERNAL CSS, NO JS ── */
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+
+/* System fonts instead of Google Fonts (External resources fail in WA Viewer) */
+body { 
+  background: #07080f; 
+  color: #dde0f0; 
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; 
+  font-size: 12px; 
+  min-height: 100vh; 
+}
+
+:root {
+  --bg:#07080f; --surface:#0f1018; --s2:#161722; --border:#22233a;
+  --text:#dde0f0; --muted:#5a5d80; --blue:#4f8ef7; --green:#22d98a;
+  --red:#ff4d6d; --amber:#f5a623; --purple:#a78bfa; --cyan:#22d4f5;
+}
+
+/* ── Hide inputs strictly via absolute/opacity (Display:none breaks iOS labels) ── */
+input[type="radio"], input[type="checkbox"] {
+  position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none;
+}
+
+/* ── iOS tap fixes ── */
+label { cursor: pointer; touch-action: manipulation; -webkit-user-select: none; user-select: none; display: inline-block; }
+
+/* ── Layout ── */
+.wrap { padding: 20px; max-width: 1400px; margin: 0 auto; }
+
+/* ── Header ── */
+.hdr { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+.hdr h1 { font-family: system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+.hdr p { color: var(--muted); font-size: 11px; margin-top: 3px; }
+
+/* ── Tabs (Labels) ── */
+.ptabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;}
+.ptab { padding: 9px 24px; border-radius: 6px; border: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 12px; font-weight: 700; background: var(--surface); color: var(--muted); transition: all .2s; }
+
+/* CSS-Only Tab Switching Logic */
+#tab-exec:checked ~ .wrap .lbl-exec { background: rgba(79,142,247,.15); border-color: var(--blue); color: var(--blue); }
+#tab-mktg:checked ~ .wrap .lbl-mktg { background: rgba(34,212,245,.12); border-color: var(--cyan); color: var(--cyan); }
+#tab-sms:checked ~ .wrap .lbl-sms { background: rgba(167,139,250,.15); border-color: var(--purple); color: var(--purple); }
+#tab-audit:checked ~ .wrap .lbl-audit { background: rgba(245,166,35,.15); border-color: var(--amber); color: var(--amber); }
+
+.psec { display: none; }
+#tab-exec:checked ~ .wrap #sec-exec { display: block; }
+#tab-mktg:checked ~ .wrap #sec-mktg { display: block; }
+#tab-sms:checked ~ .wrap #sec-sms { display: block; }
+#tab-audit:checked ~ .wrap #sec-audit { display: block; }
+
+/* ── Stats Row ── */
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin-bottom: 20px; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 11px 12px; }
+.stat-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 4px; }
+.stat-val { font-family: system-ui, sans-serif; font-size: 16px; font-weight: 800; }
+.stat-sub { font-size: 9.5px; color: var(--muted); margin-top: 2px; }
+
+/* ── Pure CSS Bar Chart (Replaces Chart.js for WA compatibility) ── */
+.chart-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 16px; position: relative; }
+.chart-title { font-family: system-ui, sans-serif; font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.metric-badge { font-size: 10px; padding: 2px 8px; border-radius: 3px; font-weight: 600; }
+.css-chart { display: flex; align-items: flex-end; gap: 8px; height: 160px; padding-top: 20px; border-bottom: 1px solid var(--border); }
+.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; position: relative; }
+.bar { width: 100%; max-width: 40px; border-radius: 4px 4px 0 0; position: relative; }
+.bar-val { position: absolute; top: -16px; width: 100%; text-align: center; font-size: 9px; color: var(--text); }
+.bar-lbl { font-size: 9px; color: var(--muted); margin-top: 8px; text-align: center; }
+
+/* ── Tables ── */
+table { width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+th { background: var(--s2); color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: 1px; }
+.crit-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+
+/* ── Funnel Steps ── */
+.funnel-step { position: relative; padding-left: 20px; margin-bottom: 16px; border-left: 2px solid var(--border); }
+.funnel-step::before { content: ""; position: absolute; left: -5px; top: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--purple); }
+.step-title { font-family: system-ui, sans-serif; font-weight: 700; font-size: 12px; color: var(--text); margin-bottom: 4px; }
+.step-content { font-size: 10px; color: var(--muted); background: var(--s2); padding: 8px 10px; border-radius: 4px; border: 1px solid var(--border); }
+
+/* ── Anchor Finder ── */
+.finder { margin-bottom: 15px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.finder summary { padding: 12px; font-weight: 700; cursor: pointer; outline: none; background: var(--s2); color: var(--text); }
+.name-grid { display: grid; grid-template-columns: 1fr 1fr; padding: 12px; gap: 8px; }
+.name-grid a { text-decoration: none; color: var(--cyan); padding: 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 10px; background: var(--bg); text-align: center; }
+.row:target { background: rgba(245,166,35,.1) !important; outline: 1px solid var(--amber); }
+.row { scroll-margin-top: 60px; }
+
+</style>
+</head>
+<body>
+
+<!-- 
+  WHATSAPP REQUIREMENT: 
+  All hidden radio inputs MUST be the first children of the body.
+-->
+<input type="radio" name="main" id="tab-exec" checked>
+<input type="radio" name="main" id="tab-mktg">
+<input type="radio" name="main" id="tab-sms">
+<input type="radio" name="main" id="tab-audit">
+
+<div class="wrap">
+  
+  <div class="hdr">
+    <div>
+      <h1>Operations Dashboard</h1>
+      <p>Degreefyd · Financials · Marketing Trends · Automation</p>
+    </div>
+    <div style="font-size:10px;color:var(--text);background:var(--s2);padding:6px 12px;border-radius:5px;border:1px solid var(--border);">
+      <span class="crit-dot" style="background:var(--red)"></span> Critical Action Required
+    </div>
+  </div>
+
+  <div class="ptabs">
+    <label for="tab-exec" class="ptab lbl-exec">🏦 Financials</label>
+    <label for="tab-mktg" class="ptab lbl-mktg">📈 Marketing</label>
+    <label for="tab-sms" class="ptab lbl-sms">💬 SMS Funnel</label>
+    <label for="tab-audit" class="ptab lbl-audit">⚔️ Audit</label>
+  </div>
+
+  <!-- ═══════ EXECUTIVE / FINANCIALS ═══════ -->
+  <div id="sec-exec" class="psec">
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Invoiced Revenue</div>
+        <div class="stat-val" style="color:var(--text)">₹30.34L</div>
+        <div class="stat-sub">Projected Base</div>
+      </div>
+      <div class="stat-card" style="border-color:rgba(255,77,109,.3); background:rgba(255,77,109,.05);">
+        <div class="stat-label">Payroll</div>
+        <div class="stat-val" style="color:var(--red)">₹14.00L</div>
+        <div class="stat-sub">46% of Revenue (High)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Marketing Budget</div>
+        <div class="stat-val" style="color:var(--blue)">₹6.48L</div>
+        <div class="stat-sub">Planned Spends</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Net Burn Risk</div>
+        <div class="stat-val" style="color:var(--amber)">CRITICAL</div>
+        <div class="stat-sub">Requires 100% Collection</div>
+      </div>
+    </div>
+    
+    <div class="chart-wrap" style="border-color:rgba(255,77,109,.4); background:rgba(255,77,109,.05);">
+      <div class="chart-title"><span style="color:var(--red)">⚠ System Warning: Cash Flow Risk</span></div>
+      <p style="font-size:11px; color:var(--text); line-height:1.6;">
+        Current payroll consumes nearly half of all invoiced revenue. 
+        There is ₹9.17L "To be Collected" for Online programs. Any lag in collections will result in a negative bank exit for the month. 
+        <br><br>Recommendation: Pivot sales KPIs from "Admissions Logged" to "Cash Collected".
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════ MARKETING ═══════ -->
+  <div id="sec-mktg" class="psec">
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">Total Spend</div><div class="stat-val" style="color:var(--cyan)">₹1.21L</div><div class="stat-sub">Tracked Period</div></div>
+      <div class="stat-card"><div class="stat-label">Total Leads</div><div class="stat-val" style="color:var(--green)">1,867</div><div class="stat-sub">LMS Verified</div></div>
+      <div class="stat-card"><div class="stat-label">CPL (LMS)</div><div class="stat-val" style="color:var(--text)">₹64.96</div><div class="stat-sub">Average</div></div>
+      <div class="stat-card"><div class="stat-label">Lead Leakage</div><div class="stat-val" style="color:var(--amber)">8.44%</div><div class="stat-sub">Panel vs LMS Drop</div></div>
+    </div>
+
+    <!-- PURE CSS CHART -->
+    <div class="chart-wrap">
+      <div class="chart-title">
+        Daily Spend Trend (Example Projection)
+        <span class="metric-badge" style="background:rgba(34,212,245,.1);color:var(--cyan);border:1px solid rgba(34,212,245,.3);">SPEND</span>
+      </div>
+      
+      <div class="css-chart">
+        <div class="bar-col"><div class="bar-val">8.4K</div><div class="bar" style="height:45%; background:var(--cyan);"></div><div class="bar-lbl">Apr 20</div></div>
+        <div class="bar-col"><div class="bar-val">10.2K</div><div class="bar" style="height:55%; background:var(--cyan);"></div><div class="bar-lbl">Apr 21</div></div>
+        <div class="bar-col"><div class="bar-val">11.4K</div><div class="bar" style="height:62%; background:var(--cyan);"></div><div class="bar-lbl">Apr 22</div></div>
+        <div class="bar-col"><div class="bar-val">15.0K</div><div class="bar" style="height:85%; background:var(--cyan);"></div><div class="bar-lbl">Apr 23</div></div>
+        <div class="bar-col"><div class="bar-val">14.2K</div><div class="bar" style="height:78%; background:var(--cyan);"></div><div class="bar-lbl">Apr 24</div></div>
+        <div class="bar-col"><div class="bar-val">12.0K</div><div class="bar" style="height:65%; background:var(--cyan);"></div><div class="bar-lbl">Apr 25</div></div>
+        <div class="bar-col"><div class="bar-val">18.5K</div><div class="bar" style="height:100%; background:var(--cyan);"></div><div class="bar-lbl">Apr 26</div></div>
+      </div>
+    </div>
+
+    <details class="finder">
+      <summary>🔍 Find Campaign</summary>
+      <div class="name-grid">
+        <a href="#row-c1">IGNOU MBA</a>
+        <a href="#row-c2">Online UG/PG</a>
+        <a href="#row-c3">Galgotias</a>
+        <a href="#row-c4">NMIMS</a>
+      </div>
+    </details>
+
+    <table>
+      <tr><th>Campaign</th><th>Spends</th><th>Leads</th><th>CPL</th><th>Status</th></tr>
+      <tr id="row-c1" class="row">
+        <td><span class="crit-dot" style="background:var(--green)"></span> IGNOU MBA</td>
+        <td>₹429.16</td><td>8</td><td>₹54</td>
+        <td style="color:var(--green)">Healthy</td>
+      </tr>
+      <tr id="row-c2" class="row">
+        <td><span class="crit-dot" style="background:var(--red)"></span> Online UG/PG Admission</td>
+        <td>₹369.05</td><td>6</td><td>₹62</td>
+        <td style="color:var(--red)">40% Leakage</td>
+      </tr>
+      <tr id="row-c3" class="row">
+        <td><span class="crit-dot" style="background:var(--blue)"></span> Galgotias 2026</td>
+        <td>₹335.14</td><td>11</td><td>₹30</td>
+        <td style="color:var(--blue)">Stable</td>
+      </tr>
+      <tr id="row-c4" class="row">
+        <td><span class="crit-dot" style="background:var(--amber)"></span> NMIMS MBA</td>
+        <td>₹334.28</td><td>0</td><td>₹334</td>
+        <td style="color:var(--amber)">High CPL</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ═══════ SMS FUNNEL ═══════ -->
+  <div id="sec-sms" class="psec">
+    <div class="chart-wrap">
+      <div class="chart-title">7-Day Automation Sequence</div>
+      
+      <div class="funnel-step">
+        <div class="step-title">Day 1 · MBA · Trust Signal</div>
+        <div class="step-content">Amity University Online (NAAC A+) MBA/BCA/B.Com admissions open. Trusted by 2L+ learners. Check details...</div>
+      </div>
+      <div class="funnel-step">
+        <div class="step-title">Day 2 · Compare Feature</div>
+        <div class="step-content">Amity, LPU & Manipal Online MBA admissions open. Want comparison PDF on WhatsApp?</div>
+      </div>
+      <div class="funnel-step">
+        <div class="step-title" style="color:var(--amber)">Day 3 · Urgency Trigger</div>
+        <div class="step-content">Jan MBA intake closing soon. Counselor ready for quick 3-min guidance. Tap to call...</div>
+      </div>
+      <div class="funnel-step">
+        <div class="step-title" style="color:var(--green)">Day 4 · Financial/EMI Push</div>
+        <div class="step-content">Start Online MBA at EMI ₹2,500/month. See EMI breakup...</div>
+      </div>
+      <div class="funnel-step">
+        <div class="step-title" style="color:var(--red)">Day 7 · Hard Close</div>
+        <div class="step-content">Final reminder: MBA Jan intake closes TODAY. Counselor available till 8 PM. Call now.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ AUDIT ═══════ -->
+  <div id="sec-audit" class="psec">
+    <div class="chart-wrap">
+      <div class="chart-title">Competitor Audit vs Degreefyd</div>
+      <table>
+        <tr><th>Metric</th><th>Winner</th><th>Degreefyd Score</th></tr>
+        <tr>
+          <td>Ad Spend Efficiency</td>
+          <td style="color:var(--green)">UniversityAdmit (10/10)</td>
+          <td style="color:var(--red)">2/10 (Wasteful)</td>
+        </tr>
+        <tr>
+          <td>Optimization Health</td>
+          <td style="color:var(--green)">UniversityAdmit (10/10)</td>
+          <td style="color:var(--red)">1/10 (Broken/Chaos)</td>
+        </tr>
+        <tr>
+          <td>Video Usage</td>
+          <td style="color:var(--green)">Campus Degree (9/10)</td>
+          <td style="color:var(--amber)">6/10 (Amateur)</td>
+        </tr>
+        <tr>
+          <td>Ad Duplication</td>
+          <td style="color:var(--green)">UniversityAdmit (9/10)</td>
+          <td style="color:var(--red)">2/10 (35% Dupes)</td>
+        </tr>
+      </table>
+
+      <div style="background:rgba(255,77,109,.1); border:1px solid rgba(255,77,109,.3); padding:16px; border-radius:8px; margin-top:20px;">
+        <strong style="color:var(--red); font-family:system-ui,sans-serif; display:block; margin-bottom:8px;">Strategic Verdict</strong>
+        <p style="color:var(--text); font-size:11px; line-height:1.5;">
+          You are currently in <strong>"Chaos Stage"</strong> optimization. 48% of ads are failing to get traction (under 100 impressions). Consolidation is mandatory. Pause all low-impression variants and funnel budget into the top 3 performing creatives.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

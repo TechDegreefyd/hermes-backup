@@ -1,0 +1,75 @@
+# ============================================================
+# SECRETS & CREDENTIALS - Never upload these to GitHub
+# ============================================================
+
+# Google OAuth credential files
+client_secret_*.json
+client_secret*.json
+
+# GCP / Firebase service account keys
+service-account.json
+service_account.json
+*-service-account.json
+*serviceaccount*.json
+*.service-account.json
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+
+# API credential text files
+META_API.txt
+*_API.txt
+*_CREDENTIALS.txt
+*_TOKEN.txt
+*_SECRET.txt
+
+# Environment variable files (real ones, not examples)
+.env
+.env.local
+.env.production
+.env.staging
+.env.development
+.env.*.local
+.env.docker
+.env.bak
+.env.bak-*
+# Allow example/template files
+!.env.example
+!.env.sample
+!.env.template
+
+# Secrets / credentials folders
+secrets/
+credentials/
+private/
+keys/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

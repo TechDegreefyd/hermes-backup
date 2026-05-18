@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.camp-body { display: none; }
+#cb1:checked ~ .wrap #b1 { display: table-row-group; }
+</style>
+</head>
+<body>
+<input type="checkbox" id="cb1">
+<div class="wrap">
+  <table>
+    <tbody>
+      <tr><td><label for="cb1">Click me</label></td></tr>
+    </tbody>
+    <tbody id="b1" class="camp-body">
+      <tr><td>Campaign 1</td></tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

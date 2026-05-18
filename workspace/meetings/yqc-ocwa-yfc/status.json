@@ -1,0 +1,23 @@
+{
+  "meetingId": "yqc-ocwa-yfc",
+  "url": "https://meet.google.com/yqc-ocwa-yfc",
+  "inCall": false,
+  "captioning": false,
+  "captionsEnabledAttempted": true,
+  "lobbyWaiting": false,
+  "joinAttemptedAt": 1777887470.8362622,
+  "joinedAt": 1777887473.884932,
+  "lastCaptionAt": null,
+  "transcriptLines": 0,
+  "transcriptPath": "/workspace/meetings/yqc-ocwa-yfc/transcript.txt",
+  "error": null,
+  "exited": true,
+  "pid": 4725,
+  "realtime": false,
+  "realtimeReady": false,
+  "realtimeDevice": null,
+  "audioBytesOut": 0,
+  "lastAudioOutAt": null,
+  "lastBargeInAt": null,
+  "leaveReason": null
+}

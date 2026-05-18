@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body { background: #070b14; color: #f8fafc; font-family: sans-serif; padding: 20px;}
+.acc-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; margin-bottom: 12px; }
+.acc-summary { padding: 16px; cursor: pointer; font-weight: bold; background: #0f172a; border-radius: 8px;}
+.acc-body { padding: 10px; border-top: 1px solid #1e293b; }
+
+.camp-card { background: #020617; border: 1px solid #1e293b; border-radius: 6px; margin-bottom: 8px; }
+.camp-summary { padding: 12px; cursor: pointer; font-weight: bold; background: #020617; border-radius: 6px;}
+.camp-body { padding: 0; border-top: 1px solid #1e293b; overflow-x: auto;}
+
+table { width: 100%; border-collapse: collapse; text-align: left; }
+th, td { padding: 8px; border-bottom: 1px solid #1e293b; font-size: 12px;}
+</style>
+</head>
+<body>
+<details class="acc-card">
+  <summary class="acc-summary">Account 1</summary>
+  <div class="acc-body">
+    <details class="camp-card">
+      <summary class="camp-summary">Campaign A</summary>
+      <div class="camp-body">
+        <table><tr><th>Ad</th><th>Spend</th></tr><tr><td>Ad 1</td><td>100</td></tr></table>
+      </div>
+    </details>
+  </div>
+</details>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regular API Recon Report — All Sources — 12 May 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: #080f18;
+    padding: 32px 16px;
+    color: #b8cfe0;
+    display: flex;
+    justify-content: center;
+  }
+  .wrapper { width: 100%; max-width: 960px; }
+
+  .header-row {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 24px; flex-wrap: wrap; gap: 12px;
+  }
+  .title-block h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 30px; font-weight: 700; color: #39b8f5;
+    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;
+  }
+  .badge {
+    display: inline-block; background: #0e3d5c; color: #39b8f5;
+    padding: 4px 14px; border-radius: 99px; font-size: 11px;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .date-box {
+    background: #0e2235; border: 1px solid #1c3d5a; border-radius: 8px;
+    padding: 8px 16px; font-size: 14px; font-weight: 600; color: #6b9fc9;
+  }
+
+  .stats-row {
+    display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .stat-card {
+    background: #0d1e2e; border: 1px solid #1c3d5a; border-radius: 10px;
+    padding: 16px 20px; min-width: 120px; flex: 1;
+  }
+  .stat-label { font-size: 10px; color: #5a7a94; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .stat-val { font-size: 24px; font-weight: 800; color: #39b8f5; }
+  .stat-sub { font-size: 11px; color: #5a7a94; margin-top: 4px; }
+
+  table {
+    width: 100%; border-collapse: collapse;
+    background: #0b1623; border-radius: 12px; overflow: hidden;
+    border: 1px solid #1c3d5a; box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  th {
+    font-size: 11px; padding: 14px 6px; text-align: center;
+    text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;
+  }
+  .top-header th { background: #0d1e2e; border-bottom: 2px solid #1c3d5a; color: #7a9bb5; }
+  .col-name-h { text-align: left !important; padding-left: 16px !important; width: 28%; }
+  .group-head { color: #39b8f5 !important; font-weight: 700 !important; border-right: 1px solid #1c3d5a; }
+  .leads-h { background: #0d2a1a !important; color: #3ddc84 !important; font-weight: 700; font-size: 11px; }
+
+  .sub-head th {
+    background: #0a1825; font-size: 10px; color: #5a7a94;
+    border-bottom: 1px solid #1c3d5a; border-right: 1px solid #162538;
+    padding: 10px 4px;
+  }
+
+  td {
+    padding: 14px 6px; font-size: 15px; color: #b8cfe0;
+    text-align: center; border-bottom: 1px solid #162538;
+    border-right: 1px solid #162538;
+    background: #0b1623;
+  }
+  .col-name { text-align: left !important; padding-left: 16px !important; font-weight: 600; color: #e0ecf8; background: #0d1e2e !important; }
+  .fail-cell { color: #e05c5c !important; font-weight: 600; }
+  .total-proc { color: #39b8f5 !important; font-weight: 700; }
+  .total-fail { color: #e05c5c !important; font-weight: 700; }
+  .total-dnp { color: #b8cfe0 !important; font-weight: 700; }
+  .leads-cell {
+    background: #081410 !important; color: #3ddc84 !important;
+    font-size: 17px !important; font-weight: 800 !important;
+    border-left: 2px solid #1f5c30 !important;
+  }
+
+  .grand-total td {
+    background: #0e2235 !important; border-top: 2px solid #1c3d5a;
+    font-weight: 700; font-size: 15px; color: #c8ddf0;
+  }
+  .grand-total .col-name { background: #0e2235 !important; color: #c8ddf0; }
+  .grand-total .total-proc { color: #39b8f5 !important; }
+  .grand-total .total-fail { color: #e05c5c !important; }
+  .grand-total .leads-cell { background: #0a1a12 !important; color: #3ddc84 !important; font-size: 17px !important; }
+
+  .summary-row td {
+    background: #163a56 !important; border-top: 2px solid #1e5a82;
+    font-weight: 800; font-size: 17px; color: #fff;
+    padding: 16px 6px;
+  }
+  .summary-row .col-name { background: #163a56 !important; color: #fff; }
+  .summary-row .leads-cell { background: #0d2a1a !important; color: #3ddc84 !important; font-size: 18px !important; }
+
+  .footer-note {
+    text-align: right; color: #2e5570; font-size: 11px;
+    margin-top: 12px; padding: 0 4px;
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header-row">
+    <div class="title-block">
+      <span class="badge">All Sources</span>
+      <h1>Regular API Recon Report</h1>
+    </div>
+    <div class="date-box">12 May 2026</div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-label">Total Recon</div>
+      <div class="stat-val">310</div>
+      <div class="stat-sub">283 Auto + 27 Manual</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Total LMS Leads</div>
+      <div class="stat-val">310</div>
+      <div class="stat-sub">4 colleges</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Auto Processed</div>
+      <div class="stat-val">170</div>
+      <div class="stat-sub">60.1% of auto</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">LMS Coverage</div>
+      <div class="stat-val">100%</div>
+      <div class="stat-sub">All colleges reporting</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr class="top-header">
+        <th class="col-name-h" rowspan="2">College Name</th>
+        <th colspan="3" class="group-head">Auto Recon</th>
+        <th colspan="3" class="group-head">Manual Recon</th>
+        <th colspan="3" class="group-head" style="border-right:none">Total</th>
+        <th class="leads-h" rowspan="2">Total Leads</th>
+      </tr>
+      <tr class="sub-head">
+        <th>Proc</th><th>Fail</th><th>DNP</th>
+        <th>Proc</th><th>Fail</th><th>DNP</th>
+        <th style="color:#39b8f5">Proc</th><th style="color:#e05c5c">Fail</th><th style="color:#b8cfe0">DNP</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-name">Chandigarh Group of Colleges, Landran (CGC)</td>
+        <td>85</td><td class="fail-cell">3</td><td>24</td>
+        <td>—</td><td>—</td><td>2</td>
+        <td class="total-proc">85</td><td class="total-fail">3</td><td class="total-dnp">26</td>
+        <td class="leads-cell">114</td>
+      </tr>
+      <tr>
+        <td class="col-name">Chandigarh University, Lucknow</td>
+        <td>—</td><td>—</td><td>—</td>
+        <td>—</td><td class="fail-cell">6</td><td>2</td>
+        <td class="total-proc">—</td><td class="total-fail">6</td><td class="total-dnp">2</td>
+        <td class="leads-cell">8</td>
+      </tr>
+      <tr>
+        <td class="col-name">Chandigarh University, Mohali</td>
+        <td>70</td><td class="fail-cell">47</td><td>33</td>
+        <td>3</td><td class="fail-cell">1</td><td>3</td>
+        <td class="total-proc">73</td><td class="total-fail">48</td><td class="total-dnp">36</td>
+        <td class="leads-cell">157</td>
+      </tr>
+      <tr>
+        <td class="col-name">Lovely Professional University</td>
+        <td>15</td><td class="fail-cell">1</td><td>5</td>
+        <td>4</td><td class="fail-cell">3</td><td>3</td>
+        <td class="total-proc">19</td><td class="total-fail">4</td><td class="total-dnp">8</td>
+        <td class="leads-cell">31</td>
+      </tr>
+
+      <!-- Grand Total -->
+      <tr class="grand-total">
+        <td class="col-name">Grand Total</td>
+        <td>170</td><td class="fail-cell">51</td><td>62</td>
+        <td>7</td><td class="fail-cell">10</td><td>10</td>
+        <td class="total-proc">177</td><td class="total-fail">61</td><td class="total-dnp">72</td>
+        <td class="leads-cell">310</td>
+      </tr>
+
+      <!-- Summary Total -->
+      <tr class="summary-row">
+        <td class="col-name">Summary Total</td>
+        <td colspan="3">283</td>
+        <td colspan="3">27</td>
+        <td colspan="3">310</td>
+        <td class="leads-cell">310</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer-note">
+    Source: API Recon Export &bull; 310 total records &bull; 12 May 2026
+  </div>
+</div>
+</body>
+</html>

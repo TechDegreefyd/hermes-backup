@@ -1,0 +1,575 @@
+{
+  "online": {
+    "counsellor_revenue": [
+      {
+        "Supervisor": "Varun",
+        "Counsellor": "Om  Sharma",
+        "Target": 350000,
+        "Achieved": 437720,
+        "Ach %": "125.1%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Varun",
+        "Counsellor": "Sumit Yadav",
+        "Target": 250000,
+        "Achieved": 23800,
+        "Ach %": "9.5%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Varun",
+        "Counsellor": "Tanisha Kulshrestha",
+        "Target": 350000,
+        "Achieved": 0,
+        "Ach %": "0.0%",
+        "FTD": 90000
+      },
+      {
+        "Supervisor": "Varun",
+        "Counsellor": "Mousumi Khatun",
+        "Target": 250000,
+        "Achieved": 60000,
+        "Ach %": "24.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Varun",
+        "Counsellor": "Mayank Jain",
+        "Target": 250000,
+        "Achieved": 162000,
+        "Ach %": "64.8%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Varun",
+        "Counsellor": "Divya Goyal",
+        "Target": 250000,
+        "Achieved": 74000,
+        "Ach %": "29.6%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Varun",
+        "Counsellor": "Himanshi Baliyan",
+        "Target": 150000,
+        "Achieved": 139500,
+        "Ach %": "93.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Varun",
+        "Counsellor": "Vijay Kumar",
+        "Target": 250000,
+        "Achieved": 95000,
+        "Ach %": "38.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Varun",
+        "Counsellor": "Prashant",
+        "Target": 0,
+        "Achieved": 0,
+        "Ach %": "0.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Total (Varun)",
+        "Counsellor": NaN,
+        "Target": 2100000,
+        "Achieved": 992020,
+        "Ach %": "47.2%",
+        "FTD": 90000
+      },
+      {
+        "Supervisor": "Sunil",
+        "Counsellor": "Preeti Lohiya",
+        "Target": 300000,
+        "Achieved": 434049,
+        "Ach %": "144.7%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Sunil",
+        "Counsellor": "Vishwajeet",
+        "Target": 150000,
+        "Achieved": 0,
+        "Ach %": "0.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Sunil",
+        "Counsellor": "Tanya Sharma",
+        "Target": 250000,
+        "Achieved": 0,
+        "Ach %": "0.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Sunil",
+        "Counsellor": "Abhishek Swami",
+        "Target": 350000,
+        "Achieved": 263695,
+        "Ach %": "75.3%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Sunil",
+        "Counsellor": "Vikas",
+        "Target": 300000,
+        "Achieved": 434270,
+        "Ach %": "144.8%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Sunil",
+        "Counsellor": "Amit Kumar",
+        "Target": 250000,
+        "Achieved": 75000,
+        "Ach %": "30.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Sunil",
+        "Counsellor": "Talveen",
+        "Target": 350000,
+        "Achieved": 0,
+        "Ach %": "0.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Sunil",
+        "Counsellor": "Avneet",
+        "Target": 0,
+        "Achieved": 0,
+        "Ach %": "0.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Total (Sunil)",
+        "Counsellor": NaN,
+        "Target": 1950000,
+        "Achieved": 1207014,
+        "Ach %": "61.9%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Siddhartha",
+        "Counsellor": "Tanya Singh",
+        "Target": 400000,
+        "Achieved": 217000,
+        "Ach %": "54.2%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Siddhartha",
+        "Counsellor": "Laxminaryan",
+        "Target": 400000,
+        "Achieved": 165000,
+        "Ach %": "41.2%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Siddhartha",
+        "Counsellor": "Suhani Raj Gupta",
+        "Target": 300000,
+        "Achieved": 0,
+        "Ach %": "0.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Siddhartha",
+        "Counsellor": "Shubham Kumar Gupta",
+        "Target": 150000,
+        "Achieved": 0,
+        "Ach %": "0.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Siddhartha",
+        "Counsellor": "Arnav Upadhyay",
+        "Target": 300000,
+        "Achieved": 131250,
+        "Ach %": "43.8%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Siddhartha",
+        "Counsellor": "Virat Kumar Singh",
+        "Target": 100000,
+        "Achieved": 0,
+        "Ach %": "0.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Siddhartha",
+        "Counsellor": "Siddharth Kumar",
+        "Target": 0,
+        "Achieved": 0,
+        "Ach %": "0.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Total (Siddhartha)",
+        "Counsellor": NaN,
+        "Target": 1650000,
+        "Achieved": 513250,
+        "Ach %": "31.1%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Grand Total",
+        "Counsellor": NaN,
+        "Target": 5700000,
+        "Achieved": 2712284,
+        "Ach %": "47.6%",
+        "FTD": 90000
+      }
+    ],
+    "supervisor_revenue": [
+      {
+        "Supervisor": "Varun",
+        "Target": 2100000,
+        "Achieved": 992020,
+        "Ach %": "47.2%",
+        "FTD": 90000
+      },
+      {
+        "Supervisor": "Sunil",
+        "Target": 1950000,
+        "Achieved": 1207014,
+        "Ach %": "61.9%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Vishal",
+        "Target": 0,
+        "Achieved": 0,
+        "Ach %": "0.0%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Siddhartha",
+        "Target": 1650000,
+        "Achieved": 513250,
+        "Ach %": "31.1%",
+        "FTD": 0
+      },
+      {
+        "Supervisor": "Grand Total",
+        "Target": 5700000,
+        "Achieved": 2712284,
+        "Ach %": "47.6%",
+        "FTD": 90000
+      }
+    ],
+    "college_performance": [
+      {
+        "Colleges": "Amity University Online",
+        "YTD Forms": 219,
+        "YTD Admissions": 124,
+        "YTD F2A %": "56.6%",
+        "MTD Forms": 3,
+        "MTD Admissions": 2,
+        "MTD F2A %": "66.7%",
+        "FTD Forms": 1,
+        "FTD Admissions": 0,
+        "FTD F2A %": "0.0%"
+      },
+      {
+        "Colleges": "Sikkim Manipal University Online",
+        "YTD Forms": 128,
+        "YTD Admissions": 72,
+        "YTD F2A %": "56.2%",
+        "MTD Forms": 3,
+        "MTD Admissions": 2,
+        "MTD F2A %": "66.7%",
+        "FTD Forms": 2,
+        "FTD Admissions": 1,
+        "FTD F2A %": "50.0%"
+      },
+      {
+        "Colleges": "Manipal University Online",
+        "YTD Forms": 92,
+        "YTD Admissions": 44,
+        "YTD F2A %": "47.8%",
+        "MTD Forms": 5,
+        "MTD Admissions": 0,
+        "MTD F2A %": "0.0%",
+        "FTD Forms": 0,
+        "FTD Admissions": 0,
+        "FTD F2A %": "0.0%"
+      },
+      {
+        "Colleges": "Galgotias University Online",
+        "YTD Forms": 89,
+        "YTD Admissions": 69,
+        "YTD F2A %": "77.5%",
+        "MTD Forms": 2,
+        "MTD Admissions": 1,
+        "MTD F2A %": "50.0%",
+        "FTD Forms": 1,
+        "FTD Admissions": 0,
+        "FTD F2A %": "0.0%"
+      },
+      {
+        "Colleges": "Chandigarh University Online",
+        "YTD Forms": 69,
+        "YTD Admissions": 37,
+        "YTD F2A %": "53.6%",
+        "MTD Forms": 1,
+        "MTD Admissions": 1,
+        "MTD F2A %": "100.0%",
+        "FTD Forms": 1,
+        "FTD Admissions": 0,
+        "FTD F2A %": "0.0%"
+      },
+      {
+        "Colleges": "Shoolini University Online",
+        "YTD Forms": 56,
+        "YTD Admissions": 30,
+        "YTD F2A %": "53.6%",
+        "MTD Forms": 2,
+        "MTD Admissions": 0,
+        "MTD F2A %": "0.0%",
+        "FTD Forms": 1,
+        "FTD Admissions": 0,
+        "FTD F2A %": "0.0%"
+      },
+      {
+        "Colleges": "Lovely Professional University Online",
+        "YTD Forms": 30,
+        "YTD Admissions": 16,
+        "YTD F2A %": "53.3%",
+        "MTD Forms": 0,
+        "MTD Admissions": 0,
+        "MTD F2A %": "0.0%",
+        "FTD Forms": 0,
+        "FTD Admissions": 0,
+        "FTD F2A %": "0.0%"
+      },
+      {
+        "Colleges": "Gla University Online",
+        "YTD Forms": 19,
+        "YTD Admissions": 16,
+        "YTD F2A %": "84.2%",
+        "MTD Forms": 0,
+        "MTD Admissions": 0,
+        "MTD F2A %": "0.0%",
+        "FTD Forms": 0,
+        "FTD Admissions": 0,
+        "FTD F2A %": "0.0%"
+      },
+      {
+        "Colleges": "Vivekanand Global University Online",
+        "YTD Forms": 6,
+        "YTD Admissions": 3,
+        "YTD F2A %": "50.0%",
+        "MTD Forms": 0,
+        "MTD Admissions": 0,
+        "MTD F2A %": "0.0%",
+        "FTD Forms": 0,
+        "FTD Admissions": 0,
+        "FTD F2A %": "0.0%"
+      },
+      {
+        "Colleges": "Mangalayatan University Online",
+        "YTD Forms": 5,
+        "YTD Admissions": 5,
+        "YTD F2A %": "100.0%",
+        "MTD Forms": 0,
+        "MTD Admissions": 0,
+        "MTD F2A %": "0.0%",
+        "FTD Forms": 0,
+        "FTD Admissions": 0,
+        "FTD F2A %": "0.0%"
+      },
+      {
+        "Colleges": "Jaypee Institute Of Information Technology, Noida",
+        "YTD Forms": 1,
+        "YTD Admissions": 1,
+        "YTD F2A %": "100.0%",
+        "MTD Forms": 0,
+        "MTD Admissions": 0,
+        "MTD F2A %": "0.0%",
+        "FTD Forms": 0,
+        "FTD Admissions": 0,
+        "FTD F2A %": "0.0%"
+      },
+      {
+        "Colleges": "Total",
+        "YTD Forms": 714,
+        "YTD Admissions": 417,
+        "YTD F2A %": "58.4%",
+        "MTD Forms": 16,
+        "MTD Admissions": 6,
+        "MTD F2A %": "37.5%",
+        "FTD Forms": 6,
+        "FTD Admissions": 1,
+        "FTD F2A %": "16.7%"
+      }
+    ]
+  },
+  "regular": {
+    "admissions": [
+      {
+        "College": "Chandigarh University, Mohali",
+        "YTD Ach": 128,
+        "Apr Target": 75,
+        "Apr Ach": 7,
+        "Apr Ach %": "9.3%",
+        "Week 5 Target": 18,
+        "Week 5 Ach": 32,
+        "Week 5 Ach %": "177.8%",
+        "FTD Target": 3,
+        "FTD Ach": 5,
+        "FTD Ach %": "166.7%"
+      },
+      {
+        "College": "Lovely Professional University",
+        "YTD Ach": 70,
+        "Apr Target": 75,
+        "Apr Ach": 2,
+        "Apr Ach %": "2.7%",
+        "Week 5 Target": 18,
+        "Week 5 Ach": 9,
+        "Week 5 Ach %": "50.0%",
+        "FTD Target": 3,
+        "FTD Ach": 1,
+        "FTD Ach %": "33.3%"
+      },
+      {
+        "College": "Chandigarh University, Lucknow",
+        "YTD Ach": 20,
+        "Apr Target": 25,
+        "Apr Ach": 4,
+        "Apr Ach %": "16.0%",
+        "Week 5 Target": 6,
+        "Week 5 Ach": 7,
+        "Week 5 Ach %": "116.7%",
+        "FTD Target": 1,
+        "FTD Ach": 3,
+        "FTD Ach %": "300.0%"
+      },
+      {
+        "College": "Chandigarh Group of Colleges, Landran (CGC)",
+        "YTD Ach": 32,
+        "Apr Target": 50,
+        "Apr Ach": 2,
+        "Apr Ach %": "4.0%",
+        "Week 5 Target": 12,
+        "Week 5 Ach": 11,
+        "Week 5 Ach %": "91.7%",
+        "FTD Target": 2,
+        "FTD Ach": 1,
+        "FTD Ach %": "50.0%"
+      },
+      {
+        "College": "Amity University (All Campuses)",
+        "YTD Ach": 21,
+        "Apr Target": 65,
+        "Apr Ach": 3,
+        "Apr Ach %": "4.6%",
+        "Week 5 Target": 15,
+        "Week 5 Ach": 7,
+        "Week 5 Ach %": "46.7%",
+        "FTD Target": 2,
+        "FTD Ach": 3,
+        "FTD Ach %": "150.0%"
+      },
+      {
+        "College": "Total",
+        "YTD Ach": 271,
+        "Apr Target": 290,
+        "Apr Ach": 18,
+        "Apr Ach %": "6.2%",
+        "Week 5 Target": 69,
+        "Week 5 Ach": 66,
+        "Week 5 Ach %": "95.7%",
+        "FTD Target": 11,
+        "FTD Ach": 13,
+        "FTD Ach %": "118.2%"
+      }
+    ],
+    "forms": [
+      {
+        "College": "Chandigarh University, Mohali",
+        "YTD Ach": 398,
+        "Apr Target": 214,
+        "Apr Ach": 24,
+        "Apr Ach %": "11.2%",
+        "Week 5 Target": 50,
+        "Week 5 Ach": 95,
+        "Week 5 Ach %": "190.0%",
+        "FTD Target": 7,
+        "FTD Ach": 12,
+        "FTD Ach %": "171.4%"
+      },
+      {
+        "College": "Lovely Professional University",
+        "YTD Ach": 247,
+        "Apr Target": 300,
+        "Apr Ach": 8,
+        "Apr Ach %": "2.7%",
+        "Week 5 Target": 70,
+        "Week 5 Ach": 33,
+        "Week 5 Ach %": "47.1%",
+        "FTD Target": 10,
+        "FTD Ach": 3,
+        "FTD Ach %": "30.0%"
+      },
+      {
+        "College": "Chandigarh University, Lucknow",
+        "YTD Ach": 63,
+        "Apr Target": 100,
+        "Apr Ach": 3,
+        "Apr Ach %": "3.0%",
+        "Week 5 Target": 23,
+        "Week 5 Ach": 24,
+        "Week 5 Ach %": "104.3%",
+        "FTD Target": 3,
+        "FTD Ach": 3,
+        "FTD Ach %": "100.0%"
+      },
+      {
+        "College": "Chandigarh Group of Colleges, Landran (CGC)",
+        "YTD Ach": 106,
+        "Apr Target": 250,
+        "Apr Ach": 8,
+        "Apr Ach %": "3.2%",
+        "Week 5 Target": 58,
+        "Week 5 Ach": 36,
+        "Week 5 Ach %": "62.1%",
+        "FTD Target": 8,
+        "FTD Ach": 1,
+        "FTD Ach %": "12.5%"
+      },
+      {
+        "College": "Amity University (All Campuses)",
+        "YTD Ach": 581,
+        "Apr Target": 650,
+        "Apr Ach": 41,
+        "Apr Ach %": "6.3%",
+        "Week 5 Target": 152,
+        "Week 5 Ach": 177,
+        "Week 5 Ach %": "116.4%",
+        "FTD Target": 22,
+        "FTD Ach": 19,
+        "FTD Ach %": "86.4%"
+      },
+      {
+        "College": "Total",
+        "YTD Ach": 1395,
+        "Apr Target": 1514,
+        "Apr Ach": 84,
+        "Apr Ach %": "5.5%",
+        "Week 5 Target": 353,
+        "Week 5 Ach": 365,
+        "Week 5 Ach %": "103.4%",
+        "FTD Target": 50,
+        "FTD Ach": 38,
+        "FTD Ach %": "76.0%"
+      }
+    ]
+  }
+}

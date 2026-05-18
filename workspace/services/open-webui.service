@@ -1,0 +1,20 @@
+[Unit]
+Description=OpenWebUI for Staff (Multi-User)
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+# Connects to Hermes on Port 8080
+ExecStartPre=-/usr/bin/docker stop open-webui
+ExecStartPre=-/usr/bin/docker rm open-webui
+ExecStart=/usr/bin/docker run --name open-webui \
+    -p 3000:8080 \
+    -v open-webui:/app/backend/data \
+    --add-host=host.docker.internal:host-gateway \
+    ghcr.io/open-webui/open-webui:main
+ExecStop=/usr/bin/docker stop open-webui
+Restart=always
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,162 @@
+Conversation transcript for 120363426619711887@g.us
+
+============================================================
+
+[2026-05-07T10:05:44.460401] BOT: FULL MBA FIT BOT CONVERSATION PREVIEW
+
+Stage 0:
+Hey Priya 👋
+
+I noticed you were exploring Manipal Online MBA with us last week — but the admission isn't locked in yet.
+No pressure at all 🙂
+If you've got 2 minutes, I'd love to ask you 4 quick questions so we can help you find a college that actually fits your goals.
+Buttons: Yes, let's do it / Maybe later / Not interested
+
+Stage 1:
+Awesome! 🎯
+Question 1 of 4
+Where are you in life right now, and why are you thinking about this MBA?
+Options: Working — want to grow / Working — want to switch / Recent grad — first big role / Recent grad — building career / Between jobs — comeback time / On a career break / Government job prep / Just exploring options
+
+Stage 2:
+Got it — you're aiming to grow in your career. Good context 👍
+Question 2 of 4
+What's the real worry holding you back?
+Options: 💰 Will I afford it? / ⏰ Time alongside work? / 🤔 Will employers value it? / 🧐 Right course? / ⏳ Too late? / 📚 Exam difficulty? / 🏠 Family/personal / 💼 Career break gaps
+
+Stage 3:
+Alumni story: Anjali/Aarav/Rohit based on Q1+Q2.
+2,400+ alumni with similar stories. Ready for question 3?
+
+Stage 4:
+4 universities: Manipal, Amity, NMIMS, Jain with placement/fee/EMI details.
+
+Stage 5:
+Personalized recap + scholarship up to ₹40,000 + no-cost EMI + early-bird discount.
+
+Stage 6:
+Callback scheduling with Counsellor Riya.
+Final: Riya will call with full context. Admin summary is sent.
+
+STOP CONTROL:
+Reply STOP / STOP BOT / PAUSE BOT anytime to stop. Reply START BOT / RESUME BOT to restart.
+
+
+[2026-05-07T10:05:46.538914] BOT: Hey Priya 👋
+
+I noticed you were exploring Manipal Online MBA with us last week — but the admission isn't locked in yet.
+No pressure at all 🙂
+If you've got 2 minutes, I'd love to ask you 4 quick questions so we can help you find a college that actually fits your goals.
+
+[2026-05-07T10:05:57.737339] USER: test
+
+[2026-05-07T10:05:57.167111] BOT: Awesome! 🎯
+Question 1 of 4
+
+Where are you in life right now, and why are you thinking about this MBA?
+Pick whichever fits best:
+
+1️⃣ Working — want to grow
+2️⃣ Working — want to switch
+3️⃣ Recent grad — first big role
+
+For more options, tap below.
+
+[2026-05-07T10:05:57.958762] BOT: See more options for Question 1:
+
+[2026-05-07T10:05:58.019178] USER: 1
+
+[2026-05-07T10:05:59.025423] BOT: Got it — you're aiming to grow in your career. Good context 👍
+
+Question 2 of 4
+
+What's the real worry holding you back?
+Be honest — we've heard it all 😊
+
+1️⃣ 💰 Will I afford it?
+2️⃣ ⏰ Time alongside work?
+3️⃣ 🤔 Will employers value it?
+
+[2026-05-07T10:05:59.951278] BOT: Other concerns:
+
+[2026-05-07T10:05:59.955919] USER: 2
+
+[2026-05-07T10:06:01.135038] BOT: Totally fair concern. Most working pros worry about this.
+Before we go on — meet someone who started exactly where you are 👇
+
+🎓 *Anjali's Story*
+Anjali managed weekend classes while working full-time.
+
+2,400+ alumni with stories like Anjali's.
+Ready for question 3?
+
+[2026-05-07T10:06:01.803982] USER: test
+
+[2026-05-07T10:06:03.094972] BOT: Question 3 of 4
+
+Based on your goal + worry, here are 4 universities that fit you well.
+Each one's strong at something different. Pick the one you'd love to know more about 👇
+
+1️⃣ Manipal Online MBA — ⭐ 89% placements · ₹1.5L · NIRF #6
+2️⃣ Amity Online MBA — ⭐ EMI ₹4,500/mo · ₹1.2L · 10+ specs
+3️⃣ NMIMS Online MBA — ⭐ Top brand recall · ₹2L · Mumbai legacy
+4️⃣ Jain University MBA — ⭐ Flexible 2-4 yrs · ₹1.4L · Self-paced
+
+Tap the list below OR reply 1/2/3/4.
+
+[2026-05-07T10:06:03.768521] USER: 1
+
+[2026-05-07T10:06:05.495396] BOT: ✨ Great pick! Manipal is exactly what Anjali studied.
+Here's why it's a strong match for you:
+
+🏫 *Manipal Online MBA*
+⭐ 89% placement rate
+💸 Fees: ₹1.5L
+📆 EMI: ₹4,500/mo
+📚 Format: Live weekend classes
+✅ Accreditation: NIRF #6 · UGC-entitled online degree
+
+[2026-05-07T10:06:06.982924] BOT: Quick recap, Priya 📋
+
+✓ You're working — want to grow
+✓ Your worry: ⏰ time alongside work? (totally solvable)
+✓ Best match: Manipal Online MBA
+⭐ Known for 89% placement rate
+📚 Live weekend classes
+💸 ₹1.5L · EMI from ₹4,500/mo
+You've unlocked 🎁
+• Scholarship up to ₹40,000
+• No-cost EMI option
+• Early-bird discount
+Counsellor will confirm exact eligibility on call 💬
+
+⚡ Heads up: Premium batches fill fast. Best to lock yours this week.
+
+[2026-05-07T10:06:06.988236] USER: test
+
+[2026-05-07T10:06:08.542757] BOT: Last question — promise!
+
+When can Counsellor Riya call you?
+She already has all your context — no need to repeat anything 🙏
+
+[2026-05-07T10:06:09.458572] BOT: Pick custom time / callback:
+
+[2026-05-07T10:06:09.463571] USER: 1
+
+[2026-05-07T10:06:11.294449] BOT: ✅ All set, Priya!
+Riya will call you today at 6:00 PM.
+She'll know:
+• Your goal & worry
+• Your shortlist (Manipal)
+• Your scholarship eligibility
+No need to start from zero 🙌
+Talk soon!
+
+[2026-05-07T10:06:12.785632] BOT: 🔔 *MBA Fit Bot Completed*
+👤 Chat: 120363426619711887@g.us
+Name: Priya
+Life stage: Working — want to grow
+Worry: ⏰ Time alongside work?
+University: Manipal Online MBA
+Call time: today at 6:00 PM
+Completed at: 07 May 2026 10:06 AM

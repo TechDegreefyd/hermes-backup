@@ -1,0 +1,223 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Regular LMS Performance Dashboard</title>
+        <style>
+            :root {
+                --bg: #0f172a;
+                --card-bg: #1e293b;
+                --text: #f8fafc;
+                --accent: #38bdf8;
+                --success: #22c55e;
+                --warning: #f59e0b;
+                --danger: #ef4444;
+            }
+            body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .header h1 { margin: 0; color: var(--accent); font-size: 24px; }
+            .header p { opacity: 0.7; font-size: 14px; }
+            
+            .kpi-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
+            .kpi-card { background: var(--card-bg); padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent); text-align: center; }
+            .kpi-title { font-size: 12px; text-transform: uppercase; opacity: 0.7; margin-bottom: 8px; }
+            .kpi-value { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
+            .kpi-sub { font-size: 14px; opacity: 0.9; }
+            
+            .table-container { background: var(--card-bg); border-radius: 12px; overflow: hidden; margin-bottom: 30px; border: 1px solid #334155; }
+            .table-header { padding: 15px 20px; background: #334155; font-weight: 700; border-bottom: 1px solid #475569; }
+            table { width: 100%; border-collapse: collapse; font-size: 13px; }
+            th { text-align: left; padding: 12px 15px; background: #1e293b; color: var(--accent); }
+            td { padding: 12px 15px; border-bottom: 1px solid #334155; }
+            tr:last-child { background: #0f172a; font-weight: bold; color: var(--accent); }
+            .pct-pill { padding: 2px 8px; border-radius: 4px; font-weight: 600; font-size: 11px; }
+            .pct-high { background: #14532d; color: #4ade80; }
+            .pct-mid { background: #78350f; color: #fbbf24; }
+            .pct-low { background: #7f1d1d; color: #f87171; }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Regular LMS Daily Performance</h1>
+            <p>Data Snapshot for 2026-05-10 (Generated via Hermes)</p>
+        </div>
+        
+        <div class="kpi-container">
+            <div class="kpi-card" style="border-color: var(--success)">
+                <div class="kpi-title">MTD Admissions</div>
+                <div class="kpi-value">14.0%</div>
+                <div class="kpi-sub">68 / 484</div>
+            </div>
+            <div class="kpi-card" style="border-color: var(--accent)">
+                <div class="kpi-title">FTD Admissions</div>
+                <div class="kpi-value">22.2%</div>
+                <div class="kpi-sub">4 / 18</div>
+            </div>
+            <div class="kpi-card" style="border-color: var(--warning)">
+                <div class="kpi-title">MTD Forms</div>
+                <div class="kpi-value">15.7%</div>
+                <div class="kpi-sub">400 / 2554</div>
+            </div>
+            <div class="kpi-card" style="border-color: var(--danger)">
+                <div class="kpi-title">FTD Forms</div>
+                <div class="kpi-value">38.1%</div>
+                <div class="kpi-sub">32 / 84</div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="table-header">Admissions Tracking</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>College</th>
+                        <th>YTD Ach</th>
+                        <th>MTD Target</th>
+                        <th>MTD Ach</th>
+                        <th>MTD %</th>
+                        <th>FTD Target</th>
+                        <th>FTD Ach</th>
+                        <th>FTD %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+        <tr>
+            <td>Amity University (All Campuses)</td>
+            <td>28</td>
+            <td>120</td>
+            <td>10</td>
+            <td><span class="pct-pill pct-low">8.3%</span></td>
+            <td>4</td>
+            <td>0</td>
+            <td><span class="pct-pill pct-low">0.0%</span></td>
+        </tr>
+        
+        <tr>
+            <td>Lovely Professional University</td>
+            <td>83</td>
+            <td>94</td>
+            <td>15</td>
+            <td><span class="pct-pill pct-low">16.0%</span></td>
+            <td>3</td>
+            <td>2</td>
+            <td><span class="pct-pill pct-mid">66.7%</span></td>
+        </tr>
+        
+        <tr>
+            <td>Chandigarh University, Mohali</td>
+            <td>151</td>
+            <td>127</td>
+            <td>29</td>
+            <td><span class="pct-pill pct-low">22.8%</span></td>
+            <td>5</td>
+            <td>1</td>
+            <td><span class="pct-pill pct-low">20.0%</span></td>
+        </tr>
+        
+        <tr>
+            <td>Chandigarh Group of Colleges, Landran (CGC)</td>
+            <td>38</td>
+            <td>68</td>
+            <td>8</td>
+            <td><span class="pct-pill pct-low">11.8%</span></td>
+            <td>3</td>
+            <td>0</td>
+            <td><span class="pct-pill pct-low">0.0%</span></td>
+        </tr>
+        
+        <tr>
+            <td>Chandigarh University, Lucknow</td>
+            <td>22</td>
+            <td>75</td>
+            <td>6</td>
+            <td><span class="pct-pill pct-low">8.0%</span></td>
+            <td>3</td>
+            <td>1</td>
+            <td><span class="pct-pill pct-low">33.3%</span></td>
+        </tr>
+        <tr><td>Total</td><td>-</td><td>484</td><td>68</td><td>14.0%</td><td>18</td><td>4</td><td>22.2%</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <div class="table-header">Forms Tracking</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>College</th>
+                        <th>YTD Ach</th>
+                        <th>MTD Target</th>
+                        <th>MTD Ach</th>
+                        <th>MTD %</th>
+                        <th>FTD Target</th>
+                        <th>FTD Ach</th>
+                        <th>FTD %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+        <tr>
+            <td>Amity University (All Campuses)</td>
+            <td>721</td>
+            <td>1200</td>
+            <td>181</td>
+            <td><span class="pct-pill pct-low">15.1%</span></td>
+            <td>39</td>
+            <td>15</td>
+            <td><span class="pct-pill pct-low">38.5%</span></td>
+        </tr>
+        
+        <tr>
+            <td>Lovely Professional University</td>
+            <td>284</td>
+            <td>409</td>
+            <td>45</td>
+            <td><span class="pct-pill pct-low">11.0%</span></td>
+            <td>14</td>
+            <td>3</td>
+            <td><span class="pct-pill pct-low">21.4%</span></td>
+        </tr>
+        
+        <tr>
+            <td>Chandigarh University, Mohali</td>
+            <td>492</td>
+            <td>423</td>
+            <td>118</td>
+            <td><span class="pct-pill pct-low">27.9%</span></td>
+            <td>14</td>
+            <td>10</td>
+            <td><span class="pct-pill pct-mid">71.4%</span></td>
+        </tr>
+        
+        <tr>
+            <td>Chandigarh Group of Colleges, Landran (CGC)</td>
+            <td>130</td>
+            <td>272</td>
+            <td>32</td>
+            <td><span class="pct-pill pct-low">11.8%</span></td>
+            <td>9</td>
+            <td>3</td>
+            <td><span class="pct-pill pct-low">33.3%</span></td>
+        </tr>
+        
+        <tr>
+            <td>Chandigarh University, Lucknow</td>
+            <td>84</td>
+            <td>250</td>
+            <td>24</td>
+            <td><span class="pct-pill pct-low">9.6%</span></td>
+            <td>8</td>
+            <td>1</td>
+            <td><span class="pct-pill pct-low">12.5%</span></td>
+        </tr>
+        <tr><td>Total</td><td>-</td><td>2554</td><td>400</td><td>15.7%</td><td>84</td><td>32</td><td>38.1%</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+    </html>
+    

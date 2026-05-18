@@ -1,0 +1,89 @@
+date,utm_campaign,lead_count,source_db
+2026-05-05,Facebook,16,online_lms
+2026-05-05,FaceBook,81,online_lms
+2026-05-05,FaceBook_University_Admit,66,online_lms
+2026-05-05,Google_Lead_Form,18,online_lms
+2026-05-05,Landing Page,8,online_lms
+2026-05-05,Organic,30,online_lms
+2026-05-05,student_ref,1,online_lms
+2026-05-05,WhatsApp,30,online_lms
+2026-05-06,counsellor_ref,1,online_lms
+2026-05-06,Facebook,32,online_lms
+2026-05-06,FaceBook,91,online_lms
+2026-05-06,FaceBook_University_Admit,62,online_lms
+2026-05-06,Google_Lead_Form,17,online_lms
+2026-05-06,Landing Page,12,online_lms
+2026-05-06,Meta_M,1,online_lms
+2026-05-06,Organic,46,online_lms
+2026-05-06,WhatsApp,26,online_lms
+2026-05-07,counsellor_ref,1,online_lms
+2026-05-07,Facebook,20,online_lms
+2026-05-07,FaceBook,60,online_lms
+2026-05-07,FaceBook_University_Admit,60,online_lms
+2026-05-07,Google_Lead_Form,16,online_lms
+2026-05-07,Landing Page,7,online_lms
+2026-05-07,Organic,46,online_lms
+2026-05-07,student_ref,4,online_lms
+2026-05-07,WhatsApp,35,online_lms
+2026-05-05,FaceBook,23,regular_lms
+2026-05-05,Google_Lead_Form,6,regular_lms
+2026-05-05,Landing Page,96,regular_lms
+2026-05-05,Organic,166,regular_lms
+2026-05-05,student_ref,5,regular_lms
+2026-05-05,Website Chat,1,regular_lms
+2026-05-06,FaceBook,16,regular_lms
+2026-05-06,Google_Lead_Form,7,regular_lms
+2026-05-06,Landing Page,78,regular_lms
+2026-05-06,Organic,130,regular_lms
+2026-05-06,student_ref,1,regular_lms
+2026-05-06,Website Chat,1,regular_lms
+2026-05-07,CP_Ref,7,regular_lms
+2026-05-07,FaceBook,21,regular_lms
+2026-05-07,Google_Lead_Form,9,regular_lms
+2026-05-07,Landing Page,81,regular_lms
+2026-05-07,Organic,105,regular_lms
+2026-05-07,student_ref,5,regular_lms
+2026-05-07,Website Chat,2,regular_lms
+2026-05-05,Facebook,1,regular_cgc_lms
+2026-05-05,FaceBook,1,regular_cgc_lms
+2026-05-05,FaceBook_University_Admit,2,regular_cgc_lms
+2026-05-05,Landing Page,15,regular_cgc_lms
+2026-05-05,Organic,29,regular_cgc_lms
+2026-05-05,student_ref,2,regular_cgc_lms
+2026-05-05,WhatsApp,3,regular_cgc_lms
+2026-05-06,counsellor_ref,1,regular_cgc_lms
+2026-05-06,Facebook,2,regular_cgc_lms
+2026-05-06,FaceBook,3,regular_cgc_lms
+2026-05-06,FaceBook_University_Admit,2,regular_cgc_lms
+2026-05-06,Google_Lead_Form,1,regular_cgc_lms
+2026-05-06,Landing Page,13,regular_cgc_lms
+2026-05-06,Organic,15,regular_cgc_lms
+2026-05-06,student_ref,1,regular_cgc_lms
+2026-05-06,WhatsApp,2,regular_cgc_lms
+2026-05-07,FaceBook,3,regular_cgc_lms
+2026-05-07,FaceBook_University_Admit,4,regular_cgc_lms
+2026-05-07,Google_Lead_Form,1,regular_cgc_lms
+2026-05-07,Landing Page,14,regular_cgc_lms
+2026-05-07,Organic,22,regular_cgc_lms
+2026-05-07,student_ref,2,regular_cgc_lms
+2026-05-05,FaceBook,1,regular_amity_lms
+2026-05-05,FaceBook_University_Admit,2,regular_amity_lms
+2026-05-05,Google_Lead_Form,4,regular_amity_lms
+2026-05-05,Meta_M,464,regular_amity_lms
+2026-05-05,Organic,36,regular_amity_lms
+2026-05-05,WhatsApp,3,regular_amity_lms
+2026-05-06,Facebook,1,regular_amity_lms
+2026-05-06,FaceBook,1,regular_amity_lms
+2026-05-06,FaceBook_University_Admit,1,regular_amity_lms
+2026-05-06,Google_Lead_Form,1,regular_amity_lms
+2026-05-06,Landing Page,4,regular_amity_lms
+2026-05-06,Meta_M,734,regular_amity_lms
+2026-05-06,Organic,20,regular_amity_lms
+2026-05-06,student_ref,2,regular_amity_lms
+2026-05-06,WhatsApp,1,regular_amity_lms
+2026-05-07,FaceBook,2,regular_amity_lms
+2026-05-07,Google_Lead_Form,2,regular_amity_lms
+2026-05-07,Landing Page,3,regular_amity_lms
+2026-05-07,Meta_M,617,regular_amity_lms
+2026-05-07,Organic,6,regular_amity_lms
+2026-05-07,WhatsApp,1,regular_amity_lms

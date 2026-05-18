@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { font-family: sans-serif; background: #f4f7f4; padding: 20px; color: #333; }
+  .card { background: #fff; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  h1 { font-size: 20px; color: #2e4d2e; margin-top: 0; }
+  h2 { font-size: 16px; color: #4a7c4a; border-bottom: 2px solid #e0eee0; padding-bottom: 8px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+  th { background: #4a7c4a; color: #fff; padding: 10px 5px; text-transform: uppercase; }
+  td { padding: 8px 5px; border: 1px solid #eee; text-align: center; }
+  .total-row { background: #e8f5e8; font-weight: bold; }
+  .summary { display: flex; gap: 20px; margin-bottom: 20px; }
+  .stat { background: #4a7c4a; color: #fff; padding: 15px; border-radius: 8px; flex: 1; text-align: center; }
+  .stat-val { font-size: 20px; font-weight: bold; display: block; }
+  .stat-label { font-size: 10px; text-transform: uppercase; opacity: 0.8; }
+</style>
+</head>
+<body>
+  <h1>Combined Regular API Recon & Marketing Report — 2026-04-28</h1>
+  
+  <div class="summary">
+    <div class="stat"><span class="stat-val">₹4,816.49</span><span class="stat-label">Total Branded Spend</span></div>
+    <div class="stat"><span class="stat-val">124</span><span class="stat-label">Total Branded Leads</span></div>
+    <div class="stat"><span class="stat-val">₹38.84</span><span class="stat-label">Avg Branded CPL</span></div>
+  </div>
+
+  <div class="card">
+    <h2>Branded Campaign Performance</h2>
+    <table>
+      <thead><tr><th style='text-align:left;'>Campaign</th><th>Spend</th><th>Leads</th><th>CPL</th></tr></thead>
+      <tbody>
+        <tr><td style='text-align:left;'>Galgotias_Lead_2026</td><td>₹1,704.10</td><td>34</td><td>₹50.12</td></tr><tr><td style='text-align:left;'>IGNOU_Online_Courses_Admission_DFYD</td><td>₹1,367.55</td><td>68</td><td>₹20.11</td></tr><tr><td style='text-align:left;'>CU_Lucknow_Remarketing</td><td>₹659.22</td><td>10</td><td>₹65.92</td></tr><tr><td style='text-align:left;'>CU_Lucknow_Int</td><td>₹548.69</td><td>6</td><td>₹91.45</td></tr><tr><td style='text-align:left;'>CU_Mohali_Int</td><td>₹299.85</td><td>4</td><td>₹74.96</td></tr><tr><td style='text-align:left;'>CU_Mohali_Rem</td><td>₹237.08</td><td>2</td><td>₹118.54</td></tr>
+        <tr class="total-row"><td style='text-align:left;'>TOTAL</td><td>₹4,816.49</td><td>124</td><td>₹38.84</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>API Reconciliation Status (Regular LMS)</h2>
+    <table>
+      <thead>
+        <tr><th rowspan="2">College</th><th colspan="3">Auto Recon</th><th colspan="3">Manual Recon</th><th colspan="3">Total</th></tr>
+        <tr><th>Proc</th><th>Fail</th><th>DNP</th><th>Proc</th><th>Fail</th><th>DNP</th><th>Proc</th><th>Fail</th><th>DNP</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style='text-align:left;font-weight:600;'>Chandigarh Group of Colleges, Landran (CGC)</td><td>91</td><td>3</td><td>27</td><td>1</td><td>—</td><td>—</td><td>92</td><td>3</td><td>27</td></tr><tr><td style='text-align:left;font-weight:600;'>Chandigarh University, Lucknow</td><td>—</td><td>—</td><td>—</td><td>—</td><td>11</td><td>4</td><td>0</td><td>11</td><td>4</td></tr><tr><td style='text-align:left;font-weight:600;'>Chandigarh University, Mohali</td><td>48</td><td>52</td><td>32</td><td>8</td><td>3</td><td>3</td><td>56</td><td>55</td><td>35</td></tr><tr><td style='text-align:left;font-weight:600;'>Lovely Professional University</td><td>31</td><td>2</td><td>31</td><td>2</td><td>—</td><td>5</td><td>33</td><td>2</td><td>36</td></tr>
+        <tr class="total-row" style='background:#4a7c4a; color:#fff;'>
+          <td style='text-align:left;'>Grand Total</td>
+          <td>170</td><td>57</td><td>90</td>
+          <td>11</td><td>14</td><td>12</td>
+          <td>181</td><td>71</td><td>102</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,283 @@
+{
+  "jobs": [
+    {
+      "id": "78661f7305be",
+      "name": "Daily Online LMS Reports",
+      "prompt": "Generate and deliver the Daily Online LMS Report.\n\n\u26a0\ufe0f CRITICAL: Vishal Gaur fee target = \u20b920,00,000 (2000000) in /home/mohit/workspace/report_config.json under supervisor_targets. NEVER change this to 2 lakh.\n\nSteps:\n1. Run: /home/mohit/.hermes/hermes-agent/venv/bin/python /home/mohit/workspace/generate_daily_reports_v2.py\n2. Run: /home/mohit/.hermes/hermes-agent/venv/bin/python /home/mohit/workspace/generate_and_send_lms_html.py\n3. HTML auto-sends via WHAPI. If WHAPI fails, save as Online_LMS_HTML_{date}.html and send to Telegram DM.\n\nWorkdir: /home/mohit/workspace",
+      "skills": [
+        "online-lms-reporting",
+        "whatsapp-file-sending"
+      ],
+      "skill": "online-lms-reporting",
+      "model": "gemini-3-flash-preview",
+      "provider": "copilot",
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 15 * * *",
+        "display": "0 15 * * *"
+      },
+      "schedule_display": "0 15 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 26
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-29T17:09:02.346044+00:00",
+      "next_run_at": "2026-05-18T15:00:00+00:00",
+      "last_run_at": "2026-05-11T16:22:16.401765+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": null,
+      "enabled_toolsets": [
+        "terminal",
+        "file"
+      ],
+      "workdir": "/home/mohit/workspace"
+    },
+    {
+      "id": "afcddb63f8b4",
+      "name": "Daily Regular LMS Reports",
+      "prompt": "Generate and deliver the Daily Regular LMS Report.\n\n\u26a0\ufe0f CRITICAL: Vishal Gaur fee target = \u20b920,00,000 (2000000) in /home/mohit/workspace/report_config.json under supervisor_targets. Regular config path: use 'regular_report_config.json' (NOT 'workspace/regular_report_config.json').\n\nSteps:\n1. Run: /home/mohit/.hermes/hermes-agent/venv/bin/python /home/mohit/workspace/generate_regular_reports.py\n2. Run: /home/mohit/.hermes/hermes-agent/venv/bin/python /home/mohit/workspace/generate_and_send_regular_lms_html.py\n3. HTML auto-sends via WHAPI. If WHAPI fails, save and send to Telegram DM.\n\nWorkdir: /home/mohit/workspace",
+      "skills": [
+        "regular-lms-reporting",
+        "whatsapp-file-sending"
+      ],
+      "skill": "regular-lms-reporting",
+      "model": "gemini-3-flash-preview",
+      "provider": "copilot",
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 15 * * *",
+        "display": "0 15 * * *"
+      },
+      "schedule_display": "0 15 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 17
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-30T07:38:14.995116+00:00",
+      "next_run_at": "2026-05-18T15:00:00+00:00",
+      "last_run_at": "2026-05-11T16:24:57.373927+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": null,
+      "enabled_toolsets": [
+        "terminal",
+        "file"
+      ],
+      "workdir": "/home/mohit/workspace"
+    },
+    {
+      "id": "8619ddfd9b90",
+      "name": "degreefyd-dashboard-automation_cag_both",
+      "prompt": "Generate and deliver BOTH Degreefyd Master Dashboards (Online and Regular) using the fixed v11 scripts.\n\nImportant rules:\n- Use working directory /home/mohit/workspace.\n- Run with Hermes venv Python: /home/mohit/.hermes/hermes-agent/venv/bin/python\n- First run: /home/mohit/.hermes/hermes-agent/venv/bin/python /home/mohit/workspace/setup_v11.py\n- Then run Online: /home/mohit/.hermes/hermes-agent/venv/bin/python /home/mohit/workspace/run_online_v11.py\n- Then run Regular: /home/mohit/.hermes/hermes-agent/venv/bin/python /home/mohit/workspace/run_regular_v11.py\n\nData logic that must not be changed:\n- Pull Spend/Panel Leads/LMS Leads from 'Day Wise CAC Report'.\n- Pull FFH, Adm, and Invoicing_Var only from raw 'FFH & Above'.\n- FTD FFH = rows where Form Date equals the dashboard anchor date.\n- FTD Adm and FTD Invoicing_Var = ONLY rows where Form Date equals Admission Date and both equal the dashboard anchor date. Old-pipeline admissions must be excluded from FTD.\n- Online MTD/YTD Adm and Invoicing_Var are keyed by Admission Date.\n- Regular MTD/YTD Adm is keyed by Admission Date, but Regular MTD/YTD Invoicing_Var is keyed by Form Date to match the raw May/period view. Verified example: Regular MTD on 04 May 2026 should show Adm=30 and Inv=\u20b991,462, not \u20b9484,882.\n- Keep table headers bold.\n\nIf either script fails, report the exact error. If both succeed, summarize the printed FTD/MTD totals.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "display": "0 9 * * *"
+      },
+      "schedule_display": "0 9 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 11
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-03T20:15:08.023336+00:00",
+      "next_run_at": "2026-05-18T09:00:00+00:00",
+      "last_run_at": "2026-05-15T09:05:29.866210+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": [
+        "terminal",
+        "file"
+      ],
+      "workdir": "/home/mohit/workspace"
+    },
+    {
+      "id": "832ff903feeb",
+      "name": "Daily Regular API Recon",
+      "prompt": "Generate and deliver the Regular API Recon Report for YESTERDAY's date. TWO versions: ALL Sources and Branded Campaigns.\n\n## ALL Sources Query (no filter)\n```sql\nSELECT r.college_name, r.sent_type, r.api_sent_status, COUNT(DISTINCT r.student_id)\nFROM student_college_api_sent_status r\nWHERE DATE(r.created_at AT TIME ZONE 'Asia/Kolkata') = 'YYYY-MM-DD'\nGROUP BY 1,2,3\n```\n\n## Branded Campaigns \u2014 FUZZY MATCHING\nMatch if utm_campaign CONTAINS any of these patterns (case-insensitive):\nLPU_Online, CU_Online, cu_online, Amity_Online, Amity_University, Partner_Amity, Shoolini_Online, Galgotias, VGU_Online, Manipal_Online, GLA_Online, GLA_University, IGNOU, UA_MBA, F_UA\n\nOR exact match on campaign IDs:\n23659350616, 23807086200, 23810994645, 23814823859, 23820721369, 23821027168, 23228113322, 23794794232, 23794010280, 23772025619, 23779002914, 23794940566, 23767340817, 23798269338, 23772157658, 23803352159, 23470383548, 23502437890, 23676777747, 23534722448, 23486436393, 23486463996, 23675435222\n\nQuery: JOIN student_college_api_sent_status with latest_utm (student_lead_activities, DISTINCT ON student_id), then filter branded in Python using the patterns above.\n\n## LMS Leads\nPer-college LMS: COUNT(DISTINCT student_id) from student_lead_activities JOIN student_college_api_sent_status WHERE student_id IN (branded recon students).\n\n## HTML Template\nBarlow font dark theme (#0b1623). Table: College Name | Auto Recon (Proc/Fail/DNP) | Manual Recon (Proc/Fail/DNP) | Total (Proc/Fail/DNP) | Total Leads. Green leads column (#3ddc84).\n\n## Delivery\n- Save: /home/mohit/workspace/Regular_Recon_All_YYYY-MM-DD.html and Regular_Recon_Branded_YYYY-MM-DD.html\n- Send BOTH to Telegram DM (Mohit Kapoor) with summary stats\n- NEVER WhatsApp\n\n## DB: regular_lms from /home/mohit/workspace/.env",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "display": "0 9 * * *"
+      },
+      "schedule_display": "0 9 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 10
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-06T13:53:52.948771+00:00",
+      "next_run_at": "2026-05-18T09:00:00+00:00",
+      "last_run_at": "2026-05-15T09:07:51.999661+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/mohit/workspace"
+    },
+    {
+      "id": "8d3af58d9288",
+      "name": "Regular Admissions Dashboard Graph",
+      "prompt": "Run `python3 /home/mohit/workspace/cron_regular_dashboard.py` to generate the HTML report. Then use `send_message` to send the file `MEDIA:/home/mohit/workspace/true_regular_daily_dashboard_exact.html` to the target `telegram:Mohit Kapoor (dm)` with the message \"\ud83d\udcca Here is the daily Regular Admissions Tracker (Last 15 days) using exact DB logic.\"",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 3 * * *",
+        "display": "30 3 * * *"
+      },
+      "schedule_display": "30 3 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 4
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-08T13:24:34.464334+00:00",
+      "next_run_at": "2026-05-19T03:30:00+00:00",
+      "last_run_at": "2026-05-13T05:11:27.048013+00:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: HTTP 429: The usage limit has been reached",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": [
+        "terminal",
+        "telegram"
+      ],
+      "workdir": "/home/mohit/workspace"
+    },
+    {
+      "id": "93b6286cffe6",
+      "name": "Online Admissions Dashboard Graph",
+      "prompt": "Run `python3 /home/mohit/workspace/cron_online_dashboard.py` to generate the HTML report. Then use `send_message` to send the file `MEDIA:/home/mohit/workspace/online_daily_dashboard_exact.html` to the target `telegram:Mohit Kapoor (dm)` with the message \"\ud83d\udcca Here is the daily Online Admissions Tracker (Last 15 days) using exact DB logic.\"",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 3 * * *",
+        "display": "30 3 * * *"
+      },
+      "schedule_display": "30 3 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 4
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-08T13:24:45.648798+00:00",
+      "next_run_at": "2026-05-19T03:30:00+00:00",
+      "last_run_at": "2026-05-13T05:11:51.632812+00:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: HTTP 429: The usage limit has been reached",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": [
+        "terminal",
+        "telegram"
+      ],
+      "workdir": "/home/mohit/workspace"
+    },
+    {
+      "id": "833ee3b4b7d8",
+      "name": "META AD DETAILS",
+      "prompt": "Run the Meta Ads LMS attribution for YESTERDAY's date.\n\n1. FETCH Meta data from all 3 accounts (2276414612586714, 771369141855853, 943943398169185) at ad level with time_increment=1. Count ONLY 'lead' action type for Panel Leads. Use the META_TOKEN from /home/mohit/workspace/.env.\n\n2. LOAD campaign mapping from the skill's references/campaign_lms_mapping.csv. Each campaign maps to exactly ONE database: online_lms (40 campaigns), regular_lms (17), or regular_cgc_lms (3). Never cross-pollinate.\n\n3. QUERY LMS using the user's exact SQL on all 3 DBs (online_lms, regular_lms, regular_cgc_lms):\n   - WITH ranked_activities AS (...) ROW_NUMBER() OVER (PARTITION BY student_id ORDER BY created_at ASC)\n   - JOIN students s ON s.student_id = ra.student_id\n   - COUNT(DISTINCT ra.student_id)\n   - AT TIME ZONE 'Asia/Kolkata'\n   - No utm_source filter\n\n4. ATTRIBUTE at campaign level (group by Platform, Campaign, Date):\n   - MATCHING CHAIN: Campaign Name exact \u2192 iterate ALL ad names (exact) \u2192 fuzzy ad name (substring, min 6 chars)\n   - Only query the campaign's designated DB\n   - Track matched keys to prevent double-counting\n   - Distribute proportionally: ad.LMS = round(camp_total * ad.Panel / camp_panel)\n   - CAP: ad.LMS = min(ad.LMS, ad.Panel)\n\n5. UPLOAD to Google Sheet 1HcqI8yYnM_ANdWMgD21fYRMNNfUAgM4kpaygm_8Ha0U:\n   - Create tab named \"[Month] [Day] Reflection\" (e.g., \"May 10 Reflection\")\n   - Format: Platform | Account | Date | LMS Type | Campaign | Ad Name | Spends | Pannel_Lead | LMS leads\n   - Add daily sub-total and grand total row\n\n6. VERIFY: Compare Panel totals vs expected ~150-200/day. Report: date, spend, panel, LMS, gap %.\n\nGoogle OAuth: read client_id, client_secret, and refresh_token from /home/mohit/workspace/.env (GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN).\n\nNEVER send to WhatsApp. Sheet only. Flag any unmapped campaigns found.",
+      "skills": [
+        "degreefyd-meta-lms-attribution"
+      ],
+      "skill": "degreefyd-meta-lms-attribution",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "display": "0 3 * * *"
+      },
+      "schedule_display": "0 3 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-10T08:52:19.637225+00:00",
+      "next_run_at": "2026-05-19T03:00:00+00:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/mohit/workspace"
+    }
+  ],
+  "updated_at": "2026-05-18T06:30:21.051202+00:00"
+}

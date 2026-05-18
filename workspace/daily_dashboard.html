@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Performance Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --accent: #fbbf24;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --success: #22c55e;
+        }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        header p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .badge {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .stat-label {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .stat-value.highlight {
+            color: var(--accent);
+        }
+        .progress-container {
+            margin-top: 1rem;
+        }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .progress-bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 5px;
+        }
+        .ftd-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        .ftd-stat h4 {
+            margin: 0;
+            color: var(--success);
+            font-size: 1.4rem;
+        }
+        .ftd-stat span {
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DegreeFYD Performance</h1>
+            <p>Daily Report Summary • April 30, 2026</p>
+        </header>
+
+        <div class="grid">
+            <!-- Online LMS Card -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Online LMS</span>
+                    <span class="badge">MTD Summary</span>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Revenue</span>
+                        <span class="stat-value">₹27,12,284</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Revenue Target</span>
+                        <span class="stat-value">₹57,00,000</span>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Target Achievement</span>
+                        <span>47.6%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 47.6%;"></div>
+                    </div>
+                </div>
+                <div class="stats-row" style="margin-top: 1.5rem;">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Forms</span>
+                        <span class="stat-value">166</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Total Admissions</span>
+                        <span class="stat-value">86</span>
+                    </div>
+                </div>
+                <div class="ftd-section">
+                    <div class="ftd-stat">
+                        <h4>₹3,32,200</h4>
+                        <span>Revenue (FTD)</span>
+                    </div>
+                    <div class="ftd-stat">
+                        <h4>8</h4>
+                        <span>Admissions (FTD)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regular LMS Card -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Regular LMS</span>
+                    <span class="badge">MTD Summary</span>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-label">Admissions Achieved</span>
+                        <span class="stat-value">146</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Admissions Target</span>
+                        <span class="stat-value">290</span>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Admission Progress</span>
+                        <span>50.3%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 50.3%; background: linear-gradient(to right, #fbbf24, #f59e0b);"></div>
+                    </div>
+                </div>
+                <div class="stats-row" style="margin-top: 1.5rem;">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Forms</span>
+                        <span class="stat-value">830</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Forms Target</span>
+                        <span class="stat-value">1,514</span>
+                    </div>
+                </div>
+                <div class="ftd-section">
+                    <div class="ftd-stat">
+                        <h4 style="color: #fbbf24;">10</h4>
+                        <span>Admissions (FTD)</span>
+                    </div>
+                    <div class="ftd-stat">
+                        <h4 style="color: #fbbf24;">49</h4>
+                        <span>Forms (FTD)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            Generated by Hermes Agent • Optimized for Success
+        </footer>
+    </div>
+</body>
+</html>

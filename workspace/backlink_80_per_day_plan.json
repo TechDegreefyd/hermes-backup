@@ -1,0 +1,126 @@
+{
+  "created_at": "2026-05-07T06:10:48.473592",
+  "target_domain": "degreefyd.com",
+  "target_da": 8,
+  "daily_backlink_goal": 80,
+  "strategy": "Automated Web 2.0 + Competitor Link Gap",
+  "web2_sites": [
+    {
+      "name": "Medium.com",
+      "url": "https://medium.com",
+      "type": "blog_platform",
+      "difficulty": "easy",
+      "max_per_day": 15,
+      "approval_needed": false
+    },
+    {
+      "name": "Tumblr",
+      "url": "https://tumblr.com",
+      "type": "blog_platform",
+      "difficulty": "easy",
+      "max_per_day": 10,
+      "approval_needed": false
+    },
+    {
+      "name": "WordPress.com",
+      "url": "https://wordpress.com",
+      "type": "blog_platform",
+      "difficulty": "easy",
+      "max_per_day": 12,
+      "approval_needed": false
+    },
+    {
+      "name": "Blogger",
+      "url": "https://blogger.com",
+      "type": "blog_platform",
+      "difficulty": "easy",
+      "max_per_day": 10,
+      "approval_needed": false
+    },
+    {
+      "name": "HubPages",
+      "url": "https://hubpages.com",
+      "type": "content_platform",
+      "difficulty": "medium",
+      "max_per_day": 8,
+      "approval_needed": true
+    },
+    {
+      "name": "LinkedIn Articles",
+      "url": "https://linkedin.com",
+      "type": "social_network",
+      "difficulty": "easy",
+      "max_per_day": 5,
+      "approval_needed": false
+    },
+    {
+      "name": "Quora",
+      "url": "https://quora.com",
+      "type": "qa_platform",
+      "difficulty": "easy",
+      "max_per_day": 8,
+      "approval_needed": false
+    },
+    {
+      "name": "Reddit",
+      "url": "https://reddit.com",
+      "type": "social_network",
+      "difficulty": "medium",
+      "max_per_day": 5,
+      "approval_needed": false
+    },
+    {
+      "name": "Wix",
+      "url": "https://wix.com",
+      "type": "website_builder",
+      "difficulty": "easy",
+      "max_per_day": 8,
+      "approval_needed": false
+    },
+    {
+      "name": "Weebly",
+      "url": "https://weebly.com",
+      "type": "website_builder",
+      "difficulty": "easy",
+      "max_per_day": 8,
+      "approval_needed": false
+    },
+    {
+      "name": "Substack",
+      "url": "https://substack.com",
+      "type": "newsletter",
+      "difficulty": "easy",
+      "max_per_day": 6,
+      "approval_needed": false
+    },
+    {
+      "name": "Ghost.io",
+      "url": "https://ghost.io",
+      "type": "blog_platform",
+      "difficulty": "medium",
+      "max_per_day": 5,
+      "approval_needed": false
+    },
+    {
+      "name": "Notion",
+      "url": "https://notion.so",
+      "type": "wiki",
+      "difficulty": "easy",
+      "max_per_day": 4,
+      "approval_needed": false
+    }
+  ],
+  "web2_daily_capacity": 104,
+  "estimated_daily": {
+    "web2_high_volume": 35,
+    "web2_medium_volume": 25,
+    "competitor_specific": 20,
+    "total": 80
+  },
+  "timeline": {
+    "week_1": "Start Web2.0 automation + discover competitor backlinks",
+    "week_2": "Scale to 80/day across all channels",
+    "week_4": "Expect initial indexation (~50% live)",
+    "week_8": "Expect DA bump (usually takes 30-60 days to update)"
+  }
+}

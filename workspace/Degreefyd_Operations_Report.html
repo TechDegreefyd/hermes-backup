@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Degreefyd Operations Report</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { font-family: monospace, sans-serif; background: #f4f4f7; color: #1a1a1a; line-height: 1.4; padding: 15px; }
+
+        input[type="radio"], input[type="checkbox"] {
+            position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none;
+        }
+
+        label { cursor: pointer; touch-action: manipulation; -webkit-user-select: none; user-select: none; display: inline-block; }
+
+        .wrap { max-width: 800px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        
+        .header { background: #1a1a1a; color: white; padding: 20px; text-align: center; }
+        .header h1 { font-size: 18px; text-transform: uppercase; letter-spacing: 2px; }
+        .header p { font-size: 12px; opacity: 0.7; margin-top: 5px; }
+
+        .tabs { display: flex; background: #eee; border-bottom: 1px solid #ddd; }
+        .tabs label { flex: 1; text-align: center; padding: 15px 5px; font-size: 11px; font-weight: bold; text-transform: uppercase; border-bottom: 3px solid transparent; }
+
+        #tab-summary:checked ~ .wrap label[for="tab-summary"],
+        #tab-marketing:checked ~ .wrap label[for="tab-marketing"],
+        #tab-sms:checked ~ .wrap label[for="tab-sms"],
+        #tab-audit:checked ~ .wrap label[for="tab-audit"] {
+            background: white; border-bottom-color: #007bff; color: #007bff;
+        }
+
+        .panel { display: none; padding: 20px; }
+        #tab-summary:checked ~ .wrap #panel-summary,
+        #tab-marketing:checked ~ .wrap #panel-marketing,
+        #tab-sms:checked ~ .wrap #panel-sms,
+        #tab-audit:checked ~ .wrap #panel-audit { display: block; }
+
+        .card { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 6px; padding: 15px; margin-bottom: 15px; }
+        .card-title { font-size: 10px; text-transform: uppercase; color: #6c757d; margin-bottom: 10px; border-bottom: 1px solid #dee2e6; padding-bottom: 5px; }
+        
+        .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .metric { padding: 10px; background: white; border-radius: 4px; border: 1px solid #eee; }
+        .metric-val { font-size: 18px; font-weight: bold; display: block; }
+        .metric-label { font-size: 10px; color: #888; }
+        
+        .status-pill { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: bold; }
+        .status-critical { background: #ffe3e3; color: #d63031; }
+        .status-ok { background: #e3fcef; color: #00b894; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 10px; }
+        th { text-align: left; background: #f1f1f1; padding: 8px; border: 1px solid #ddd; }
+        td { padding: 8px; border: 1px solid #ddd; vertical-align: top; }
+        
+        .row.t { background: #f0fff4; }
+        .row.l { background: #fff5f5; }
+        
+        .finder { margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; overflow: hidden; }
+        .finder summary { padding: 10px; background: #f1f1f1; font-weight: bold; cursor: pointer; outline: none; }
+        .name-grid { display: grid; grid-template-columns: 1fr 1fr; padding: 10px; gap: 5px; background: #fafafa; }
+        .name-grid a { text-decoration: none; color: #007bff; padding: 5px; border: 1px solid #eee; border-radius: 3px; font-size: 10px; }
+        .row:target { background: #fff3cd !important; outline: 2px solid #ffc107; }
+        .row { scroll-margin-top: 60px; }
+
+        .funnel-step { position: relative; padding-left: 30px; margin-bottom: 20px; border-left: 2px solid #007bff; }
+        .funnel-step::before { content: ""; position: absolute; left: -7px; top: 0; width: 12px; height: 12px; border-radius: 50%; background: #007bff; }
+        .step-title { font-weight: bold; font-size: 12px; color: #007bff; margin-bottom: 5px; }
+        .step-content { font-size: 11px; color: #444; background: #f9f9f9; padding: 8px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <input type="radio" name="main-tab" id="tab-summary" checked>
+    <input type="radio" name="main-tab" id="tab-marketing">
+    <input type="radio" name="main-tab" id="tab-sms">
+    <input type="radio" name="main-tab" id="tab-audit">
+
+    <div class="wrap">
+        <div class="header">
+            <h1>Degreefyd Business Report</h1>
+            <p>Generated for Mohit Kapoor • Status: High</p>
+        </div>
+
+        <div class="tabs">
+            <label for="tab-summary">Executive</label>
+            <label for="tab-marketing">Marketing</label>
+            <label for="tab-sms">Funnel</label>
+            <label for="tab-audit">Audit</label>
+        </div>
+
+        <!-- PANEL: EXECUTIVE -->
+        <div id="panel-summary" class="panel">
+            <div class="card">
+                <div class="card-title">Financial Health Summary</div>
+                <div class="metric-grid">
+                    <div class="metric">
+                        <span class="metric-val">₹30,34,000</span>
+                        <span class="metric-label">Invoiced Revenue</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-val status-critical">₹14,00,000</span>
+                        <span class="metric-label">Payroll (46% Rev)</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-val">₹6,48,000</span>
+                        <span class="metric-label">Planned Marketing</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-val status-critical">High</span>
+                        <span class="metric-label">Burn Intensity</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" style="background:#fff3cd; border-color:#ffeeba;">
+                <div class="card-title" style="color:#856404; border-bottom-color:#ffeeba;">Critical Insight</div>
+                <p style="font-size:11px;">Payroll consumes nearly half of all invoiced revenue. Any collection lag in the remaining 54% will result in a cash shortfall.</p>
+            </div>
+        </div>
+
+        <!-- PANEL: MARKETING -->
+        <div id="panel-marketing" class="panel">
+            <div class="card">
+                <div class="card-title">CAC & Lead Efficiency</div>
+                <div class="metric-grid">
+                    <div class="metric">
+                        <span class="metric-val">₹121,273</span>
+                        <span class="metric-label">Total Ad Spend</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-val">8.44%</span>
+                        <span class="metric-label">Avg Lead Leakage</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-val">₹64.96</span>
+                        <span class="metric-label">CPL (LMS)</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-val">1867</span>
+                        <span class="metric-label">Verified Leads</span>
+                    </div>
+                </div>
+            </div>
+
+            <details class="finder">
+                <summary>🔍 Quick Jump to Date</summary>
+                <div class="name-grid">
+                    <a href="#row-dec-24">Dec 24</a>
+                    <a href="#row-nov-21">Nov 21</a>
+                    <a href="#row-nov-30">Nov 30</a>
+                    <a href="#row-dec-10">Dec 10</a>
+                </div>
+            </details>
+
+            <table>
+                <thead>
+                    <tr><th>Date</th><th>Campaign</th><th>CPL</th></tr>
+                </thead>
+                <tbody>
+                    <tr id="row-dec-24" class="row t"><td>Dec 24</td><td>IGNOU MBA</td><td>₹68</td></tr>
+                    <tr id="row-nov-21" class="row l"><td>Nov 21</td><td>Online UG/PG</td><td>₹28 <span class="status-pill status-critical">Leakage High</span></td></tr>
+                    <tr id="row-nov-30" class="row t"><td>Nov 30</td><td>IGNOU MBA</td><td>₹124</td></tr>
+                    <tr id="row-dec-10" class="row t"><td>Dec 10</td><td>Galgotias</td><td>₹29</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- PANEL: SMS FUNNEL -->
+        <div id="panel-sms" class="panel">
+            <div class="card-title">7-Day Remarketing Strategy</div>
+            <div class="funnel-step"><div class="step-title">Day 1 · MBA (Website)</div><div class="step-content">Online MBA (UGC-approved) Jan admissions open. Compare top universities & fees...</div></div><div class="funnel-step"><div class="step-title">Day 2 · MBA (WhatsApp)</div><div class="step-content">Amity, LPU & Manipal Online MBA admissions open. Want comparison PDF on WhatsApp?</div></div><div class="funnel-step"><div class="step-title">Day 3 · MBA (Call)</div><div class="step-content">Jan MBA intake closing soon. Counselor ready for quick 3-min guidance. Tap to call...</div></div><div class="funnel-step"><div class="step-title">Day 4 · MBA (Website (EMI))</div><div class="step-content">Start Online MBA at EMI ₹2,500/month. See EMI breakup...</div></div><div class="funnel-step"><div class="step-title">Day 7 · MBA (Call)</div><div class="step-content">Final reminder: MBA Jan intake closes TODAY. Counselor available till 8 PM. Call now...</div></div>
+        </div>
+
+        <!-- PANEL: AUDIT -->
+        <div id="panel-audit" class="panel">
+            <div class="card-title">Competitor Audit vs Degreefyd</div>
+            <table>
+                <thead>
+                    <tr><th>Metric</th><th>Winner</th><th>Degreefyd Score</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Optimization Health</td><td>UniversityAdmit (10/10)</td><td class="status-critical">1/10 (Broken/Chaos)</td></tr><tr><td>Video Usage</td><td>Campus Degree (9/10)</td><td class="status-critical">6/10 (Amateur)</td></tr><tr><td>Ad Spend Efficiency</td><td>UniversityAdmit (10/10)</td><td class="status-critical">2/10 (Wasteful)</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="card" style="margin-top:15px;">
+                <div class="card-title">Strategic Verdict</div>
+                <p style="font-size:11px;">You are currently in <strong>"Chaos Stage"</strong> optimization. 48% of ads are failing to get traction. Consolidation is mandatory to stop budget waste.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "query_used": "SELECT scass.*, sla.utm_campaign FROM student_college_api_sent_status scass LEFT JOIN (SELECT DISTINCT ON (student_id) student_id, utm_campaign FROM student_lead_activities ORDER BY student_id, created_at DESC) sla ON scass.student_id = sla.student_id WHERE DATE(scass.created_at AT TIME ZONE 'Asia/Kolkata') = '2026-03-02';",
+  "total_records": 84,
+  "distinct_college_name_count": 3,
+  "college_counts": {
+    "Chandigarh Group of Colleges, Landran (CGC)": 51,
+    "Lovely Professional University": 21,
+    "Chandigarh University, Mohali": 12
+  },
+  "college_status_counts": {
+    "Chandigarh Group of Colleges, Landran (CGC) || auto || Proceed": 39,
+    "Lovely Professional University || auto || Do not Proceed": 6,
+    "Chandigarh University, Mohali || manual || Proceed": 10,
+    "Chandigarh University, Mohali || manual || Do not Proceed": 2,
+    "Lovely Professional University || manual || Do not Proceed": 3,
+    "Lovely Professional University || manual || Proceed": 5,
+    "Lovely Professional University || manual || Field Missing": 1,
+    "Chandigarh Group of Colleges, Landran (CGC) || manual || Proceed": 4,
+    "Chandigarh Group of Colleges, Landran (CGC) || manual || Failed due to Technical Issues": 4,
+    "Lovely Professional University || auto || Proceed": 5,
+    "Chandigarh Group of Colleges, Landran (CGC) || auto || Do not Proceed": 4,
+    "Lovely Professional University || manual || Failed due to Technical Issues": 1
+  },
+  "top_utm_campaigns": {
+    "23463111599": 41,
+    "No UTM": 11,
+    "LPU_Online_Alpha": 9,
+    "LPU_Online_Gamma": 6,
+    "CU_Online_Admission": 4,
+    "UG_Online_Admission_Ad_Set01_Ad02": 3,
+    "LPU_Online_Delta": 2,
+    "Galgotias_Leads_2026_P_Ad_01": 2,
+    "F_UA1_All Colleges_MBA_Aryan V1.3 (INT 01)_ 1.1": 2,
+    "F_UA1_All Colleges_MBA_Aryan (INT 03)_ 1.3": 2,
+    "Shoolini_Online_Delta": 1,
+    "23349276370": 1
+  }
+}

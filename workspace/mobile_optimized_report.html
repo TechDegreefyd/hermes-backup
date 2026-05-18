@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>DegreeFYD Daily Performance — Apr 30, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap');
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --bg:#07080f;--surface:#0f1018;--surface2:#181924;--border:#22233a;
+    --text:#dde0f0;--muted:#5a5d80;
+    --green:#22d98a;--red:#ff4d6d;--amber:#f5a623;--purple:#a78bfa;--cyan:#22d4f5;--blue:#4285f4;
+  }
+  body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;min-height:100vh;}
+  .wrap{padding:24px 20px;max-width:1400px;margin:0 auto;}
+
+  /* HEADER */
+  .header{margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .header h1{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#fff;letter-spacing:-0.5px;}
+  .header-sub{color:var(--muted);font-size:11px;margin-top:4px;line-height:1.6;}
+  .header-meta{text-align:right;}
+  .date-badge{background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:6px 12px;font-size:11px;color:var(--muted);}
+
+  /* TABS */
+  .tabs{display:flex;gap:8px;margin-bottom:24px;}
+  .tab{padding:12px 26px;border-radius:6px;cursor:pointer;border:1px solid var(--border);font-family:'Syne',sans-serif;font-size:13px;font-weight:700;background:var(--surface);color:var(--muted);transition:all .2s;letter-spacing:.3px; -webkit-tap-highlight-color: transparent; flex:1; text-align:center;}
+  .tab.g-on{background:rgba(66,133,244,.15);border-color:var(--blue);color:var(--blue);}
+  .tab.r-on{background:rgba(34,212,245,.1);border-color:var(--cyan);color:var(--cyan);}
+
+  /* SEARCH BOX - MOBILE FIXED */
+  .search-wrap{margin-bottom:20px;position:relative;}
+  #searchBox{
+    width:100%;
+    padding:14px 16px;
+    background:var(--surface2);
+    border:1px solid var(--border);
+    border-radius:8px;
+    color:var(--text);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:14px;
+    outline:none;
+    transition: border-color 0.2s;
+  }
+  #searchBox:focus{border-color:var(--blue);}
+
+  /* SECTIONS */
+  .section{display:none;}.section.on{display:block;}
+
+  /* ACCOUNT BLOCKS */
+  .acct{margin-bottom:32px;}
+  .acct-head{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+  .acct-head::after{content:'';flex:1;height:1px;background:var(--border);}
+
+  /* TABLE */
+  .tbl-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--border);}
+  table{width:100%;border-collapse:collapse;min-width:980px;}
+  thead{background:var(--surface2);}
+  th{padding:10px 12px;text-align:left;font-size:9.5px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;}
+  td{padding:10px 12px;border-bottom:1px solid rgba(34,35,58,.55);vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:rgba(255,255,255,.018);}
+
+  .camp{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:#fff;max-width:230px;line-height:1.5;}
+
+  /* BADGES */
+  .b{display:inline-block;padding:2px 8px;border-radius:3px;font-size:9.5px;font-weight:600;letter-spacing:.3px;white-space:nowrap;}
+  .b-g{background:rgba(34,217,138,.1);color:var(--green);border:1px solid rgba(34,217,138,.22);}
+  .b-r{background:rgba(255,77,109,.1);color:var(--red);border:1px solid rgba(255,77,109,.22);}
+  .b-a{background:rgba(245,166,35,.1);color:var(--amber);border:1px solid rgba(245,166,35,.22);}
+  .b-p{background:rgba(167,139,250,.1);color:var(--purple);border:1px solid rgba(167,139,250,.22);}
+  .b-n{background:rgba(90,93,128,.08);color:var(--muted);border:1px solid rgba(90,93,128,.18);}
+
+  /* VALUE COLORS */
+  .cv{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;}
+  .vg{color:var(--green);}.vr{color:var(--red);}.va{color:var(--amber);}.vm{color:var(--muted);}
+
+  /* SUMMARY STRIP */
+  .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:28px;}
+  .scard{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 14px;border-top:2px solid var(--border);}
+  .scard.sg{border-top-color:var(--blue);}
+  .scard.sm{border-top-color:var(--cyan);}
+  .slabel{font-size:9.5px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+  .sval{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;}
+  .ssub{font-size:10px;color:var(--muted);margin-top:3px;}
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 20px; }
+    .summary { grid-template-columns: 1fr 1fr; }
+    .tabs { flex-direction: row; }
+    .tab { padding: 12px 10px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div>
+      <h1>LMS Performance Intelligence</h1>
+      <div class="header-sub">Daily Revenue · Admission Count · Target Achievement Analysis<br>Period: Current Month · Online + Regular LMS</div>
+    </div>
+    <div class="header-meta">
+      <div class="date-badge">Generated: Apr 30, 2026</div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab g-on" id="tab-o" onclick="sw('o')">🔵 Online LMS</div>
+    <div class="tab" id="tab-r" onclick="sw('r')">🔷 Regular LMS</div>
+  </div>
+
+  <div class="search-wrap">
+    <input type="text" id="searchBox" placeholder="Search by name, college or supervisor..." inputmode="text" autocomplete="off">
+  </div>
+
+  <!-- ═══════════════ ONLINE LMS ═══════════════ -->
+  <div class="section on" id="so">
+    <div class="summary">
+      <div class="scard sg"><div class="slabel">MTD Revenue</div><div class="sval" style="color:var(--blue)">₹2,712,284</div><div class="ssub">Achieved 47.6%</div></div>
+      <div class="scard sg"><div class="slabel">Revenue Target</div><div class="sval">₹5,700,000</div><div class="ssub">April Month Goal</div></div>
+      <div class="scard sg"><div class="slabel">Today's Revenue</div><div class="sval" style="color:var(--green)">₹332,200</div><div class="ssub">For The Day (FTD)</div></div>
+      <div class="scard sg"><div class="slabel">Total Admissions</div><div class="sval" style="color:var(--cyan)">86</div><div class="ssub">Confirmed (MTD)</div></div>
+    </div>
+
+    <div class="acct">
+      <div class="acct-head">Supervisor · Varun</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr>
+          <th>Counsellor Name</th><th>Target (₹)</th><th>Achieved (₹)</th><th>%</th><th>FTD (₹)</th><th>Status</th>
+        </tr></thead>
+        <tbody>
+    
+          <tr>
+            <td><div class="camp">Om  Sharma</div></td>
+            <td>350,000</td>
+            <td><span class="cv vg">437,720</span></td>
+            <td class="vg">125.1%</td>
+            <td class="vg">85,000</td>
+            <td><span class="b b-g">On Track</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Sumit Yadav</div></td>
+            <td>250,000</td>
+            <td><span class="cv vr">23,800</span></td>
+            <td class="vr">9.5%</td>
+            <td class="vg">23,800</td>
+            <td><span class="b b-r">Low Output</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Tanisha Kulshrestha</div></td>
+            <td>350,000</td>
+            <td><span class="cv vr">0</span></td>
+            <td class="vr">0.0%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-r">Low Output</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Mousumi Khatun</div></td>
+            <td>250,000</td>
+            <td><span class="cv vr">60,000</span></td>
+            <td class="vr">24.0%</td>
+            <td class="vg">60,000</td>
+            <td><span class="b b-a">Low Output</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Mayank Jain</div></td>
+            <td>250,000</td>
+            <td><span class="cv va">162,000</span></td>
+            <td class="va">64.8%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-p">Improving</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Divya Goyal</div></td>
+            <td>250,000</td>
+            <td><span class="cv vr">74,000</span></td>
+            <td class="vr">29.6%</td>
+            <td class="vg">74,000</td>
+            <td><span class="b b-a">Low Output</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Himanshi Baliyan</div></td>
+            <td>150,000</td>
+            <td><span class="cv va">139,500</span></td>
+            <td class="va">93.0%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-g">On Track</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Vijay Kumar</div></td>
+            <td>250,000</td>
+            <td><span class="cv vr">95,000</span></td>
+            <td class="vr">38.0%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-a">Low Output</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Prashant</div></td>
+            <td>0</td>
+            <td><span class="cv vr">0</span></td>
+            <td class="vr">0.0%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-r">Low Output</span></td>
+          </tr>
+        </tbody></table></div></div>
+    <div class="acct">
+      <div class="acct-head">Supervisor · Sunil</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr>
+          <th>Counsellor Name</th><th>Target (₹)</th><th>Achieved (₹)</th><th>%</th><th>FTD (₹)</th><th>Status</th>
+        </tr></thead>
+        <tbody>
+    
+          <tr>
+            <td><div class="camp">Preeti Lohiya</div></td>
+            <td>300,000</td>
+            <td><span class="cv vg">434,049</span></td>
+            <td class="vg">144.7%</td>
+            <td class="vg">14,400</td>
+            <td><span class="b b-g">On Track</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Vishwajeet</div></td>
+            <td>150,000</td>
+            <td><span class="cv vr">0</span></td>
+            <td class="vr">0.0%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-r">Low Output</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Tanya Sharma</div></td>
+            <td>250,000</td>
+            <td><span class="cv vr">0</span></td>
+            <td class="vr">0.0%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-r">Low Output</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Abhishek Swami</div></td>
+            <td>350,000</td>
+            <td><span class="cv va">263,695</span></td>
+            <td class="va">75.3%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-p">Improving</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Vikas</div></td>
+            <td>300,000</td>
+            <td><span class="cv vg">434,270</span></td>
+            <td class="vg">144.8%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-g">On Track</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Amit Kumar</div></td>
+            <td>250,000</td>
+            <td><span class="cv vr">75,000</span></td>
+            <td class="vr">30.0%</td>
+            <td class="vg">75,000</td>
+            <td><span class="b b-a">Low Output</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Talveen</div></td>
+            <td>350,000</td>
+            <td><span class="cv vr">0</span></td>
+            <td class="vr">0.0%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-r">Low Output</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Avneet</div></td>
+            <td>0</td>
+            <td><span class="cv vr">0</span></td>
+            <td class="vr">0.0%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-r">Low Output</span></td>
+          </tr>
+        </tbody></table></div></div>
+    <div class="acct">
+      <div class="acct-head">Supervisor · Siddhartha</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr>
+          <th>Counsellor Name</th><th>Target (₹)</th><th>Achieved (₹)</th><th>%</th><th>FTD (₹)</th><th>Status</th>
+        </tr></thead>
+        <tbody>
+    
+          <tr>
+            <td><div class="camp">Tanya Singh</div></td>
+            <td>400,000</td>
+            <td><span class="cv va">217,000</span></td>
+            <td class="va">54.2%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-p">Improving</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Laxminaryan</div></td>
+            <td>400,000</td>
+            <td><span class="cv vr">165,000</span></td>
+            <td class="vr">41.2%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-a">Improving</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Suhani Raj Gupta</div></td>
+            <td>300,000</td>
+            <td><span class="cv vr">0</span></td>
+            <td class="vr">0.0%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-r">Low Output</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Shubham Kumar Gupta</div></td>
+            <td>150,000</td>
+            <td><span class="cv vr">0</span></td>
+            <td class="vr">0.0%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-r">Low Output</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Arnav Upadhyay</div></td>
+            <td>300,000</td>
+            <td><span class="cv vr">131,250</span></td>
+            <td class="vr">43.8%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-a">Improving</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Virat Kumar Singh</div></td>
+            <td>100,000</td>
+            <td><span class="cv vr">0</span></td>
+            <td class="vr">0.0%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-r">Low Output</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Siddharth Kumar</div></td>
+            <td>0</td>
+            <td><span class="cv vr">0</span></td>
+            <td class="vr">0.0%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-r">Low Output</span></td>
+          </tr>
+        </tbody></table></div></div>
+  </div><!-- /online -->
+
+  <!-- ═══════════════ REGULAR LMS ═══════════════ -->
+  <div class="section" id="sr">
+    <div class="summary">
+      <div class="scard sm"><div class="slabel">Admissions (MTD)</div><div class="sval" style="color:var(--cyan)">146</div><div class="ssub">Goal: 290</div></div>
+      <div class="scard sm"><div class="slabel">Forms (MTD)</div><div class="sval" style="color:var(--amber)">830</div><div class="ssub">Achieved 54.8%</div></div>
+      <div class="scard sm"><div class="slabel">Today Admissions</div><div class="sval" style="color:var(--green)">10</div><div class="ssub">Verified FTD</div></div>
+      <div class="scard sm"><div class="slabel">Today Forms</div><div class="sval" style="color:var(--cyan)">49</div><div class="ssub">Portals FTD</div></div>
+    </div>
+
+    <div class="acct">
+      <div class="acct-head">Track · Admissions</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr>
+          <th>College Name</th><th>YTD</th><th>Target</th><th>Achieved</th><th>%</th><th>FTD</th><th>Status</th>
+        </tr></thead>
+        <tbody>
+    
+          <tr>
+            <td><div class="camp">Chandigarh University, Mohali</div></td>
+            <td>121</td>
+            <td>75</td>
+            <td><span class="cv va">59</span></td>
+            <td class="va">78.7%</td>
+            <td class="vg">7</td>
+            <td><span class="b b-p">Done</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Lovely Professional University</div></td>
+            <td>68</td>
+            <td>75</td>
+            <td><span class="cv va">40</span></td>
+            <td class="va">53.3%</td>
+            <td class="vg">1</td>
+            <td><span class="b b-p">Done</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Chandigarh University, Lucknow</div></td>
+            <td>16</td>
+            <td>25</td>
+            <td><span class="cv va">13</span></td>
+            <td class="va">52.0%</td>
+            <td class="vg">0</td>
+            <td><span class="b b-p">Done</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Chandigarh Group of Colleges, Landran (CGC)</div></td>
+            <td>30</td>
+            <td>50</td>
+            <td><span class="cv vr">17</span></td>
+            <td class="vr">34.0%</td>
+            <td class="vg">1</td>
+            <td><span class="b b-a">Done</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Amity University (All Campuses)</div></td>
+            <td>18</td>
+            <td>65</td>
+            <td><span class="cv vr">17</span></td>
+            <td class="vr">26.2%</td>
+            <td class="vg">1</td>
+            <td><span class="b b-a">Done</span></td>
+          </tr>
+        </tbody></table></div></div>
+    <div class="acct">
+      <div class="acct-head">Track · Forms</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr>
+          <th>College Name</th><th>YTD</th><th>Target</th><th>Achieved</th><th>%</th><th>FTD</th><th>Status</th>
+        </tr></thead>
+        <tbody>
+    
+          <tr>
+            <td><div class="camp">Chandigarh University, Mohali</div></td>
+            <td>374</td>
+            <td>214</td>
+            <td><span class="cv va">196</span></td>
+            <td class="va">91.6%</td>
+            <td class="vg">17</td>
+            <td><span class="b b-g">Captured</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Lovely Professional University</div></td>
+            <td>239</td>
+            <td>300</td>
+            <td><span class="cv vr">109</span></td>
+            <td class="vr">36.3%</td>
+            <td class="vg">4</td>
+            <td><span class="b b-a">Captured</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Chandigarh University, Lucknow</div></td>
+            <td>60</td>
+            <td>100</td>
+            <td><span class="cv va">50</span></td>
+            <td class="va">50.0%</td>
+            <td class="vg">3</td>
+            <td><span class="b b-p">Captured</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Chandigarh Group of Colleges, Landran (CGC)</div></td>
+            <td>98</td>
+            <td>250</td>
+            <td><span class="cv vr">68</span></td>
+            <td class="vr">27.2%</td>
+            <td class="vg">2</td>
+            <td><span class="b b-a">Captured</span></td>
+          </tr>
+        
+          <tr>
+            <td><div class="camp">Amity University (All Campuses)</div></td>
+            <td>540</td>
+            <td>650</td>
+            <td><span class="cv va">407</span></td>
+            <td class="va">62.6%</td>
+            <td class="vg">23</td>
+            <td><span class="b b-p">Captured</span></td>
+          </tr>
+        </tbody></table></div></div>
+  </div><!-- /regular -->
+
+</div><!-- /wrap -->
+
+<script>
+function sw(p){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>{t.classList.remove('g-on', 'r-on');});
+  document.getElementById('s'+p).classList.add('on');
+  document.getElementById('tab-'+p).classList.add(p === 'o' ? 'g-on' : 'r-on');
+}
+
+// MOBILE-FRIENDLY FILTER
+const searchBox = document.getElementById('searchBox');
+searchBox.addEventListener('input', function() {
+    const filter = this.value.toUpperCase();
+    const rows = document.querySelectorAll('tbody tr');
+    
+    rows.forEach(row => {
+        const text = row.innerText.toUpperCase();
+        row.style.display = text.indexOf(filter) > -1 ? "" : "none";
+    });
+
+    // Hide account/supervisor blocks if all rows are hidden
+    document.querySelectorAll('.acct').forEach(block => {
+        const visibleRows = block.querySelectorAll('tbody tr[style=""]');
+        const allHidden = block.querySelectorAll('tbody tr').length > 0 && visibleRows.length === 0 && Array.from(block.querySelectorAll('tbody tr')).every(r => r.style.display === 'none');
+        block.style.display = allHidden ? "none" : "";
+    });
+});
+</script>
+</body>
+</html>

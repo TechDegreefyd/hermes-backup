@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regular API Recon Report — 2026-05-14</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: #0b1623;
+            color: #e2e8f0;
+            padding: 32px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 16px;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        .header .date-badge {
+            background: #1e293b;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #3b82f6;
+        }
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .card {
+            background: linear-gradient(145deg, #0f1a2e, #141f35);
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .card .card-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+        .card .card-value {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        .card .card-value.proceed { color: #3ddc84; }
+        .card .card-value.fail { color: #ef4444; }
+        .card .card-value.dnp { color: #f59e0b; }
+        .card .card-value.total { color: #3b82f6; }
+        .card .card-value.lms { color: #a78bfa; }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
+            background: #0d1829;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        thead {
+            background: #111d31;
+        }
+        th {
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #94a3b8;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #1e293b;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background: #111d31;
+        }
+        th:first-child {
+            text-align: left;
+            padding-left: 16px;
+            min-width: 220px;
+        }
+        th.col-header {
+            background: #162240;
+        }
+        th.proceed { color: #3ddc84; }
+        th.fail { color: #ef4444; }
+        th.dnp { color: #f59e0b; }
+        th.fm { color: #f97316; }
+        th.total { color: #3b82f6; }
+        th.lms { color: #a78bfa; }
+        
+        td {
+            padding: 10px 8px;
+            text-align: center;
+            border-bottom: 1px solid #152032;
+            font-weight: 500;
+        }
+        td:first-child {
+            text-align: left;
+            padding-left: 16px;
+            font-weight: 500;
+        }
+        .college-name {
+            color: #e2e8f0;
+        }
+        
+        tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+        
+        .totals-row {
+            background: #111d31 !important;
+            border-top: 2px solid #1e293b;
+        }
+        .totals-row td {
+            padding: 12px 8px;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+        
+        .total-proceed { color: #3ddc84; font-weight: 600; }
+        .total-fail { color: #ef4444; font-weight: 600; }
+        .total-dnp { color: #f59e0b; font-weight: 600; }
+        .total-fm { color: #f97316; font-weight: 600; }
+        .total-all { color: #3b82f6; font-weight: 600; }
+        .lms-leads { color: #a78bfa; font-weight: 600; }
+        
+        .group-header {
+            font-size: 11px;
+            color: #64748b;
+            background: #0f1a2e !important;
+            text-align: center !important;
+            padding-top: 16px !important;
+        }
+        
+        .footer {
+            margin-top: 32px;
+            text-align: center;
+            color: #475569;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>Regular API Recon — Branded Campaigns</h1>
+            <div class="subtitle">Regular LMS API Recon Report</div>
+        </div>
+        <div class="date-badge">2026-05-14</div>
+    </div>
+    
+    <div class="summary-cards">
+        <div class="card">
+            <div class="card-label">Total Proceed</div>
+            <div class="card-value proceed">24</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Total Failed</div>
+            <div class="card-value fail">8</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Total Do Not Proceed</div>
+            <div class="card-value dnp">6</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Field Missing</div>
+            <div class="card-value fail">0</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Total Recon</div>
+            <div class="card-value total">38</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Total LMS Leads</div>
+            <div class="card-value lms">37</div>
+        </div>
+    </div>
+    
+    <div class="section-title">College-Wise Recon Status</div>
+    
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">College Name</th>
+                    <th colspan="4" class="col-header">Auto Recon</th>
+                    <th colspan="4" class="col-header">Manual Recon</th>
+                    <th colspan="5" class="col-header">Total</th>
+                    <th rowspan="2" class="lms">Total<br>Leads</th>
+                </tr>
+                <tr>
+                    <th class="proceed">Proc</th>
+                    <th class="fail">Fail</th>
+                    <th class="dnp">DNP</th>
+                    <th class="fm">FM</th>
+                    <th class="proceed">Proc</th>
+                    <th class="fail">Fail</th>
+                    <th class="dnp">DNP</th>
+                    <th class="fm">FM</th>
+                    <th class="proceed">Proc</th>
+                    <th class="fail">Fail</th>
+                    <th class="dnp">DNP</th>
+                    <th class="fm">FM</th>
+                    <th class="total">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr>
+            <td class="college-name">Chandigarh Group of Colleges, Landran (CGC)</td>
+            <td>10</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td class="total-proceed">10</td>
+            <td class="total-fail">0</td>
+            <td class="total-dnp">2</td>
+            <td class="total-fm">0</td>
+            <td class="total-all">12</td>
+            <td class="lms-leads">12</td>
+        </tr>
+        
+
+        <tr>
+            <td class="college-name">Chandigarh University, Lucknow</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="total-proceed">0</td>
+            <td class="total-fail">1</td>
+            <td class="total-dnp">0</td>
+            <td class="total-fm">0</td>
+            <td class="total-all">1</td>
+            <td class="lms-leads">1</td>
+        </tr>
+        
+
+        <tr>
+            <td class="college-name">Chandigarh University, Mohali</td>
+            <td>3</td>
+            <td>6</td>
+            <td>2</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+            <td class="total-proceed">4</td>
+            <td class="total-fail">7</td>
+            <td class="total-dnp">3</td>
+            <td class="total-fm">0</td>
+            <td class="total-all">14</td>
+            <td class="lms-leads">13</td>
+        </tr>
+        
+
+        <tr>
+            <td class="college-name">Lovely Professional University</td>
+            <td>10</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="total-proceed">10</td>
+            <td class="total-fail">0</td>
+            <td class="total-dnp">1</td>
+            <td class="total-fm">0</td>
+            <td class="total-all">11</td>
+            <td class="lms-leads">11</td>
+        </tr>
+        
+                
+    <tr class="totals-row">
+        <td class="college-name"><strong>TOTAL</strong></td>
+        <td><strong>23</strong></td>
+        <td><strong>6</strong></td>
+        <td><strong>4</strong></td>
+        <td><strong>0</strong></td>
+        <td><strong>1</strong></td>
+        <td><strong>2</strong></td>
+        <td><strong>2</strong></td>
+        <td><strong>0</strong></td>
+        <td class="total-proceed"><strong>24</strong></td>
+        <td class="total-fail"><strong>8</strong></td>
+        <td class="total-dnp"><strong>6</strong></td>
+        <td class="total-fm"><strong>0</strong></td>
+        <td class="total-all"><strong>38</strong></td>
+        <td class="lms-leads"><strong>37</strong></td>
+    </tr>
+    
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="footer">
+        Generated on 2026-05-15 09:07:24 IST &middot; Regular LMS API Recon Report
+    </div>
+</body>
+</html>

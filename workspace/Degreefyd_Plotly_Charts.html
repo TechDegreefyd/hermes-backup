@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degreefyd Trend Charts (Plotly)</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap');
+        body { background-color: #07080f; color: #dde0f0; font-family: 'IBM Plex Mono', monospace; margin: 0; padding: 20px; }
+        h1 { text-align: center; color: #fff; margin-bottom: 20px; font-weight: 600; }
+        .warning { background: rgba(255,77,109,.15); color: #ff4d6d; border: 1px solid #ff4d6d; padding: 15px; border-radius: 8px; margin-bottom: 30px; text-align: center; font-size: 13px; }
+        .chart-container { background: #0F1018; border: 1px solid #22233a; border-radius: 10px; padding: 10px; margin-bottom: 30px; }
+        .wrap { max-width: 1200px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="warning">
+            ⚠️ <b>WHATSAPP USERS:</b> This report uses interactive Plotly charts. JavaScript is required. <br>
+            If the charts are blank, tap the three dots in the top right and select <b>"Open in Browser"</b>, or view on WhatsApp Desktop.
+        </div>
+        <h1>Degreefyd Operations (Interactive)</h1>
+
+    <div class="chart-container" id="c1"></div>
+    <script>
+        var trace1 = {
+            x: ["2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30"],
+            y: [29.0, 22.0, 19.0, 19.0, 18.0, 28.0, 25.0, 21.0, 27.0, 24.0, 20.0, 16.0, 33.0],
+            mode: 'lines+markers',
+            name: 'CPL Pannel',
+            line: {color: '#00E5FF', width: 3},
+            marker: {size: 8, color: '#00E5FF', line: {width: 2, color: '#111'}}
+        };
+        var trace2 = {
+            x: ["2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30"],
+            y: [33.0, 23.0, 22.0, 22.0, 22.0, 28.0, 27.0, 25.0, 33.0, 29.0, 21.0, 18.0, 33.0],
+            mode: 'lines+markers',
+            name: 'CPL LMS',
+            line: {color: '#FF1744', width: 3},
+            marker: {size: 8, color: '#FF1744', line: {width: 2, color: '#111'}}
+        };
+        var layout = {
+            title: 'Google ads DSA campaign cpl_pannel and cpl_lms',
+            paper_bgcolor: '#0F1018',
+            plot_bgcolor: '#0F1018',
+            font: {color: '#dde0f0', family: '"IBM Plex Mono", monospace'},
+            hovermode: 'x unified',
+            legend: {orientation: "h", yanchor: "bottom", y: 1.02, xanchor: "right", x: 1},
+            margin: {l: 40, r: 40, t: 80, b: 40},
+            xaxis: {showgrid: false, linecolor: '#333333'},
+            yaxis: {gridcolor: '#22233a', linecolor: '#333333'}
+        };
+        Plotly.newPlot('c1', [trace1, trace2], layout, {responsive: true});
+    </script>
+    
+    <div class="chart-container" id="c2"></div>
+    <script>
+        var trace1 = {
+            x: ["2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30"],
+            y: [73.98, 83.48, 47.5, 50.99, 49.0, 53.92, 55.99, 38.0, 37.0, 42.97, 36.99, 50.0, 49.0, 58.0, 27.0],
+            mode: 'lines+markers',
+            name: 'Lead Pannel',
+            line: {color: '#00E5FF', width: 3},
+            marker: {size: 8, color: '#00E5FF', line: {width: 2, color: '#111'}}
+        };
+        var trace2 = {
+            x: ["2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30"],
+            y: [64.0, 69.0, 42.0, 49.0, 43.0, 46.0, 46.0, 38.0, 34.0, 36.0, 30.0, 41.0, 47.0, 52.0, 27.0],
+            mode: 'lines+markers',
+            name: 'Lead LMS',
+            line: {color: '#FF1744', width: 3},
+            marker: {size: 8, color: '#FF1744', line: {width: 2, color: '#111'}}
+        };
+        var layout = {
+            title: 'Google ads DSA campaign lead_pannel and lead_lms',
+            paper_bgcolor: '#0F1018',
+            plot_bgcolor: '#0F1018',
+            font: {color: '#dde0f0', family: '"IBM Plex Mono", monospace'},
+            hovermode: 'x unified',
+            legend: {orientation: "h", yanchor: "bottom", y: 1.02, xanchor: "right", x: 1},
+            margin: {l: 40, r: 40, t: 80, b: 40},
+            xaxis: {showgrid: false, linecolor: '#333333'},
+            yaxis: {gridcolor: '#22233a', linecolor: '#333333'}
+        };
+        Plotly.newPlot('c2', [trace1, trace2], layout, {responsive: true});
+    </script>
+    
+    <div class="chart-container" id="c3"></div>
+    <script>
+        var trace1 = {
+            x: ["2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30"],
+            y: [74.0, 66.0, 66.0, 60.0, 61.0, 71.0, 77.0, 88.0, 90.0, 81.0, 87.0, 135.0, 59.0, 112.0, 93.0],
+            mode: 'lines+markers',
+            name: 'CPL Pannel',
+            line: {color: '#00E5FF', width: 3},
+            marker: {size: 8, color: '#00E5FF', line: {width: 2, color: '#111'}}
+        };
+        var trace2 = {
+            x: ["2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30"],
+            y: [79.0, 73.0, 68.0, 72.0, 70.0, 79.0, 87.0, 96.0, 100.0, 93.0, 92.0, 139.0, 63.0, 128.0, 94.0],
+            mode: 'lines+markers',
+            name: 'CPL LMS',
+            line: {color: '#FF1744', width: 3},
+            marker: {size: 8, color: '#FF1744', line: {width: 2, color: '#111'}}
+        };
+        var layout = {
+            title: 'META ads cpl_pannel and cpl_lms',
+            paper_bgcolor: '#0F1018',
+            plot_bgcolor: '#0F1018',
+            font: {color: '#dde0f0', family: '"IBM Plex Mono", monospace'},
+            hovermode: 'x unified',
+            legend: {orientation: "h", yanchor: "bottom", y: 1.02, xanchor: "right", x: 1},
+            margin: {l: 40, r: 40, t: 80, b: 40},
+            xaxis: {showgrid: false, linecolor: '#333333'},
+            yaxis: {gridcolor: '#22233a', linecolor: '#333333'}
+        };
+        Plotly.newPlot('c3', [trace1, trace2], layout, {responsive: true});
+    </script>
+    
+    <div class="chart-container" id="c4"></div>
+    <script>
+        var trace1 = {
+            x: ["2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30"],
+            y: [97.0, 94.0, 85.0, 82.0, 101.0, 92.0, 114.0, 115.0, 133.0, 140.0, 166.0, 59.0, 138.0, 109.0, 121.0],
+            mode: 'lines+markers',
+            name: 'Lead Pannel',
+            line: {color: '#00E5FF', width: 3},
+            marker: {size: 8, color: '#00E5FF', line: {width: 2, color: '#111'}}
+        };
+        var trace2 = {
+            x: ["2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30"],
+            y: [91.0, 86.0, 82.0, 68.0, 88.0, 82.0, 101.0, 105.0, 120.0, 122.0, 157.0, 57.0, 128.0, 96.0, 119.0],
+            mode: 'lines+markers',
+            name: 'Lead LMS',
+            line: {color: '#FF1744', width: 3},
+            marker: {size: 8, color: '#FF1744', line: {width: 2, color: '#111'}}
+        };
+        var layout = {
+            title: 'META ads lead_pannel and lead_lms',
+            paper_bgcolor: '#0F1018',
+            plot_bgcolor: '#0F1018',
+            font: {color: '#dde0f0', family: '"IBM Plex Mono", monospace'},
+            hovermode: 'x unified',
+            legend: {orientation: "h", yanchor: "bottom", y: 1.02, xanchor: "right", x: 1},
+            margin: {l: 40, r: 40, t: 80, b: 40},
+            xaxis: {showgrid: false, linecolor: '#333333'},
+            yaxis: {gridcolor: '#22233a', linecolor: '#333333'}
+        };
+        Plotly.newPlot('c4', [trace1, trace2], layout, {responsive: true});
+    </script>
+    
+    <div class="chart-container" id="c5"></div>
+    <script>
+        var trace1 = {
+            x: ["2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30"],
+            y: [215.0, 243.0, 162.0, 215.0, 443.0, 434.0, 296.0, 312.0, 516.0, 444.0, 311.0, 571.0, 444.0, 574.0, 443.0],
+            mode: 'lines+markers',
+            name: 'CPL Pannel',
+            line: {color: '#00E5FF', width: 3},
+            marker: {size: 8, color: '#00E5FF', line: {width: 2, color: '#111'}}
+        };
+        var trace2 = {
+            x: ["2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30"],
+            y: [235.0, 291.0, 220.0, 244.0, 601.0, 410.0, 346.0, 359.0, 607.0, 570.0, 344.0, 602.0, 489.0, 634.0, 516.0],
+            mode: 'lines+markers',
+            name: 'CPL LMS',
+            line: {color: '#FF1744', width: 3},
+            marker: {size: 8, color: '#FF1744', line: {width: 2, color: '#111'}}
+        };
+        var layout = {
+            title: 'Google ads Brand campaign cpl_pannel and cpl_lms',
+            paper_bgcolor: '#0F1018',
+            plot_bgcolor: '#0F1018',
+            font: {color: '#dde0f0', family: '"IBM Plex Mono", monospace'},
+            hovermode: 'x unified',
+            legend: {orientation: "h", yanchor: "bottom", y: 1.02, xanchor: "right", x: 1},
+            margin: {l: 40, r: 40, t: 80, b: 40},
+            xaxis: {showgrid: false, linecolor: '#333333'},
+            yaxis: {gridcolor: '#22233a', linecolor: '#333333'}
+        };
+        Plotly.newPlot('c5', [trace1, trace2], layout, {responsive: true});
+    </script>
+    
+    <div class="chart-container" id="c6"></div>
+    <script>
+        var trace1 = {
+            x: ["2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30"],
+            y: [23.0, 18.0, 19.0, 25.0, 19.0, 17.0, 28.0, 23.0, 20.0, 18.0, 21.0, 19.0, 22.0, 21.0, 28.0],
+            mode: 'lines+markers',
+            name: 'Lead Pannel',
+            line: {color: '#00E5FF', width: 3},
+            marker: {size: 8, color: '#00E5FF', line: {width: 2, color: '#111'}}
+        };
+        var trace2 = {
+            x: ["2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25", "2026-04-26", "2026-04-27", "2026-04-28", "2026-04-29", "2026-04-30"],
+            y: [21.0, 15.0, 14.0, 22.0, 14.0, 18.0, 24.0, 20.0, 17.0, 14.0, 19.0, 18.0, 20.0, 19.0, 24.0],
+            mode: 'lines+markers',
+            name: 'Lead LMS',
+            line: {color: '#FF1744', width: 3},
+            marker: {size: 8, color: '#FF1744', line: {width: 2, color: '#111'}}
+        };
+        var layout = {
+            title: 'Google ads Brand campaign lead_pannel and lead_lms',
+            paper_bgcolor: '#0F1018',
+            plot_bgcolor: '#0F1018',
+            font: {color: '#dde0f0', family: '"IBM Plex Mono", monospace'},
+            hovermode: 'x unified',
+            legend: {orientation: "h", yanchor: "bottom", y: 1.02, xanchor: "right", x: 1},
+            margin: {l: 40, r: 40, t: 80, b: 40},
+            xaxis: {showgrid: false, linecolor: '#333333'},
+            yaxis: {gridcolor: '#22233a', linecolor: '#333333'}
+        };
+        Plotly.newPlot('c6', [trace1, trace2], layout, {responsive: true});
+    </script>
+    
+    <div class="chart-container" id="c7"></div>
+    <script>
+        var layout = {
+            title: 'Degreefyd Online overall CAC YTD 27-04-2026',
+            paper_bgcolor: '#0F1018',
+            plot_bgcolor: '#0F1018',
+            font: {color: '#dde0f0', family: '"IBM Plex Mono", monospace'},
+            hovermode: 'x unified',
+            barmode: 'group',
+            legend: {orientation: "h", yanchor: "bottom", y: 1.02, xanchor: "right", x: 1},
+            margin: {l: 40, r: 40, t: 80, b: 40},
+            xaxis: {showgrid: false, linecolor: '#333333'},
+            yaxis: {gridcolor: '#22233a', linecolor: '#333333'}
+        };
+        Plotly.newPlot('c7', [
+        {
+            x: ["Meta Ads", "Google Ads"],
+            y: [0.0, 0.0],
+            type: 'bar',
+            name: 'Spends',
+            marker: {color: '#4f8ef7'}
+        }], layout, {responsive: true});
+    </script>
+    
+    <div class="chart-container" id="c8"></div>
+    <script>
+        var layout = {
+            title: 'Degreefyd Online overall Leads YTD 27-04-2026',
+            paper_bgcolor: '#0F1018',
+            plot_bgcolor: '#0F1018',
+            font: {color: '#dde0f0', family: '"IBM Plex Mono", monospace'},
+            hovermode: 'x unified',
+            barmode: 'group',
+            legend: {orientation: "h", yanchor: "bottom", y: 1.02, xanchor: "right", x: 1},
+            margin: {l: 40, r: 40, t: 80, b: 40},
+            xaxis: {showgrid: false, linecolor: '#333333'},
+            yaxis: {gridcolor: '#22233a', linecolor: '#333333'}
+        };
+        Plotly.newPlot('c8', [
+        {
+            x: ["Meta Ads", "Google Ads"],
+            y: [0.0, 0.0],
+            type: 'bar',
+            name: 'LMS Leads',
+            marker: {color: '#4f8ef7'}
+        }], layout, {responsive: true});
+    </script>
+    
+    <div class="chart-container" id="c9"></div>
+    <script>
+        var layout = {
+            title: 'Degreefyd Online overall CPL YTD 27-04-2026',
+            paper_bgcolor: '#0F1018',
+            plot_bgcolor: '#0F1018',
+            font: {color: '#dde0f0', family: '"IBM Plex Mono", monospace'},
+            hovermode: 'x unified',
+            barmode: 'group',
+            legend: {orientation: "h", yanchor: "bottom", y: 1.02, xanchor: "right", x: 1},
+            margin: {l: 40, r: 40, t: 80, b: 40},
+            xaxis: {showgrid: false, linecolor: '#333333'},
+            yaxis: {gridcolor: '#22233a', linecolor: '#333333'}
+        };
+        Plotly.newPlot('c9', [
+        {
+            x: ["Meta Ads", "Google Ads"],
+            y: [0, 0],
+            type: 'bar',
+            name: 'CPL (LMS)',
+            marker: {color: '#4f8ef7'}
+        }], layout, {responsive: true});
+    </script>
+    
+    </div>
+</body>
+</html>

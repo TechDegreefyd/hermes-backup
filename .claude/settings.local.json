@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\mohit\\\\OneDrive\\\\Desktop\\\\Hermes BackUp\" -Recurse -File)",
+      "Bash(Select-Object -ExpandProperty Extension)",
+      "Bash(Sort-Object)",
+      "Bash(Get-Unique)",
+      "Bash(sed 's/.*\\\\.//')",
+      "Bash(git log *)",
+      "Bash(Get-Content -Path \"workspace\\\\generate_discrepancy_pdf.py\")",
+      "Bash(Select-String \"8611628152\")",
+      "Bash(grep *)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}
